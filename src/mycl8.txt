@@ -1,0 +1,3795 @@
+//import java.awt.*;
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.*;
+import java.awt.Desktop;
+import javax.swing.event.*;
+import javax.swing.*;
+import java.net.*;
+import javax.swing.UIManager.*;
+import javax.swing.table.DefaultTableModel.*;
+import javax.swing.table.*;
+import java.util.*;
+import javax.swing.border.*;
+import java.io.*;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.CMYKColor;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.*;
+public class MyController extends JWindow implements KeyListener,ActionListener,ItemListener,MouseListener{
+
+//SplashScreen splash;
+Connectionn connect,connect2,connect3;
+MyLogin login;
+MyModel model;
+MyMenu menu;
+Customer cust;
+Manufacturer manu;
+Employee emp;
+Order order;
+Product prod;
+Stock stock;
+View view;
+Payment pay;
+Complaint comp;
+Report report1;
+About about1;
+ChangePassword changePass;
+Bill bill;
+
+ModifyEmployee modifyEmp;
+ModifyCustomer modifyCust;
+ModifyManufacturer modifyManu;
+ModifyProduct modifyProd;
+
+Calendar cal;
+Border border; 
+
+//BasicWindowMonitor basicW;
+
+int m,size=0,rows=0;
+int validate;
+int row,pkey=1,pkeyo=1;
+boolean bflag;
+int i1=0,i2=0,i3=0,i4=0,i5=0,i6=0;
+
+Object source;
+Object[][] dc1;
+Object[][] dc2;
+
+String[][] sc2;
+String userName="";
+String modEmp1="",modEmp2="",modEmp3="",modEmp4="",modEmp5="",modEmp6="",modEmp7="",modEmp8="" ,modEmp9="", modEmp10="",modEmp11="",modEmp12="",modEmp13="",modEmp14="",modEmp15="";
+String s="",s1="",s2="",s3="",s4="",s5="",s6="",s7="",s8="",s9="",s10="",s11="",s12="",s13="",s14="",s15="",s16="",s17="",s18="",s19="",s20="",s21="",s22="";
+String calendar;
+String strQuery,modCust1="",modCust2="",modCust3="",modCust4="",modCust5="",modCust6="",modCust7="",modCust8="";
+String modManu1="",modManu2="",modManu3="",modManu4="",modManu5="",modManu6="",modManu7="",modManu8="",modManu9="";
+String modProd1="",modProd2="",modProd3="",modProd4="",modProd5="",modProd6="",modProd7="",modProd8="";
+
+private JProgressBar progressBar;
+
+//---------------------------CONSTRUCTOR-------------------------------
+public MyController(){
+//---------------------------Look & Feel-------------------------------
+try {
+for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+if ("Nimbus".equals(info.getName())) {
+    UIManager.setLookAndFeel(info.getClassName());
+	break; }
+	}
+} catch (Exception e) {System.out.println("Error:1"+e);}
+
+model=new MyModel();
+model.chkInstance();
+initialize();
+pack();
+//---------------------------Timer-----------------------------------------
+javax.swing.Timer t = new javax.swing.Timer(1000, new ClockListener());
+        t.start();
+}
+
+//------------------------------INITIALIZE----------------------------------
+public void initialize(){
+//--------------------------------SplashScreen------------------------------------------
+  JPanel content = (JPanel)getContentPane();
+       content.setBackground(Color.white);
+
+	    progressBar = new JProgressBar(0, 100);
+        progressBar.setValue(0);
+		progressBar.setBorderPainted(true);
+		progressBar.setStringPainted(true);
+	
+		// Set the window's bounds, centering the window
+       int width = 710;
+       int height =450;
+       Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+       int x = (screen.width-width)/2;
+       int y = (screen.height-height)/2;
+       setBounds(x,y,width,height);
+
+       // Build the splash screen
+       JLabel label = new JLabel(new ImageIcon(getClass().getResource("i/splash.jpg")));
+       JLabel copyrt = new JLabel("Management System, Copyright 2011", JLabel.CENTER);
+       copyrt.setFont(new java.awt.Font("Sans-Serif", Font.BOLD, 15));
+       content.add(label, BorderLayout.CENTER);
+       content.add(copyrt, BorderLayout.NORTH);
+	   content.add(progressBar,BorderLayout.SOUTH);
+       Color oraRed = new Color(156, 20, 20,  255);
+       content.setBorder(BorderFactory.createLineBorder(Color.darkGray, 10));
+
+       // Display it
+       setVisible(true);
+
+         try
+        {
+		for(int i=0;i<51;i++){
+       Thread.sleep(10);
+	   	progressBar.setString("Loading  "+i+"%");
+	   progressBar.setValue(i);
+}
+        } catch (Exception e) {System.out.println("Error:2"+e);}
+
+
+
+//---------------------------------work2do-------------------------------------
+//basicW=new BasicWindowMonitor();
+connect =new Connectionn();
+connect.startConnection();
+connect2 =new Connectionn();
+connect2.startConnection();
+connect3 =new Connectionn();
+connect3.startConnection();
+//splash=new SplashScreen();
+
+login=new MyLogin();
+login.btnExit.addActionListener(this);
+login.btnLogin.addActionListener(this);
+//login.addWindowListener(basicW);
+
+cust=new Customer();
+cust.addMouseListener(this);
+cust.addMouseMotionListener(new MouseAdapter()
+       {
+          public void mouseClicked(MouseEvent me)
+         {
+        menu.getLayeredPane().setPosition(cust,0);
+        System.out.println("me");
+         
+	}  public void mousePressed(MouseEvent me)
+         {
+         menu.getLayeredPane().setPosition(cust,0);
+        System.out.println("me");
+         
+	}  public void mouseDragged(MouseEvent me)
+         {
+         menu.getLayeredPane().setPosition(cust,0);
+        System.out.println("me");
+         
+	}public void mouseMoved(MouseEvent me)
+         {
+         menu.getLayeredPane().setPosition(cust,0);
+        System.out.println("me");
+         
+	}
+          });
+cust.editCust.txtSearch.addKeyListener(this);
+cust.editCust.btnDelete.addActionListener(this);
+cust.editCust.btnDelete.setActionCommand("cust.editCust.btnDelete");
+cust.editCust.btnModify.addActionListener(this);
+cust.editCust.btnModify.setActionCommand("cust.editCust.btnModify");
+cust.editCust.btnCancel.addActionListener(this);
+cust.editCust.btnCancel.setActionCommand("cust.editCust.btnCancel");
+cust.addCust.btnCancel.addActionListener(this);
+cust.addCust.btnCancel.setActionCommand("cust.addCust.btnCancel");
+
+cust.addCust.btnClear.addActionListener(this);
+cust.addCust.btnClear.setActionCommand("cust.addCust.btnClear");
+cust.editCust.jcbSearch.addItemListener(this);
+
+cust.addCust.btnSave.addActionListener(this);
+cust.addCust.btnSave.setActionCommand("addCust.btnSave");
+
+cust.editCust.jtCustomer.addMouseListener(new MouseAdapter()
+       {
+          public void mouseClicked(MouseEvent me)
+         {
+        int column = cust.editCust.jtCustomer.getSelectedColumn();
+       row = cust.editCust.jtCustomer.getSelectedRow();
+	   System.out.println(row);
+        s1=(String)cust.editCust.jtCustomer.getModel().getValueAt(row, 0);
+        System.out.println(s1);
+         
+	}
+          });
+		  
+manu=new Manufacturer();
+manu.addMouseListener(this);
+manu.addMouseMotionListener(new MouseAdapter(){
+      public void mouseMoved(MouseEvent me)
+         {
+         menu.getLayeredPane().setPosition(manu,0);
+        
+         
+	}
+          });
+manu.editManu.btnDelete.addActionListener(this);
+manu.editManu.btnDelete.setActionCommand("manu.editManu.btnDelete");
+manu.editManu.btnModify.addActionListener(this);
+manu.editManu.btnModify.setActionCommand("manu.editManu.btnModify");
+manu.editManu.txtSearch.addKeyListener(this);
+manu.addManu.btnCancel.addActionListener(this);
+manu.addManu.btnCancel.setActionCommand("manu.addManu.btnCancel");
+manu.editManu.btnCancel.addActionListener(this);
+manu.editManu.btnCancel.setActionCommand("manu.editManu.btnCancel");
+manu.addManu.btnClear.addActionListener(this);
+manu.addManu.btnClear.setActionCommand("manu.addManu.btnClear");
+
+
+manu.addManu.btnSave.addActionListener(this);
+manu.addManu.btnSave.setActionCommand("addManu.btnSave");
+		  
+		  manu.editManu.jtManufacturer.addMouseListener(new MouseAdapter()
+       {
+          public void mouseClicked(MouseEvent me)
+         {
+        int column = manu.editManu.jtManufacturer.getSelectedColumn();
+       row = manu.editManu.jtManufacturer.getSelectedRow();
+	   System.out.println(row);
+        s2=(String)manu.editManu.jtManufacturer.getModel().getValueAt(row, 0);
+        System.out.println(s2);
+         
+	}
+          });
+		  
+
+
+emp=new Employee();
+emp.addMouseListener(this);
+emp.addMouseMotionListener(new MouseAdapter(){
+      public void mouseMoved(MouseEvent me)
+         {
+         menu.getLayeredPane().setPosition(emp,0);
+        
+         
+	}
+          });
+emp.editEmployee.txtSearch.addKeyListener(this);
+emp.addEmployee.btnSave.addActionListener(this);
+emp.addEmployee.btnSave.setActionCommand("emp.addEmployee.btnSave");
+emp.addEmployee.btnCancel.addActionListener(this);
+emp.addEmployee.btnCancel.setActionCommand("emp.addEmployee.btnCancel");
+emp.editEmployee.btnCancel.addActionListener(this);
+emp.editEmployee.btnCancel.setActionCommand("emp.editEmployee.btnCancel");
+emp.editEmployee.btnModify.addActionListener(this);
+emp.editEmployee.btnModify.setActionCommand("emp.editEmployee.btnModify");
+emp.editEmployee.btnDelete.addActionListener(this);
+emp.editEmployee.btnDelete.setActionCommand("emp.editEmployee.btnDelete");
+
+emp.editEmployee.jtEmployee.addMouseListener(new MouseAdapter()
+       {
+          public void mouseClicked(MouseEvent me)
+         {
+        int column = emp.editEmployee.jtEmployee.getSelectedColumn();
+       row = emp.editEmployee.jtEmployee.getSelectedRow();
+	   System.out.println(row);
+        s3=(String)emp.editEmployee.jtEmployee.getModel().getValueAt(row, 0);
+        System.out.println(s);
+         
+	}
+          });
+
+order=new Order();
+order.addMouseListener(this);
+order.addMouseMotionListener(new MouseAdapter(){
+      public void mouseMoved(MouseEvent me)
+         {
+         menu.getLayeredPane().setPosition(order,0);
+        
+         
+	}
+          });
+		  	  order.viewOrder.jtViewOrder.addMouseListener(new MouseAdapter(){
+public void mouseClicked(MouseEvent me)
+         {
+        int column = order.viewOrder.jtViewOrder.getSelectedColumn();
+       row = order.viewOrder.jtViewOrder.getSelectedRow();
+	   System.out.println(row);
+       i2=(Integer)order.viewOrder.jtViewOrder.getModel().getValueAt(row, 0);
+		s19=(String)order.viewOrder.jtViewOrder.getModel().getValueAt(row, 8);
+		i5=(Integer)order.viewOrder.jtViewOrder.getModel().getValueAt(row, 3);
+		i6=(Integer)order.viewOrder.jtViewOrder.getModel().getValueAt(row, 4);
+        System.out.println(s19);
+       
+	}
+          });
+
+Object[][] dc3=new Object[0][0];
+final Object[] header={"Product Name","Price","Quantity","Amount"};
+DefaultTableModel jtModel=new DefaultTableModel(dc3,header);
+order.addOrder.jtAddProduct.setModel(jtModel);
+
+cal=new GregorianCalendar();
+int day=cal.get(Calendar.DAY_OF_MONTH);
+int month=cal.get(Calendar.MONTH);
+int year=cal.get(Calendar.YEAR);
+month=month+1;
+String strMonth="";
+if(month==1) strMonth="Jan";
+if(month==2) strMonth="Feb";
+if(month==3) strMonth="Mar";
+if(month==4) strMonth="Apr";
+if(month==5) strMonth="May";
+if(month==6) strMonth="Jun";
+if(month==7) strMonth="Jul";
+if(month==8) strMonth="Aug";
+if(month==9) strMonth="Sep";
+if(month==10) strMonth="Oct";
+if(month==11) strMonth="Nov";
+if(month==12) strMonth="Dec";
+calendar=Integer.toString(day)+"-"+strMonth+"-"+Integer.toString(year);
+order.addOrder.lblOrderDate2.setText(calendar);
+//order.addOrder.lblOrderDate2.setBorder(border);
+//order.addOrder.txtOrderDate.setEnabled(false);
+//System.out.println(calendar);
+
+try{
+strQuery="delete from order2 ";
+connect.executeQuery("update",strQuery);
+}catch(Exception e){System.out.println("Error:3"+e);}
+
+order.setVisible(false);
+order.addOrder.txtSearch.setText("");
+
+
+order.viewOrder.btnComplete.addActionListener(this);
+order.viewOrder.btnComplete.setActionCommand("order.viewOrder.btnComplete");
+order.viewOrder.btnDelete.addActionListener(this);
+order.viewOrder.btnDelete.setActionCommand("order.viewOrder.btnDelete");
+order.viewOrder.btnCancel.addActionListener(this);
+order.viewOrder.btnCancel.setActionCommand("order.viewOrder.btnCancel");
+
+order.addOrder.jcbCompany.addItemListener(this);
+order.updateOrder.jcbCompany.addItemListener(this);
+order.addOrder.jcbFirstName.addItemListener(this);
+order.updateOrder.jcbFirstName.addItemListener(this);
+order.addOrder.jcbLastName.addItemListener(this);
+order.updateOrder.jcbLastName.addItemListener(this);
+
+order.addOrder.txtSearch.addKeyListener(this);
+order.addOrder.jcbManufacturer.addItemListener(this);
+order.addOrder.btnAdd.addActionListener(this);
+order.addOrder.btnAdd.setActionCommand("addOrder.btnAdd");
+order.addOrder.btnRemove.addActionListener(this);
+order.addOrder.btnRemove.setActionCommand("addOrder.btnRemove");
+order.addOrder.btnSave.addActionListener(this);
+order.addOrder.btnSave.setActionCommand("addOrder.btnSave");
+order.addOrder.btnCancel.addActionListener(this);
+order.addOrder.btnCancel.setActionCommand("addOrder.btnCancel");
+
+order.updateOrder.btnDelete.addActionListener(this);
+order.updateOrder.btnDelete.setActionCommand("updateOrder.btnDelete");
+order.updateOrder.btnCancel.addActionListener(this);
+order.updateOrder.btnCancel.setActionCommand("updateOrder.btnCancel");
+order.updateOrder.btnSearch.addActionListener(this);
+order.updateOrder.btnSearch.setActionCommand("updateOrder.btnSearch");
+order.updateOrder.btnComplete.addActionListener(this);
+order.updateOrder.btnComplete.setActionCommand("updateOrder.btnComplete");
+order.addOrder.jtProductList.addMouseListener(new MouseAdapter()
+       {
+          public void mouseClicked(MouseEvent me)
+         {
+        int column = order.addOrder.jtProductList.getSelectedColumn();
+       row = order.addOrder.jtProductList.getSelectedRow();
+	   System.out.println(row);
+        s5=(String)order.addOrder.jtProductList.getModel().getValueAt(row, 0);
+		s6=(String)order.addOrder.jtProductList.getModel().getValueAt(row, 2);
+        System.out.println(s5);
+         System.out.println(s6);
+	}
+          });
+		  order.addOrder.jtAddProduct.addMouseListener(new MouseAdapter(){
+public void mouseClicked(MouseEvent me)
+         {
+        int column = order.addOrder.jtAddProduct.getSelectedColumn();
+       row = order.addOrder.jtAddProduct.getSelectedRow();
+	   System.out.println(row);
+        s7=(String)order.addOrder.jtAddProduct.getModel().getValueAt(row, 0);
+		s8=(String)order.addOrder.jtAddProduct.getModel().getValueAt(row, 1);
+		s9=(String)order.addOrder.jtAddProduct.getModel().getValueAt(row, 2);
+        System.out.println(s7);
+         System.out.println(s8);
+		  System.out.println(s9);
+	}
+          });
+		  
+
+prod=new Product();
+prod.addMouseListener(this);
+prod.addMouseMotionListener(new MouseAdapter(){
+      public void mouseMoved(MouseEvent me)
+         {
+         menu.getLayeredPane().setPosition(prod,0);
+        
+         
+	}
+          });
+stock=new Stock();
+stock.addMouseListener(this);
+stock.addMouseMotionListener(new MouseAdapter(){
+      public void mouseMoved(MouseEvent me)
+         {
+         menu.getLayeredPane().setPosition(stock,0);
+        
+         
+	}
+          });
+stock.adStock.jcbManufacturer.addItemListener(this);
+stock.adStock.btnAdd.addActionListener(this);
+stock.adStock.btnAdd.setActionCommand("adStock.btnAdd");
+stock.adStock.btnDelete.addActionListener(this);
+stock.adStock.btnDelete.setActionCommand("adStock.btnDelete");
+stock.adStock.btnSave.addActionListener(this);
+stock.adStock.btnSave.setActionCommand("adStock.btnSave");
+stock.adStock.btnCancel.addActionListener(this);
+stock.adStock.btnCancel.setActionCommand("adStock.btnCancel");
+
+
+
+    stock.upStock.txtSearch.addKeyListener(this);
+    stock.upStock.btnUpdate.addActionListener(this);
+	stock.upStock.btnUpdate.setActionCommand("upStock.btnUpdate");
+	stock.upStock.btnDelete.addActionListener(this);
+	stock.upStock.btnDelete.setActionCommand("upStock.btnDelete");
+	stock.upStock.btnCancel.addActionListener(this);
+	stock.upStock.btnCancel.setActionCommand("upStock.btnCancel");
+	stock.upStock.jcbManufacturer.addItemListener(this);
+	
+	stock.upStock.jtStock.addMouseListener(new MouseAdapter()
+       {
+          public void mouseClicked(MouseEvent me)
+         {
+        int column = stock.upStock.jtStock.getSelectedColumn();
+       row = stock.upStock.jtStock.getSelectedRow();
+	   System.out.println(row);
+	   int in=(Integer)stock.upStock.jtStock.getModel().getValueAt(row, 0);
+	   int in2=(Integer)stock.upStock.jtStock.getModel().getValueAt(row, 2);
+	    i1=(Integer)stock.upStock.jtStock.getModel().getValueAt(row, 3);
+        s4=Integer.toString(in);
+        System.out.println(s4);
+		s17=Integer.toString(in2);
+	s18=(String)stock.upStock.jtStock.getModel().getValueAt(row, 7);
+         
+	}
+          });
+		  
+		  stock.adStock.jtStock.addMouseListener(new MouseAdapter()
+       {
+          public void mouseClicked(MouseEvent me)
+         {
+        int column = stock.adStock.jtStock.getSelectedColumn();
+       row = stock.adStock.jtStock.getSelectedRow();
+	   System.out.println(row);
+        s14=(String)stock.adStock.jtStock.getModel().getValueAt(row, 0);
+		s15=(String)stock.adStock.jtStock.getModel().getValueAt(row, 1);
+        System.out.println(s14);
+         
+	}
+          });
+view=new View();
+view.addMouseListener(this);
+view.addMouseMotionListener(new MouseAdapter(){
+      public void mouseMoved(MouseEvent me)
+         {
+         menu.getLayeredPane().setPosition(view,0);
+        
+         
+	}
+          });
+view.viewProd.txtProductName.addKeyListener(this);
+prod.editProduct.jtProduct.addMouseListener(new MouseAdapter()
+       {
+          public void mouseClicked(MouseEvent me)
+         {
+        int column = prod.editProduct.jtProduct.getSelectedColumn();
+       row = prod.editProduct.jtProduct.getSelectedRow();
+	   System.out.println(row);
+        s3=(String)prod.editProduct.jtProduct.getModel().getValueAt(row, 0);
+        System.out.println(s3);
+         
+	}
+          });
+prod.editProduct.txtSearch.addKeyListener(this);
+prod.addProduct.btnSave.addActionListener(this);
+prod.addProduct.btnSave.setActionCommand("prod.addProduct.btnSave");
+prod.addProduct.btnCancel.addActionListener(this);
+prod.addProduct.btnCancel.setActionCommand("prod.addProduct.btnCancel");
+prod.editProduct.btnCancel.addActionListener(this);
+prod.editProduct.btnCancel.setActionCommand("prod.editProduct.btnCancel");
+prod.editProduct.btnModify.addActionListener(this);
+prod.editProduct.btnModify.setActionCommand("prod.editProduct.btnModify");
+prod.editProduct.btnDelete.addActionListener(this);
+prod.editProduct.btnDelete.setActionCommand("prod.editProduct.btnDelete");
+prod.editProduct.jcbManufacturer.addItemListener(this);
+
+
+pay=new Payment();
+pay.addMouseListener(this);
+pay.addMouseMotionListener(new MouseAdapter(){
+      public void mouseMoved(MouseEvent me)
+         {
+         menu.getLayeredPane().setPosition(pay,0);
+        
+         
+	}
+          });
+		  
+pay.btnUpdate.addActionListener(this);
+pay.btnUpdate.setActionCommand("pay.btnUpdate");
+
+pay.btnCancel.addActionListener(this);
+pay.btnCancel.setActionCommand("pay.btnCancel");
+
+
+pay.jtViewPayment.addMouseListener(new MouseAdapter(){
+public void mouseClicked(MouseEvent me)
+         {
+        int column = pay.jtViewPayment.getSelectedColumn();
+       row = pay.jtViewPayment.getSelectedRow();
+	   System.out.println(row);
+	  i4=(Integer)pay.jtViewPayment.getModel().getValueAt(row, 0);
+     
+		
+        System.out.println(i4);
+        
+	}
+          });
+
+comp=new Complaint();
+comp.addMouseListener(this);
+comp.addMouseMotionListener(new MouseAdapter(){
+      public void mouseMoved(MouseEvent me)
+         {
+         menu.getLayeredPane().setPosition(comp,0);
+        
+         
+	}
+          });
+		  
+		  
+
+comp.viewComplaint.jtViewComplaint.addMouseListener(new MouseAdapter(){
+public void mouseClicked(MouseEvent me)
+         {
+        int column = comp.viewComplaint.jtViewComplaint.getSelectedColumn();
+       row = comp.viewComplaint.jtViewComplaint.getSelectedRow();
+	   System.out.println(row);
+	   int in=(Integer)comp.viewComplaint.jtViewComplaint.getModel().getValueAt(row, 0);
+        s16=Integer.toString(in);
+		
+        System.out.println(s16);
+        
+	}
+          });
+		  
+comp.addComplaint.jcbCompany.addItemListener(this);
+comp.addComplaint.jcbFirstName.addItemListener(this);
+comp.addComplaint.jcbLastName.addItemListener(this);
+comp.addComplaint.jcbOrderId.addItemListener(this);
+
+comp.addComplaint.jrbOrder.addActionListener(this);
+comp.addComplaint.jrbOrder.setActionCommand("comp.addComplaint.jrbOrder");
+comp.addComplaint.jrbProduct.addActionListener(this);
+comp.addComplaint.jrbProduct.setActionCommand("comp.addComplaint.jrbProduct");
+comp.addComplaint.btnSave.addActionListener(this);
+comp.addComplaint.btnSave.setActionCommand("comp.addComplaint.btnSave");
+comp.addComplaint.btnCancel.addActionListener(this);
+comp.addComplaint.btnCancel.setActionCommand("comp.addComplaint.btnCancel");
+
+comp.viewComplaint.btnDelete.addActionListener(this);
+comp.viewComplaint.btnDelete.setActionCommand("comp.viewComplaint.btnDelete");
+comp.viewComplaint.btnClear.addActionListener(this);
+comp.viewComplaint.btnClear.setActionCommand("comp.viewComplaint.btnClear");
+comp.viewComplaint.btnCancel.addActionListener(this);
+comp.viewComplaint.btnCancel.setActionCommand("comp.viewComplaint.btnCancel");
+
+comp.addComplaint.lblCurrentDate.setText(calendar);
+
+
+report1=new Report();
+report1.ordReport.jcbManufacturer.addItemListener(this);
+report1.addMouseListener(this);
+report1.addMouseMotionListener(new MouseAdapter(){
+      public void mouseMoved(MouseEvent me)
+         {
+         menu.getLayeredPane().setPosition(report1,0);
+        
+         
+	}
+          });
+		  
+		  
+report1.ordReport.btnCancel.addActionListener(this);
+report1.ordReport.btnCancel.setActionCommand("report1.ordReport.btnCancel");
+report1.ordReport.btnReport.addActionListener(this);
+report1.ordReport.btnReport.setActionCommand("report1.ordReport.btnReport");
+
+report1.ordReport.jrbOrderDate.addActionListener(this);
+report1.ordReport.jrbOrderDate.setActionCommand("report1.ordReport.jrbOrderDate");
+report1.ordReport.jrbProductType.addActionListener(this);
+report1.ordReport.jrbProductType.setActionCommand("report1.ordReport.jrbProductType");
+
+
+report1.purReport.btnCancel.addActionListener(this);
+report1.purReport.btnCancel.setActionCommand("report1.purReport.btnCancel");
+report1.purReport.btnReport.addActionListener(this);
+report1.purReport.btnReport.setActionCommand("report1.purReport.btnReport");
+
+report1.purReport.jrbPurchaseDate.addActionListener(this);
+report1.purReport.jrbPurchaseDate.setActionCommand("report1.purReport.jrbPurchaseDate");
+report1.purReport.jrbProductType.addActionListener(this);
+report1.purReport.jrbProductType.setActionCommand("report1.purReport.jrbProductType");
+
+report1.comReport.btnCancel.addActionListener(this);
+report1.comReport.btnCancel.setActionCommand("report1.comReport.btnCancel");
+report1.comReport.btnReport.addActionListener(this);
+report1.comReport.btnReport.setActionCommand("report1.comReport.btnReport");
+
+report1.comReport.jrbComplaintDate.addActionListener(this);
+report1.comReport.jrbComplaintDate.setActionCommand("report1.comReport.jrbComplaintDate");
+report1.comReport.jrbCustomer.addActionListener(this);
+report1.comReport.jrbCustomer.setActionCommand("report1.comReport.jrbCustomer");
+
+
+
+about1=new About();
+about1.cmdOk.addActionListener(this);
+about1.cmdOk.setActionCommand("about1.cmdOk");
+
+about1.addMouseListener(this);
+about1.addMouseMotionListener(new MouseAdapter(){
+      public void mouseMoved(MouseEvent me)
+         {
+         menu.getLayeredPane().setPosition(about1,0);
+        
+         
+	}
+          });
+
+changePass=new ChangePassword();
+changePass.setVisible(false);
+changePass.btnCancel.addActionListener(this);
+changePass.btnCancel.setActionCommand("changePass.btnCancel");
+changePass.btnChange.addActionListener(this);
+changePass.btnChange.setActionCommand("changePass.btnChange");
+
+
+bill=new Bill();
+bill.setVisible(false);
+bill.btnGenerate.addActionListener(this);
+bill.btnGenerate.setActionCommand("bill.btnGenerate");
+bill.btnCancel.addActionListener(this);
+bill.btnCancel.setActionCommand("bill.btnCancel");
+
+bill.jcbCompany.addItemListener(this);
+bill.jcbFirstName.addItemListener(this);
+bill.jcbLastName.addItemListener(this);
+bill.jcbOrderId.addItemListener(this);
+
+bill.addMouseListener(this);
+bill.addMouseMotionListener(new MouseAdapter(){
+      public void mouseMoved(MouseEvent me)
+         {
+         menu.getLayeredPane().setPosition(bill,0);
+        
+         
+	}
+          });
+
+menu=new MyMenu();
+
+menu.getLayeredPane().add(cust);
+menu.getLayeredPane().add(manu);
+menu.getLayeredPane().add(emp);
+menu.getLayeredPane().add(order);
+menu.getLayeredPane().add(prod);
+menu.getLayeredPane().add(about1);
+menu.getLayeredPane().add(stock);
+menu.getLayeredPane().add(view);
+menu.getLayeredPane().add(pay);
+menu.getLayeredPane().add(comp);
+menu.getLayeredPane().add(report1);
+menu.getLayeredPane().add(changePass);
+menu.getLayeredPane().add(bill);
+/*
+
+menu.bg.panelBgImg.add(manu);
+menu.bg.panelBgImg.add(emp);
+menu.bg.panelBgImg.add(order);
+menu.bg.panelBgImg.add(prod);
+menu.bg.panelBgImg.add(about1);
+menu.bg.panelBgImg.add(stock);
+menu.bg.panelBgImg.add(view);
+menu.bg.panelBgImg.add(pay);
+menu.bg.panelBgImg.add(comp);
+menu.bg.panelBgImg.add(report1);
+*/
+
+
+menu.btnCustomer.addActionListener(this);
+menu.btnCustomer.setActionCommand("btnCustomer");
+menu.btnManufacturer.addActionListener(this);
+menu.btnManufacturer.setActionCommand("btnManufacturer");
+menu.btnEmployee.addActionListener(this);
+menu.btnEmployee.setActionCommand("btnEmployee");
+menu.btnOrder.addActionListener(this);
+menu.btnOrder.setActionCommand("btnOrder");
+menu.btnProduct.addActionListener(this);
+menu.btnProduct.setActionCommand("btnProduct");
+menu.btnStock.addActionListener(this);
+menu.btnStock.setActionCommand("btnStock");
+menu.btnView.addActionListener(this);
+menu.btnView.setActionCommand("btnView");
+menu.btnPayment.addActionListener(this);
+menu.btnPayment.setActionCommand("btnPay");
+menu.btnComplaint.addActionListener(this);
+menu.btnComplaint.setActionCommand("btnComp");
+menu.btnReport.addActionListener(this);
+menu.btnReport.setActionCommand("btnReport");
+
+menu.itemExit.setActionCommand("itemExit");
+menu.itemExit.addActionListener(this);
+menu.itemAbout.setActionCommand("itemabout1");
+menu.itemAbout.addActionListener(this);
+menu.itemMetal.addActionListener(this);
+menu.itemMetal.setActionCommand("itemMetal");
+menu.itemMotif.addActionListener(this);
+menu.itemMotif.setActionCommand("itemMotif");
+menu.itemWindows.addActionListener(this);
+menu.itemWindows.setActionCommand("itemWindows");
+menu.itemNimbus.addActionListener(this);
+menu.itemNimbus.setActionCommand("itemNimbus");
+menu.itemLiquid.addActionListener(this);
+menu.itemLiquid.setActionCommand("itemLiquid");
+menu.itemSystem.addActionListener(this);
+menu.itemSystem.setActionCommand("itemSystem");
+
+
+menu.itemChangePassword.addActionListener(this);
+menu.itemChangePassword.setActionCommand("itemChangePassword");
+menu.itemManageUsers.addActionListener(this);
+menu.itemManageUsers.setActionCommand("itemManageUsers");
+menu.itemBill.addActionListener(this);
+menu.itemBill.setActionCommand("itemBill");
+menu.itemLogout.addActionListener(this);
+menu.itemLogout.setActionCommand("itemLogout");
+
+menu.itemChangePassword2.addActionListener(this);
+menu.itemChangePassword2.setActionCommand("itemChangePassword2");
+menu.itemLogout2.addActionListener(this);
+menu.itemLogout2.setActionCommand("itemLogout2");
+
+menu.setVisible(false);
+cust.setVisible(false);
+manu.setVisible(false);
+emp.setVisible(false);
+order.setVisible(false);
+prod.setVisible(false);
+about1.setVisible(false);
+stock.setVisible(false);
+view.setVisible(false);
+pay.setVisible(false);
+comp.setVisible(false);
+
+border= LineBorder.createGrayLineBorder();
+//splash.showSplashAndExit(); 
+ // Wait a little while, maybe while loading resources
+       try
+        {
+		for(int i=50;i<100;i++){
+       Thread.sleep(5);
+	   	progressBar.setString("Loading  "+i+"%");
+	   progressBar.setValue(i);
+}
+        } catch (Exception e) {System.out.println("Error:5"+e);}
+		
+	setVisible(false);
+	login.setVisible(true);
+}
+//-----------------------------------------------------------------------
+//-----------------------------ACTION EVENT---------------------------------------------
+//public void removeRow(){cust.editCust.jtModel.removeRow(row);}
+public void actionPerformed(ActionEvent ae){
+
+source=ae.getSource();
+
+//-----------------------------MyLogin------------------------------------
+
+if(source.equals(login.btnExit))
+{
+model.exit();
+}
+
+if(source.equals(login.btnLogin)){
+bflag=model.login(login.txtUsername,login.txtPassword);
+if(bflag) {
+//login.dispose();
+login.setVisible(false);
+userName=login.txtUsername.getText();
+
+menu.lblUserName.setFont(new java.awt.Font("Sans-Serif", Font.BOLD, 20));
+menu.lblUser.setFont(new java.awt.Font("Sans-Serif", Font.BOLD, 20));
+menu.lblUserName.setText(userName);
+
+if(userName.toLowerCase().equals("admin")) {menu.mnuUser.setEnabled(false);menu.mnuAdmin.setEnabled(true);
+manu.editManu.btnDelete.setEnabled(true);
+prod.editProduct.btnDelete.setEnabled(true);
+cust.editCust.btnDelete.setEnabled(true);
+emp.editEmployee.btnDelete.setEnabled(true);
+stock.upStock.btnDelete.setEnabled(true);
+order.viewOrder.btnDelete.setEnabled(true);
+comp.viewComplaint.btnDelete.setEnabled(true);
+}
+else {menu.mnuAdmin.setEnabled(false);
+menu.mnuUser.setEnabled(true);
+manu.editManu.btnDelete.setEnabled(false);
+prod.editProduct.btnDelete.setEnabled(false);
+cust.editCust.btnDelete.setEnabled(false);
+emp.editEmployee.btnDelete.setEnabled(false);
+stock.upStock.btnDelete.setEnabled(false);
+order.viewOrder.btnDelete.setEnabled(false);
+comp.viewComplaint.btnDelete.setEnabled(false);
+
+}
+login.txtUsername.setText("");
+login.txtPassword.setText("");
+menu.setVisible(true);
+ Calendar now = Calendar.getInstance();
+            int h = now.get(Calendar.HOUR_OF_DAY);
+            int m = now.get(Calendar.MINUTE);
+            int s = now.get(Calendar.SECOND);
+			menu.lblLoginTime.setText("" + h + ":" + m + ":" + s);
+}
+
+
+}
+
+//-----------------------------MyMenu------------------------------------
+
+if(ae.getActionCommand().equals("itemMetal")){
+try {
+UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+SwingUtilities.updateComponentTreeUI(menu);
+} 
+catch (Exception e) {System.out.println("Error:6"+e);}
+}
+
+if(ae.getActionCommand().equals("itemMotif")){
+try {
+UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+SwingUtilities.updateComponentTreeUI(menu);
+} 
+catch (Exception e) {System.out.println("Error:7"+e);}
+
+}
+if(ae.getActionCommand().equals("itemWindows")){
+	try {
+   
+           
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			SwingUtilities.updateComponentTreeUI(menu);
+		      } catch (Exception e) {System.out.println("Error:8"+e);}
+
+}
+if(ae.getActionCommand().equals("itemLiquid")){
+	try {
+   
+           
+			 UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
+			SwingUtilities.updateComponentTreeUI(menu);
+		      
+    
+ 
+} catch (Exception e) {System.out.println("Error:9"+e);}
+
+}
+if(ae.getActionCommand().equals("itemNimbus")){
+	try {
+   
+           
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+			SwingUtilities.updateComponentTreeUI(menu);
+		      
+    
+ 
+} catch (Exception e) {System.out.println("Error:10"+e);}
+
+}
+if(ae.getActionCommand().equals("itemSystem")){
+	try {
+   
+           
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			SwingUtilities.updateComponentTreeUI(menu);
+		      
+    
+ 
+} catch (Exception e) {System.out.println("Error:11"+e);}
+
+}
+if(ae.getActionCommand().equals("itemChangePassword")){
+changePass.setVisible(true);
+changePass.jcbUser.setEnabled(true);
+try{
+strQuery="select username from login";
+connect.executeQuery("query",strQuery);
+changePass.jcbUser.removeAllItems();
+while(connect.rs.next()){
+
+changePass.jcbUser.addItem(connect.rs.getString(1));
+
+}
+}catch(Exception e){System.out.println("Error:42"+e);}
+changePass.jcbUser.setSelectedItem(userName);
+}
+if(ae.getActionCommand().equals("itemChangePassword2")){
+changePass.setVisible(true);
+changePass.jcbUser.setEnabled(false);
+try{
+strQuery="select username from login";
+connect.executeQuery("query",strQuery);
+changePass.jcbUser.removeAllItems();
+while(connect.rs.next()){
+
+changePass.jcbUser.addItem(connect.rs.getString(1));
+
+}
+}catch(Exception e){System.out.println("Error:42"+e);}
+changePass.jcbUser.setSelectedItem(userName);
+}
+if(ae.getActionCommand().equals("itemLogout")){
+menu.dispose();
+//menu=new MyMenu();
+
+JOptionPane.showMessageDialog(null,"You have successfully logged off" ,"Information",JOptionPane.INFORMATION_MESSAGE);
+//login =new MyLogin();
+login.setVisible(true);
+login.txtUsername.requestFocus();
+}
+
+if(ae.getActionCommand().equals("itemLogout2")){
+menu.dispose();
+JOptionPane.showMessageDialog(null,"You have successfully logged off" ,"Information",JOptionPane.INFORMATION_MESSAGE);
+//login =new MyLogin();
+login.setVisible(true);
+login.txtUsername.requestFocus();
+}
+
+if(ae.getActionCommand().equals("itemBill")){
+bill.setVisible(true);
+
+try{
+bill.jcbCompany.removeAllItems();
+
+
+bill.jcbCompany.addItem("Select");
+
+strQuery="select cust_company from customer order by cust_company";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+bill.jcbCompany.addItem(connect.rs.getString(1));
+
+}
+
+}
+catch(Exception e){System.out.println("Error:4"+e);}
+}
+
+
+if(ae.getActionCommand().equals("bill.btnCancel")){
+bill.setVisible(false);
+
+}
+
+
+if(ae.getActionCommand().equals("bill.btnGenerate")){
+if(bill.jcbOrderId.getSelectedItem().equals("Select")){JOptionPane.showMessageDialog(null,"Select Order Id to generate Bill" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else{
+
+try {
+
+
+            OutputStream file = new FileOutputStream(new File("C:\\Bill.pdf"));
+ 
+            Document document = new Document();
+            PdfWriter.getInstance(document, file);
+            document.open();
+            document.add(new Paragraph("SEERAN'S SUPPLIERS"));
+			document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------"));
+			document.add(new Paragraph(""));
+            document.add(new Paragraph(new Date().toString()));
+			 Paragraph p1=new Paragraph("Bill");
+  document.add(p1);
+ document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------------"));
+ CMYKColor color = new CMYKColor( 0, 1, (float)0.2, (float)0.667 );
+String text = "kievan wrote more: different color and font type.";
+Font o = FontFactory.getFont( FontFactory.TIMES_BOLD, 14, Font.BOLD, color );
+document.add(new Paragraph("Order Id : "+bill.jcbOrderId.getSelectedItem()+"      "+"Customer Details :"+bill.jcbFirstName.getSelectedItem()+" "+bill.jcbLastName.getSelectedItem(),o));
+
+document.add(new Paragraph(""));
+document.add(new Paragraph(""));
+ document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------------"));
+ PdfPTable table1=new PdfPTable(5);
+ table1.addCell("Manufacturer");
+ table1.addCell("Product");
+
+ table1.addCell("Quantity");
+
+ table1.addCell("Amount");
+
+ table1.addCell("Purchase_Date");
+ document.add(table1);
+  //Paragraph p2=new Paragraph("Manufacturer|Product |Quantity | Amount |Purchase_Date ",o);
+  //document.add(p2);
+String mname="";
+String pname="";
+  int total=0;
+
+strQuery="select * from order1 where order_id1="+bill.jcbOrderId.getSelectedItem()+"";
+ connect.executeQuery("query",strQuery);
+ while(connect.rs.next()){
+ strQuery="select product_name from product where product_id="+connect.rs.getString(4)+"";
+ connect2.executeQuery("query",strQuery);
+ while(connect2.rs.next()){
+  pname=connect2.rs.getString(1);
+ }
+ 
+ strQuery="select manu_name from manufacturer where manu_id=(select manu_id from product where product_id="+connect.rs.getString(4)+")";
+ connect3.executeQuery("query",strQuery);
+ while(connect3.rs.next()){
+  mname=connect3.rs.getString(1);
+ }
+ PdfPTable table=new PdfPTable(5);
+       table.addCell(mname);
+       table.addCell(pname);
+       table.addCell(connect.rs.getString(5));
+       table.addCell(connect.rs.getString(6));
+	   table.addCell(connect.rs.getString(7));
+       document.add(table);
+ //Paragraph p=new Paragraph(mname+"            "+pname+""+connect.rs.getString(5)+"    "+connect.rs.getString(6)+"    "+connect.rs.getString(7));
+  //document.add(p);
+  total+=connect.rs.getInt(6);
+ }
+ 
+ document.add(new Paragraph(""));
+   document.add(new Paragraph("Total Amount : "+total,o));
+ document.addAuthor("DrAGoN");
+document.addCreationDate();
+document.addCreator("iText library");
+document.addTitle("My First PDF");
+ 
+            document.close();
+            file.close();
+ 
+    if(Desktop.getDesktop().isSupported(Desktop.Action.OPEN)) {
+			Desktop.getDesktop().open(new File("C:\\Bill.pdf"));}
+        } catch (Exception e) {
+ System.out.println("Error:33"+e);
+            e.printStackTrace();
+        }
+
+
+
+}
+
+
+}
+
+
+if(ae.getActionCommand().equals("btnCustomer")){
+/*
+manu.setVisible(false);
+emp.setVisible(false);
+order.setVisible(false);
+prod.setVisible(false);
+about1.setVisible(false);
+stock.setVisible(false);
+view.setVisible(false);
+pay.setVisible(false);
+comp.setVisible(false);
+report1.setVisible(false);
+*/
+menu.getLayeredPane().setPosition(cust,0);
+cust.setVisible(true);
+
+cust.addCust.txtFirstName.requestFocus();
+}
+
+if(ae.getActionCommand().equals("btnManufacturer")){
+/*
+cust.setVisible(false);
+emp.setVisible(false);
+order.setVisible(false);
+prod.setVisible(false);
+about1.setVisible(false);
+stock.setVisible(false);
+view.setVisible(false);
+pay.setVisible(false);
+comp.setVisible(false);
+report1.setVisible(false);
+*/
+menu.getLayeredPane().setPosition(manu,0);
+manu.setVisible(true);
+/*
+try {
+if(Desktop.getDesktop().isSupported(Desktop.Action.OPEN)) {
+			Desktop.getDesktop().open(new File("C:\\Test.pdf"));}
+
+            OutputStream file = new FileOutputStream(new File("C:\\Manufacturer Report.pdf"));
+ 
+            Document document = new Document();
+            PdfWriter.getInstance(document, file);
+            document.open();
+            document.add(new Paragraph("JEHOVAH"));
+            document.add(new Paragraph(new Date().toString()));
+			 Paragraph p1=new Paragraph("MANUFACTURER REPORT");
+  document.add(p1);
+ document.add(new Paragraph("---------------------------------------------------------------------------------"));
+ CMYKColor color = new CMYKColor( 0, 1, (float)0.2, (float)0.667 );
+String text = "kievan wrote more: different color and font type.";
+Font o = FontFactory.getFont( FontFactory.TIMES_BOLD, 14, Font.BOLD, color );
+  Paragraph p2=new Paragraph("Manu_Id     Manu_Name",o);
+  document.add(p2);
+ 
+ strQuery="select * from manufacturer";
+ connect.executeQuery("query",strQuery);
+ while(connect.rs.next()){
+ Paragraph p=new Paragraph(connect.rs.getString(1)+"                       "+connect.rs.getString(2));
+  document.add(p);
+ }
+ document.addAuthor("DrAGoN");
+document.addCreationDate();
+document.addCreator("iText library");
+document.addTitle("My First PDF");
+ 
+            document.close();
+            file.close();
+ 
+        } catch (Exception e) {
+ System.out.println("Error:33"+e);
+            e.printStackTrace();
+        }
+   
+		*/
+manu.addManu.txtName.requestFocus();
+}
+
+if(ae.getActionCommand().equals("btnEmployee")){
+/*
+cust.setVisible(false);
+manu.setVisible(false);
+order.setVisible(false);
+prod.setVisible(false);
+about1.setVisible(false);
+stock.setVisible(false);
+view.setVisible(false);
+pay.setVisible(false);
+comp.setVisible(false);
+report1.setVisible(false);
+*/
+//cust.setOpaque(true);
+//manu.setOpaque(false);
+menu.getLayeredPane().setPosition(emp,0);
+emp.setVisible(true);
+}
+if(ae.getActionCommand().equals("btnOrder")){
+/*
+cust.setVisible(false);
+manu.setVisible(false);
+emp.setVisible(false);
+prod.setVisible(false);
+about1.setVisible(false);
+stock.setVisible(false);
+pay.setVisible(false);
+comp.setVisible(false);
+view.setVisible(false);
+report1.setVisible(false);
+*/
+menu.getLayeredPane().setPosition(order,0);
+order.addOrder.txtSearch.setText("");
+
+//dc1=new Object[10][10];
+//m=0;
+Object[][] dc3=new Object[0][0];
+final Object[] header={"Product Name","Price","Quantity","Amount"};
+
+//-------------------------------------------view Order------------------------------------
+/*
+Object[][] vo = model.overAllView("Order1","Order_Date",9);
+ final Object[] headerOrder={"Order Id1","Order Id2","Customer Id","Product Id","Quantity","Amount","O_date","S_date","Status"};
+ DefaultTableModel jtModelOrder=new DefaultTableModel(vo,headerOrder);
+order.viewOrder.jtViewOrder.setModel(jtModelOrder);
+*/
+try{
+int j=0;
+strQuery="select * from order1";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){j++;}
+strQuery="select * from order1";
+connect.executeQuery("query",strQuery);
+Object[][] obj=new Object[j][9];
+int i=0;
+while(connect.rs.next()){
+obj[i][0]=connect.rs.getInt(1);
+obj[i][1]=connect.rs.getInt(2);;
+obj[i][2]=connect.rs.getInt(3);;
+obj[i][3]=connect.rs.getInt(4);;
+obj[i][4]=connect.rs.getInt(5);;
+obj[i][5]=connect.rs.getInt(6);;
+obj[i][6]=connect.rs.getString(7);;
+obj[i][7]=connect.rs.getString(8);;
+obj[i][8]=connect.rs.getString(9);;
+i++;
+}
+final Object[] headerOrder={"Order Id1","Order Id2","Customer Id","Product Id","Quantity","Amount","O_date","S_date","Status"};
+ DefaultTableModel jtModelOrder=new DefaultTableModel(obj,headerOrder);
+order.viewOrder.jtViewOrder.setModel(jtModelOrder);
+}
+catch(Exception e){System.out.println("Error:41"+e);}
+
+
+DefaultTableModel jtModel=new DefaultTableModel(dc3,header);
+order.addOrder.jtAddProduct.setModel(jtModel);
+rows=0;
+try{
+strQuery="delete from order2 ";
+connect.executeQuery("update",strQuery);
+}catch(Exception e){System.out.println("Error:12"+e);}
+
+
+try{
+order.addOrder.jcbManufacturer.removeAllItems();
+
+
+strQuery="select * from manufacturer order by manu_name";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+order.addOrder.jcbManufacturer.addItem(connect.rs.getString(2));
+
+}
+
+}
+catch(Exception e){System.out.println("Error:13"+e);}
+try{
+order.addOrder.jcbCompany.removeAllItems();
+order.updateOrder.jcbCompany.removeAllItems();
+
+order.addOrder.jcbCompany.addItem("Select");
+order.updateOrder.jcbCompany.addItem("Select");
+strQuery="select cust_company from customer order by cust_company";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+order.addOrder.jcbCompany.addItem(connect.rs.getString(1));
+order.updateOrder.jcbCompany.addItem(connect.rs.getString(1));
+}
+
+}
+catch(Exception e){System.out.println("Error:14"+e);}
+
+order.setVisible(true);
+
+}
+if(ae.getActionCommand().equals("btnProduct")){
+/*
+cust.setVisible(false);
+manu.setVisible(false);
+emp.setVisible(false);
+order.setVisible(false);
+stock.setVisible(false);
+about1.setVisible(false);
+pay.setVisible(false);
+comp.setVisible(false);
+view.setVisible(false);
+report1.setVisible(false);
+*/
+menu.getLayeredPane().setPosition(prod,0);
+try{
+prod.addProduct.jcbManufacturer.removeAllItems();
+prod.editProduct.jcbManufacturer.removeAllItems();
+
+strQuery="select * from manufacturer order by manu_name";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+prod.addProduct.jcbManufacturer.addItem(connect.rs.getString(2));
+prod.editProduct.jcbManufacturer.addItem(connect.rs.getString(2));
+}
+
+}
+catch(Exception e){System.out.println("Error:15"+e);}
+
+prod.setVisible(true);
+}
+
+if(ae.getActionCommand().equals("btnStock")){
+/*
+cust.setVisible(false);
+manu.setVisible(false);
+emp.setVisible(false);
+prod.setVisible(false);
+about1.setVisible(false);
+order.setVisible(false);
+pay.setVisible(false);
+comp.setVisible(false);
+view.setVisible(false);
+report1.setVisible(false);
+*/
+menu.getLayeredPane().setPosition(stock,0);
+/*try{
+stock.upStock.jcbManufacturer.removeAllItems();
+stock.upStock.jcbManufacturer.addItem("Select");
+strQuery="select * from manufacturer order by manu_name";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+stock.upStock.jcbManufacturer.addItem(connect.rs.getString(2));
+
+}}catch(Exception e){System.out.println("Error:16"+e);}*/
+try{
+stock.adStock.jcbManufacturer.removeAllItems();
+stock.adStock.jcbManufacturer.addItem("Select");
+strQuery="select * from manufacturer order by manu_name";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+stock.adStock.jcbManufacturer.addItem(connect.rs.getString(2));
+
+}
+}
+catch(Exception e){System.out.println("Error:16"+e);}
+try{
+int j=0;
+strQuery="select * from purchase_stock";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){j++;}
+Object[][] objs=new Object[j][8];
+strQuery="select * from purchase_stock";
+connect.executeQuery("query",strQuery);
+int i=0;
+while(connect.rs.next()){
+ objs[i][0]=connect.rs.getInt(1);
+ objs[i][1]=connect.rs.getInt(2);
+ objs[i][2]=connect.rs.getInt(3);
+ objs[i][3]=connect.rs.getInt(4);
+objs[i][4]=connect.rs.getFloat(5);
+objs[i][5]=connect.rs.getString(6);
+objs[i][6]=connect.rs.getString(7);
+objs[i][7]=connect.rs.getString(8);
+ i++;
+ }
+ final Object[] header={"Purchase Id","Manufacturer Id","Product Id","Quantity","Amount","Order Date","Received Date","Status"};
+
+ DefaultTableModel jtModel=new DefaultTableModel(objs,header);
+ stock.upStock.jtStock.setModel(jtModel);
+ }
+catch(Exception e){System.out.println("Error:37"+e);}
+
+stock.setVisible(true);
+}
+if(ae.getActionCommand().equals("btnView")){
+/*
+cust.setVisible(false);
+manu.setVisible(false);
+emp.setVisible(false);
+prod.setVisible(false);
+about1.setVisible(false);
+order.setVisible(false);
+pay.setVisible(false);
+comp.setVisible(false);
+stock.setVisible(false);
+report1.setVisible(false);
+*/
+menu.getLayeredPane().setPosition(view,0);
+
+view.viewCust.txtCustomerName.addKeyListener(this);	
+view.viewManu.txtManufacturerName.addKeyListener(this);	
+//---------------------------------------view customer---------------------------------
+Object[][] vc = model.overAllView("Customer","Cust_id",10);
+ final Object[] headerCust={"id","First Name","Last Name","State","Area","Address","Contactno.","Email","Company","Pincode"};
+ DefaultTableModel jtModelCust=new DefaultTableModel(vc,headerCust);
+view.viewCust.jtViewCustomer.setModel(jtModelCust);
+//----------------------------------------view Manufacturer-----------------------------
+Object[][] vm = model.overAllView("Manufacturer","Manu_id",9);
+ final Object[] headerManu={"id","Manufacturer","State","Area","Address","Contactno.","Email","Pincode","Vat"};
+ DefaultTableModel jtModelManu=new DefaultTableModel(vm,headerManu);
+view.viewManu.jtViewManufacturer.setModel(jtModelManu);
+//-----------------------------------------view Product----------------------------------
+Object[][] vp = model.overAllView("Product","Product_id",8);
+
+ final Object[] headerProduct={"product id","Manufacturer id","Product Name","MRP","Customer Price","Unit_Quantity","Unit_Purchase_Price","Unit_Selling_Price"};
+ DefaultTableModel jtModelProduct=new DefaultTableModel(vp,headerProduct);
+view.viewProd.jtViewProduct.setModel(jtModelProduct);
+//-------------------------------------------view Stock------------------------------------
+Object[][] vs = model.overAllView("Stock","stock_id",3);
+ final Object[] headerStock={"Stock Id","Product Id","Stock"};
+ DefaultTableModel jtModelStock=new DefaultTableModel(vs,headerStock);
+view.viewStock.jtViewStock.setModel(jtModelStock);
+
+
+
+view.setVisible(true);
+
+
+}
+if(ae.getActionCommand().equals("btnPay")){
+/*
+cust.setVisible(false);
+manu.setVisible(false);
+emp.setVisible(false);
+order.setVisible(false);
+prod.setVisible(false);
+stock.setVisible(false);
+view.setVisible(false);
+about1.setVisible(false);
+comp.setVisible(false);
+report1.setVisible(false);
+*/
+try{
+int j=0;
+strQuery="select * from payment";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){j++;}
+Object[][] obj=new Object[j][4];
+int i=0;
+strQuery="select * from payment";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+obj[i][0]=connect.rs.getInt(2);
+obj[i][1]=connect.rs.getFloat(3);
+obj[i][2]=connect.rs.getString(4);
+obj[i][3]=connect.rs.getString(5);
+//obj[i][4]=connect.rs.getString(5);
+i++;
+}
+ final Object[] header={"Order Id","Amount","Date","Status"};
+
+ DefaultTableModel jtModel=new DefaultTableModel(obj,header);
+ pay.jtViewPayment.setAutoResizeMode(0);
+pay.jtViewPayment.setModel(jtModel);
+}
+catch(Exception e){System.out.println("Error:43"+e);}
+menu.getLayeredPane().setPosition(pay,0);
+pay.setVisible(true);
+
+
+
+}
+if(ae.getActionCommand().equals("btnComp")){
+/*
+cust.setVisible(false);
+manu.setVisible(false);
+emp.setVisible(false);
+order.setVisible(false);
+prod.setVisible(false);
+stock.setVisible(false);
+view.setVisible(false);
+about1.setVisible(false);
+pay.setVisible(false);
+report1.setVisible(false);
+*/
+
+try{
+int j=0;
+strQuery="select * from complaint";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){j++;}
+Object[][] objs=new Object[j][8];
+strQuery="select * from complaint";
+connect.executeQuery("query",strQuery);
+int i=0;
+while(connect.rs.next()){
+ objs[i][0]=connect.rs.getInt(1);
+ objs[i][1]=connect.rs.getInt(2);
+ objs[i][2]=connect.rs.getInt(3);
+ objs[i][3]=connect.rs.getInt(4);
+objs[i][4]=connect.rs.getInt(5);
+objs[i][5]=connect.rs.getString(6);
+objs[i][6]=connect.rs.getString(7);
+objs[i][7]=connect.rs.getString(8);
+ i++;
+ }
+ final Object[] header={"Complaint Id","Order Id1","Order Id2","Product Id","Customer_Id","Description","Date","Status"};
+
+ DefaultTableModel jtModel=new DefaultTableModel(objs,header);
+comp.viewComplaint.jtViewComplaint.setModel(jtModel);
+ }
+catch(Exception e){System.out.println("Error:37"+e);}
+
+try{
+comp.addComplaint.jcbCompany.removeAllItems();
+
+
+comp.addComplaint.jcbCompany.addItem("Select");
+
+strQuery="select cust_company from customer order by cust_company";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+comp.addComplaint.jcbCompany.addItem(connect.rs.getString(1));
+
+}
+
+}
+catch(Exception e){System.out.println("Error:4"+e);}
+
+menu.getLayeredPane().setPosition(comp,0);
+comp.setVisible(true);
+}
+
+if(ae.getActionCommand().equals("btnReport")){
+/*
+cust.setVisible(false);
+manu.setVisible(false);
+emp.setVisible(false);
+order.setVisible(false);
+prod.setVisible(false);
+stock.setVisible(false);
+view.setVisible(false);
+about1.setVisible(false);
+pay.setVisible(false);
+comp.setVisible(false);
+report1.setVisible(false);
+*/
+
+try{
+report1.ordReport.jcbManufacturer.removeAllItems();
+report1.ordReport.jcbManufacturer.addItem("Select");
+strQuery="select * from manufacturer order by manu_name";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+report1.ordReport.jcbManufacturer.addItem(connect.rs.getString(2));
+
+}
+}
+catch(Exception e){System.out.println("Error:16"+e);}
+
+report1.setVisible(true);
+menu.getLayeredPane().setPosition(report1,0);
+}
+
+if(ae.getActionCommand().equals("itemabout1")){
+/*
+cust.setVisible(false);
+manu.setVisible(false);
+emp.setVisible(false);
+order.setVisible(false);
+prod.setVisible(false);
+stock.setVisible(false);
+view.setVisible(false);
+pay.setVisible(false);
+comp.setVisible(false);
+report1.setVisible(false);
+*/
+menu.getLayeredPane().setPosition(about1,0);
+about1.setVisible(true);
+about1.requestFocus();
+}
+if(ae.getActionCommand().equals("itemExit")){
+model.exit();
+}//---------------------------------------CHANGE PASSWORD-------------------------------------------
+if(ae.getActionCommand().equals("changePass.btnCancel")){
+changePass.setVisible(false);
+}
+
+if(ae.getActionCommand().equals("changePass.btnChange")){
+
+String p1=new String(changePass.txtOldPassword.getPassword());
+String p2=new String(changePass.txtNewPassword1.getPassword());
+String p3=new String(changePass.txtNewPassword2.getPassword());
+try{ 
+if(p1.equals("")){JOptionPane.showMessageDialog(null,"Enter Existing Password" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else if(p2.equals("")){JOptionPane.showMessageDialog(null,"Enter New Password" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else if(p3.equals("")){JOptionPane.showMessageDialog(null,"Re-Enter New Password" ,"Error",JOptionPane.ERROR_MESSAGE);}
+
+else if(p2.equals(p3)){
+strQuery="select password from login where 	username='"+changePass.jcbUser.getSelectedItem()+"'";
+connect.executeQuery("query",strQuery);
+int p=0;
+while(connect.rs.next()){
+if(p1.equals(connect.rs.getString(1))){p=1;
+strQuery="update login set password='"+p2+"' where username='"+changePass.jcbUser.getSelectedItem()+"'";
+connect2.executeQuery("update",strQuery);
+JOptionPane.showMessageDialog(null,"Old Password Changed" ,"Information",JOptionPane.INFORMATION_MESSAGE);
+changePass.txtOldPassword.setText("");
+changePass.txtNewPassword1.setText("");
+changePass.txtNewPassword2.setText("");
+}
+
+}
+if(p==0){JOptionPane.showMessageDialog(null,"Old Password Does not match" ,"Error",JOptionPane.ERROR_MESSAGE);}
+}
+else{JOptionPane.showMessageDialog(null,"Passwords do not match" ,"Error",JOptionPane.ERROR_MESSAGE);}
+}
+catch(Exception e){System.out.println("Error:42"+e);}
+}
+//---------------------------------------ABOUT-------------------------------------------
+if(ae.getActionCommand().equals("about1.cmdOk")){
+about1.setVisible(false);
+
+}//---------------------------------------PAYMENT-------------------------------------------
+if(ae.getActionCommand().equals("pay.btnCancel")){
+pay.setVisible(false);
+}
+
+
+if(ae.getActionCommand().equals("pay.btnUpdate")){
+
+if(i4==0){JOptionPane.showMessageDialog(null,"Select a row to update" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else{
+strQuery="update payment set payment_status='Complete' where payment_id="+i4+"";
+connect.executeQuery("update",strQuery);
+i4=0;
+}
+
+menu.btnPayment.doClick();
+
+}
+
+
+
+
+//---------------------------------------STOCK-------------------------------------------
+/*if(ae.getActionCommand().equals("upStock.btnUpdate")){
+model.updateStock(s4,stock.upStock.txtAddStock,stock.upStock.txtDamage);
+Object[][] dc=model.searchStock(stock.upStock.jcbManufacturer,stock.upStock.txtSearch);
+s4="";
+ final Object[] header={"Stock Id","Product Name","Stock"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+stock.upStock.jtStock.setModel(jtModel);
+}*/
+if(ae.getActionCommand().equals("upStock.btnCancel")){
+stock.setVisible(false);
+
+}
+
+
+if(ae.getActionCommand().equals("upStock.btnUpdate")){
+if(s4.equals("")) {JOptionPane.showMessageDialog(null,"Select Row to Update" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else if(s18.equals("Complete")){JOptionPane.showMessageDialog(null,"This Delivery is Already Complete, select another row" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else{
+strQuery="update purchase_stock set purchase_status='Complete',purchase_received_date='"+stock.upStock.lblCurrentDate.getText()+"' where purchase_id="+s4+" and product_id="+s17+"";
+connect.executeQuery("update",strQuery);
+//s4="";
+
+
+try{
+
+strQuery="select product_id,purchase_quantity from purchase_stock where purchase_id="+s4+"and product_id="+s17+"";
+connect2.executeQuery("query",strQuery);
+
+while(connect2.rs.next()){
+int quantity=0;
+strQuery="select stock_quantity from stock where product_id="+connect2.rs.getString(1)+" ";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){quantity=connect.rs.getInt(1);}
+quantity+=connect2.rs.getInt(2);
+i1=0;
+strQuery="update stock set stock_quantity="+quantity+" where product_id="+connect2.rs.getString(1)+"";
+connect.executeQuery("update",strQuery);
+
+s17="";
+}
+
+}
+catch(Exception e){System.out.println("Error:39"+e);}
+//s4="";
+try{
+int j=0;
+strQuery="select * from purchase_stock";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){j++;}
+Object[][] objs=new Object[j][8];
+strQuery="select * from purchase_stock";
+connect.executeQuery("query",strQuery);
+int i=0;
+while(connect.rs.next()){
+ objs[i][0]=connect.rs.getInt(1);
+ objs[i][1]=connect.rs.getInt(2);
+ objs[i][2]=connect.rs.getInt(3);
+ objs[i][3]=connect.rs.getInt(4);
+objs[i][4]=connect.rs.getFloat(5);
+objs[i][5]=connect.rs.getString(6);
+objs[i][6]=connect.rs.getString(7);
+objs[i][7]=connect.rs.getString(8);
+ i++;
+ }
+ final Object[] header={"Purchase Id","Manufacturer Id","Product Id","Quantity","Amount","Order Date","Received Date","Status"};
+
+ DefaultTableModel jtModel=new DefaultTableModel(objs,header);
+ stock.upStock.jtStock.setModel(jtModel);
+ }
+catch(Exception e){System.out.println("Error:38"+e);}
+}
+/*
+try {
+
+
+            OutputStream file = new FileOutputStream(new File("C:\\PurchaseReport.pdf"));
+ 
+            Document document = new Document();
+            PdfWriter.getInstance(document, file);
+            document.open();
+            document.add(new Paragraph("SEERAN'S SUPPLIERS"));
+			document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------"));
+			document.add(new Paragraph(""));
+            document.add(new Paragraph(new Date().toString()));
+			 Paragraph p1=new Paragraph("PURCHASE REPORT");
+  document.add(p1);
+ document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------------"));
+ CMYKColor color = new CMYKColor( 0, 1, (float)0.2, (float)0.667 );
+String text = "kievan wrote more: different color and font type.";
+Font o = FontFactory.getFont( FontFactory.TIMES_BOLD, 14, Font.BOLD, color );
+document.add(new Paragraph("Purchase_Id : "+s4,o));
+  Paragraph p2=new Paragraph("Manu_Id | Product_Id | Quantity | Amount |Purchase_Date ",o);
+  document.add(p2);
+
+  int total=0;
+  
+strQuery="select * from purchase_stock where purchase_id="+s4+"";
+ connect.executeQuery("query",strQuery);
+ while(connect.rs.next()){
+ Paragraph p=new Paragraph(connect.rs.getString(2)+"                    "+connect.rs.getString(3)+"                  "+connect.rs.getString(4)+"               "+connect.rs.getString(5)+"       "+connect.rs.getString(6));
+  document.add(p);
+  total+=connect.rs.getInt(5);
+ }
+ document.add(new Paragraph(""));
+   document.add(new Paragraph("							Total Amount : "+total,o));
+ document.addAuthor("DrAGoN");
+document.addCreationDate();
+document.addCreator("iText library");
+document.addTitle("My First PDF");
+ 
+            document.close();
+            file.close();
+ 
+    if(Desktop.getDesktop().isSupported(Desktop.Action.OPEN)) {
+			Desktop.getDesktop().open(new File("C:\\PurchaseReport.pdf"));}
+        } catch (Exception e) {
+ System.out.println("Error:33"+e);
+            e.printStackTrace();
+        }
+*/
+s4="";
+
+}
+
+
+if(ae.getActionCommand().equals("upStock.btnDelete")){
+if(s4.equals("")) {JOptionPane.showMessageDialog(null,"Select Row to Delete" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else{
+strQuery="delete from purchase_stock where purchase_id="+s4+"";
+connect.executeQuery("update",strQuery);
+s4="";
+try{
+int j=0;
+strQuery="select * from purchase_stock";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){j++;}
+Object[][] objs=new Object[j][8];
+strQuery="select * from purchase_stock";
+connect.executeQuery("query",strQuery);
+int i=0;
+while(connect.rs.next()){
+ objs[i][0]=connect.rs.getInt(1);
+ objs[i][1]=connect.rs.getInt(2);
+ objs[i][2]=connect.rs.getInt(3);
+ objs[i][3]=connect.rs.getInt(4);
+objs[i][4]=connect.rs.getFloat(5);
+objs[i][5]=connect.rs.getString(6);
+objs[i][6]=connect.rs.getString(7);
+objs[i][7]=connect.rs.getString(8);
+ i++;
+ }
+ final Object[] header={"Purchase Id","Manufacturer Id","Product Id","Quantity","Amount","Order Date","Received Date","Status"};
+
+ DefaultTableModel jtModel=new DefaultTableModel(objs,header);
+ stock.upStock.jtStock.setModel(jtModel);
+ }
+catch(Exception e){System.out.println("Error:38"+e);}
+}
+}
+
+
+if(ae.getActionCommand().equals("adStock.btnCancel")){
+stock.setVisible(false);
+stock.adStock.jcbManufacturer.setEnabled(true);
+}
+if(ae.getActionCommand().equals("adStock.btnAdd")){
+
+if(stock.adStock.jcbManufacturer.getSelectedItem().equals("Select")) {
+JOptionPane.showMessageDialog(null,"Select Manufacturer" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else if(stock.adStock.jcbProduct.getSelectedItem().equals("Select")) {
+JOptionPane.showMessageDialog(null,"Select Product" ,"Error",JOptionPane.ERROR_MESSAGE);}
+
+else{
+stock.adStock.jcbManufacturer.setEnabled(false);
+try{
+
+float amount=0;
+strQuery="select box_mrp from product where product_name='"+stock.adStock.jcbProduct.getSelectedItem()+"'";
+connect.executeQuery("query",strQuery);
+connect.rs.next();
+int obj=(Integer)stock.adStock.jsQuantity.getValue();
+amount =obj * connect.rs.getFloat(1);
+int quantity=(Integer)stock.adStock.jsQuantity.getValue();
+System.out.println(amount);
+int match=0;
+strQuery="select * from tmp_purchase_stock where manu_name='"+stock.adStock.jcbManufacturer.getSelectedItem()+"' and product_name='"+stock.adStock.jcbProduct.getSelectedItem()+"'";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){match=1;
+
+quantity+=connect.rs.getInt(3);
+amount+=connect.rs.getFloat(4);
+System.out.println(match);
+}
+
+if(match==1){
+strQuery="update tmp_purchase_stock set purchase_quantity="+quantity+",purchase_amount="+amount+" where manu_name='"+stock.adStock.jcbManufacturer.getSelectedItem()+"' and product_name='"+stock.adStock.jcbProduct.getSelectedItem()+"'";
+connect.executeQuery("update",strQuery);
+}
+else{
+strQuery="insert into tmp_purchase_stock values('"+stock.adStock.jcbManufacturer.getSelectedItem()+"','"+stock.adStock.jcbProduct.getSelectedItem()+"',"+quantity+","+amount+",'"+stock.upStock.lblCurrentDate.getText()+"') ";
+connect.executeQuery("update",strQuery);
+}
+int j=0;
+strQuery="select * from tmp_purchase_stock";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){j++;}
+Object[][] objs=new Object[j][5];
+strQuery="select * from tmp_purchase_stock";
+connect.executeQuery("query",strQuery);
+int i=0;
+while(connect.rs.next()){
+ objs[i][0]=connect.rs.getString(1);
+ objs[i][1]=connect.rs.getString(2);
+ objs[i][2]=connect.rs.getInt(3);
+ objs[i][3]=connect.rs.getFloat(4);
+  objs[i][4]=connect.rs.getString(5);
+ i++;
+ }
+ final Object[] header={"Manufacturer","Product","Quantity","Amount","Date"};
+
+ DefaultTableModel jtModel=new DefaultTableModel(objs,header);
+ stock.adStock.jtStock.setModel(jtModel);
+}catch(Exception e){System.out.println("Error:35"+e);}
+}
+}
+
+
+if(ae.getActionCommand().equals("adStock.btnSave")){
+try{
+strQuery="select * from purchase_stock order by purchase_Id";
+
+connect2.executeQuery("query",strQuery);
+
+if(connect2.rs.next()) {connect2.rs.beforeFirst();
+int i=1,j=0;
+while(connect2.rs.next()){
+
+}
+connect2.rs.last();
+if(j==0) pkey=connect2.rs.getInt(1)+1;
+}
+else{
+pkey=1;
+}
+System.out.println("pkey P"+pkey);
+
+
+
+
+
+int save=0;
+strQuery="select * from tmp_purchase_stock";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+save=1;
+
+int manu_id=0,product_id=0;
+strQuery="select manu_id from manufacturer where manu_name='"+connect.rs.getString(1)+"'";
+connect2.executeQuery("query",strQuery);
+while(connect2.rs.next()){
+manu_id=connect2.rs.getInt(1);}
+
+strQuery="select product_id from product where product_name='"+connect.rs.getString(2)+"'";
+connect2.executeQuery("query",strQuery);
+while(connect2.rs.next()){
+product_id=connect2.rs.getInt(1);}
+
+strQuery="insert into purchase_stock(purchase_id,manu_id,product_id,purchase_quantity,purchase_amount,purchase_order_date,purchase_status) values("+pkey+","+manu_id+","+product_id+","+connect.rs.getInt(3)+","+connect.rs.getFloat(4)+",'"+stock.upStock.lblCurrentDate.getText()+"','pending')";
+connect2.executeQuery("update",strQuery);
+//pkey++;
+}
+
+strQuery="delete from tmp_purchase_stock";
+connect.executeQuery("update",strQuery);
+if(save==1){
+JOptionPane.showMessageDialog(null,"Save Successful" ,"Information",JOptionPane.INFORMATION_MESSAGE);
+stock.adStock.jcbManufacturer.setEnabled(true);
+Object obj=stock.adStock.jcbManufacturer.getSelectedItem();
+menu.btnStock.doClick();
+stock.adStock.jcbManufacturer.removeItem(obj);
+//stock.adStock.jcbManufacturer.removeItemAt(stock.adStock.jcbManufacturer.getSelectedIndex());
+}
+else JOptionPane.showMessageDialog(null,"Add to Save" ,"Error",JOptionPane.ERROR_MESSAGE);
+}
+catch(Exception e){System.out.println("Error:36"+e);}
+Object[][] objs=new Object[0][0];
+
+ final Object[] header={"Manufacturer","Product","Quantity","Amount","Date"};
+
+ //DefaultTableModel jtModel=new DefaultTableModel(objs,header);
+ TableModel jtModel = new DefaultTableModel() {
+    public boolean isCellEditable(int rowIndex, int mColIndex) {
+        return false;
+    }
+};
+ 
+ stock.adStock.jtStock.setModel(jtModel);
+
+}
+
+
+if(ae.getActionCommand().equals("adStock.btnDelete")){
+if(s14.equals("")) {JOptionPane.showMessageDialog(null,"Select Row to Delete" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else{
+strQuery="delete from tmp_purchase_stock where manu_name='"+s14+"' and product_name='"+s15+"'";
+connect.executeQuery("update",strQuery);
+s14="";s15="";
+
+try{
+int j=0;
+strQuery="select * from tmp_purchase_stock";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){j++;}
+Object[][] objs=new Object[j][5];
+strQuery="select * from tmp_purchase_stock";
+connect.executeQuery("query",strQuery);
+int i=0;
+while(connect.rs.next()){
+ objs[i][0]=connect.rs.getString(1);
+ objs[i][1]=connect.rs.getString(2);
+ objs[i][2]=connect.rs.getInt(3);
+ objs[i][3]=connect.rs.getFloat(4);
+  objs[i][4]=connect.rs.getString(5);
+ i++;
+ }
+ if(j==0) stock.adStock.jcbManufacturer.setEnabled(true);
+ final Object[] header={"Manufacturer","Product","Quantity","Amount","Date"};
+
+ DefaultTableModel jtModel=new DefaultTableModel(objs,header);
+ stock.adStock.jtStock.setModel(jtModel);
+ }
+catch(Exception e){System.out.println("Error:37"+e);}
+
+}
+}
+//---------------------------------------CUSTOMER-------------------------------------------
+
+//--------------------------------------Save Customer----------------------------------------
+if(ae.getActionCommand().equals("addCust.btnSave")){
+model.saveCustomer(cust.addCust.txtFirstName,cust.addCust.txtLastName,cust.addCust.jcbState,cust.addCust.txtArea,cust.addCust.txtaAddress,cust.addCust.txtPhone,cust.addCust.txtEmail,cust.addCust.txtCompany,cust.addCust.txtPin);
+}
+
+//--------------------------------------Delete Customer----------------------------
+if(ae.getActionCommand().equals("cust.editCust.btnDelete")){
+if(s1.equals("")) JOptionPane.showMessageDialog(null,"Select a row to Delete" ,"Error",JOptionPane.ERROR_MESSAGE);
+else{
+model.editCustomer(s1); 
+s1="";
+Object[][] dc=model.searchCustomer(cust.editCust.txtSearch,cust.editCust.jcbSearch);
+ final Object[] header={"Customer Id","Name","Last Name","Company"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+cust.editCust.jtCustomer.setModel(jtModel);
+}
+}
+
+//------------------------------------Clear Customer---------------------------
+if(ae.getActionCommand().equals("cust.addCust.btnClear")){
+model.clearCustomer(cust.addCust.txtFirstName,cust.addCust.txtLastName,cust.addCust.jcbState,cust.addCust.txtArea,cust.addCust.txtaAddress,cust.addCust.txtPhone,cust.addCust.txtEmail,cust.addCust.txtCompany,cust.addCust.txtPin);
+}
+
+//------------------------------------Cancel Customer---------------------------
+if(ae.getActionCommand().equals("cust.editCust.btnCancel")){
+cust.setVisible(false);
+}
+if(ae.getActionCommand().equals("cust.addCust.btnCancel")){
+cust.setVisible(false);
+}
+
+//---------------------------------------Modify Customer--------------------------
+
+if(ae.getActionCommand().equals("cust.editCust.btnModify")){
+if(s1.equals("Type")) JOptionPane.showMessageDialog(null,"Type to Search.. Dude !" ,"Error",JOptionPane.ERROR_MESSAGE);
+else if(s1.equals("")) JOptionPane.showMessageDialog(null,"Select a row to Modify" ,"Error",JOptionPane.ERROR_MESSAGE);
+
+
+else { modifyCust=new ModifyCustomer();
+model.modifyCustomer(s1,modifyCust.txtFirstName,modifyCust.txtLastName,modifyCust.jcbState,modifyCust.txtArea,modifyCust.txtaAddress,modifyCust.txtPhone,modifyCust.txtEmail,modifyCust.txtCompany,modifyCust.txtPin);
+
+
+modifyCust.jchFirstName.addActionListener(this);
+modifyCust.jchFirstName.setActionCommand("modifyCust.jchFirstName");
+modifyCust.jchLastName.addActionListener(this);
+modifyCust.jchLastName.setActionCommand("modifyCust.jchLastName");
+modifyCust.jchArea.addActionListener(this);
+modifyCust.jchArea.setActionCommand("modifyCust.jchArea");
+modifyCust.jchAddress.addActionListener(this);
+modifyCust.jchAddress.setActionCommand("modifyCust.jchAddress");
+modifyCust.jchPhone.addActionListener(this);
+modifyCust.jchPhone.setActionCommand("modifyCust.jchPhone");
+modifyCust.jchEmail.addActionListener(this);
+modifyCust.jchEmail.setActionCommand("modifyCust.jchEmail");
+modifyCust.jchCompany.addActionListener(this);
+modifyCust.jchCompany.setActionCommand("modifyCust.jchCompany");
+modifyCust.jchPin.addActionListener(this);
+modifyCust.jchPin.setActionCommand("modifyCust.jchPin");
+
+modifyCust.btnSave.addActionListener(this);
+modifyCust.btnSave.setActionCommand("modifyCust.btnSave");
+modifyCust.btnCancel.addActionListener(this);
+modifyCust.btnCancel.setActionCommand("modifyCust.btnCancel");
+}
+
+}
+
+
+if(ae.getActionCommand().equals("modifyCust.btnSave")){
+
+model.saveModifiedCustomer(modifyCust,s1,modifyCust.txtFirstName,modifyCust.txtLastName,modifyCust.jcbState,modifyCust.txtArea,modifyCust.txtaAddress,modifyCust.txtPhone,modifyCust.txtEmail,modifyCust.txtCompany,modifyCust.txtPin);
+	//modifyCust.dispose();
+	Object[][] dc=model.searchCustomer(cust.editCust.txtSearch,cust.editCust.jcbSearch);
+s1="";
+ final Object[] header={"Customer Id","Name","Last Name","Company"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+cust.editCust.jtCustomer.setModel(jtModel);
+}
+
+if(ae.getActionCommand().equals("modifyCust.btnCancel")){
+
+model.clearCustomer(modifyCust.txtFirstName,modifyCust.txtLastName,modifyCust.jcbState,modifyCust.txtArea,modifyCust.txtaAddress,modifyCust.txtPhone,modifyCust.txtEmail,modifyCust.txtCompany,modifyCust.txtPin);
+	modifyCust.dispose();
+}
+
+//--------------------------------------------------------------chkboxes--------------------------
+if(ae.getActionCommand().equals("modifyCust.jchFirstName")){
+if(modifyCust.jchFirstName.isSelected()) {
+modCust1=modifyCust.txtFirstName.getText();
+modifyCust.txtFirstName.setText("");
+modifyCust.txtFirstName.setEnabled(true);
+}
+else if(modifyCust.txtFirstName.getText().equals("")) {
+modifyCust.txtFirstName.setText(modCust1);
+modifyCust.txtFirstName.setEnabled(false);
+}
+else modifyCust.txtFirstName.setEnabled(false);
+}
+if(ae.getActionCommand().equals("modifyCust.jchLastName")){
+if(modifyCust.jchLastName.isSelected()) {
+modCust2=modifyCust.txtLastName.getText();
+modifyCust.txtLastName.setText("");
+modifyCust.txtLastName.setEnabled(true);
+}
+else if(modifyCust.txtLastName.getText().equals("")) {
+modifyCust.txtLastName.setText(modCust2);
+modifyCust.txtLastName.setEnabled(false);
+}
+else modifyCust.txtLastName.setEnabled(false);
+}
+if(ae.getActionCommand().equals("modifyCust.jchArea")){
+if(modifyCust.jchArea.isSelected()) {
+modCust3=modifyCust.txtArea.getText();
+modifyCust.txtArea.setText("");
+modifyCust.txtArea.setEnabled(true);
+}
+else if(modifyCust.txtArea.getText().equals("")) {
+modifyCust.txtArea.setText(modCust3);
+modifyCust.txtArea.setEnabled(false);
+}
+else modifyCust.txtArea.setEnabled(false);
+
+}
+if(ae.getActionCommand().equals("modifyCust.jchAddress")){
+if(modifyCust.jchAddress.isSelected()) {
+modCust4=modifyCust.txtaAddress.getText();
+modifyCust.txtaAddress.setText("");
+modifyCust.txtaAddress.setEnabled(true);
+}
+else if(modifyCust.txtaAddress.getText().equals("")) {
+modifyCust.txtaAddress.setText(modCust4);
+modifyCust.txtaAddress.setEnabled(false);
+}
+else modifyCust.txtaAddress.setEnabled(false);
+}
+if(ae.getActionCommand().equals("modifyCust.jchPhone")){
+if(modifyCust.jchPhone.isSelected()) {
+modCust5=modifyCust.txtPhone.getText();
+modifyCust.txtPhone.setText("");
+modifyCust.txtPhone.setEnabled(true);
+}
+else if(modifyCust.txtPhone.getText().equals("")) {
+modifyCust.txtPhone.setText(modCust5);
+modifyCust.txtPhone.setEnabled(false);
+}
+else modifyCust.txtPhone.setEnabled(false);
+}
+if(ae.getActionCommand().equals("modifyCust.jchEmail")){
+if(modifyCust.jchEmail.isSelected()) {
+modCust6=modifyCust.txtEmail.getText();
+modifyCust.txtEmail.setText("");
+modifyCust.txtEmail.setEnabled(true);
+}
+else if(modifyCust.txtEmail.getText().equals("")) {
+modifyCust.txtEmail.setText(modCust6);
+modifyCust.txtEmail.setEnabled(false);
+}
+else modifyCust.txtEmail.setEnabled(false);
+}
+if(ae.getActionCommand().equals("modifyCust.jchCompany")){
+if(modifyCust.jchCompany.isSelected()) {
+modCust7=modifyCust.txtCompany.getText();
+modifyCust.txtCompany.setText("");
+modifyCust.txtCompany.setEnabled(true);
+}
+else if(modifyCust.txtCompany.getText().equals("")) {
+modifyCust.txtCompany.setText(modCust7);
+modifyCust.txtCompany.setEnabled(false);
+}
+else modifyCust.txtCompany.setEnabled(false);
+}
+
+if(ae.getActionCommand().equals("modifyCust.jchPin")){
+if(modifyCust.jchPin.isSelected()) {
+modCust8=modifyCust.txtPin.getText();
+modifyCust.txtPin.setText("");
+modifyCust.txtPin.setEnabled(true);
+}
+else if(modifyCust.txtPin.getText().equals("")) {
+modifyCust.txtPin.setText(modCust8);
+modifyCust.txtPin.setEnabled(false);
+}
+else modifyCust.txtPin.setEnabled(false);
+
+
+}
+//---------------------------------------MANUFACTURER-------------------------------------------
+
+//--------------------------------------Save Manufacturer----------------------------------------
+
+if(ae.getActionCommand().equals("addManu.btnSave")){
+model.saveManufacturer(manu.addManu.txtName,manu.addManu.jcbState,manu.addManu.txtArea,manu.addManu.txtaAddress,manu.addManu.txtPhone,manu.addManu.txtEmail,manu.addManu.txtPin,manu.addManu.txtVat);
+	}
+
+//--------------------------------------Delete Manufacturer----------------------------
+if(ae.getActionCommand().equals("manu.editManu.btnDelete")){
+if(s2.equals("")) JOptionPane.showMessageDialog(null,"Select a row to Delete","Error",JOptionPane.ERROR_MESSAGE);
+else{
+model.editManufacturer(s2); 
+s2="";
+Object[][] dc=model.searchManufacturer(manu.editManu.txtSearch);
+ final Object[] header={"Manufacturer Id","Name"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+manu.editManu.jtManufacturer.setModel(jtModel);
+}
+}
+//------------------------------------Clear Manufacturer---------------------------
+if(ae.getActionCommand().equals("manu.addManu.btnClear")){
+model.clearManufacturer(manu.addManu.txtName,manu.addManu.jcbState,manu.addManu.txtArea,manu.addManu.txtaAddress,manu.addManu.txtPhone,manu.addManu.txtEmail,manu.addManu.txtPin,manu.addManu.txtVat);
+}
+//------------------------------------Cancel Manufacturer---------------------------
+if(ae.getActionCommand().equals("manu.editManu.btnCancel")){
+
+manu.setVisible(false);
+}
+if(ae.getActionCommand().equals("manu.addManu.btnCancel")){
+manu.setVisible(false);
+}
+//---------------------------------------Modify Manufacturer--------------------------
+if(ae.getActionCommand().equals("manu.editManu.btnModify")){
+if(s2.equals("Type")) JOptionPane.showMessageDialog(null,"Type to Search.. Dude !" ,"Error",JOptionPane.ERROR_MESSAGE);
+else if(s2.equals("")) JOptionPane.showMessageDialog(null,"Select a row to Modify" ,"Error",JOptionPane.ERROR_MESSAGE);
+
+else { modifyManu=new ModifyManufacturer();
+
+model.modifyManufacturer(s2,modifyManu.txtName,modifyManu.jcbState,modifyManu.txtArea,modifyManu.txtaAddress,modifyManu.txtPhone,modifyManu.txtEmail,modifyManu.txtPin,modifyManu.txtVat);
+
+
+modifyManu.jchName.addActionListener(this);
+modifyManu.jchName.setActionCommand("modifyManu.jchName");
+modifyManu.jchArea.addActionListener(this);
+modifyManu.jchArea.setActionCommand("modifyManu.jchArea");
+modifyManu.jchAddress.addActionListener(this);
+modifyManu.jchAddress.setActionCommand("modifyManu.jchAddress");
+modifyManu.jchPhone.addActionListener(this);
+modifyManu.jchPhone.setActionCommand("modifyManu.jchPhone");
+modifyManu.jchEmail.addActionListener(this);
+modifyManu.jchEmail.setActionCommand("modifyManu.jchEmail");
+modifyManu.jchPin.addActionListener(this);
+modifyManu.jchPin.setActionCommand("modifyManu.jchPin");
+modifyManu.jchVat.addActionListener(this);
+modifyManu.jchVat.setActionCommand("modifyManu.jchVat");
+
+
+modifyManu.btnSave.addActionListener(this);
+modifyManu.btnSave.setActionCommand("modifyManu.btnSave");
+modifyManu.btnCancel.addActionListener(this);
+modifyManu.btnCancel.setActionCommand("modifyManu.btnCancel");
+}
+}
+
+if(ae.getActionCommand().equals("modifyManu.btnSave")){
+model.saveModifiedManufacturer(modifyManu,s2,modifyManu.txtName,modifyManu.jcbState,modifyManu.txtArea,modifyManu.txtaAddress,modifyManu.txtPhone,modifyManu.txtEmail,modifyManu.txtPin,modifyManu.txtVat);
+	//modifyManu.dispose();
+	Object[][] dc=model.searchManufacturer(manu.editManu.txtSearch);
+s2="";
+final Object[] header={"Manufacturer Id","Name"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+manu.editManu.jtManufacturer.setModel(jtModel);
+}
+
+if(ae.getActionCommand().equals("modifyManu.btnCancel")){
+model.clearManufacturer(modifyManu.txtName,modifyManu.jcbState,modifyManu.txtArea,modifyManu.txtaAddress,modifyManu.txtPhone,modifyManu.txtEmail,modifyManu.txtPin,modifyManu.txtVat);
+	modifyManu.dispose();
+}
+//--------------------------------------------------------------chkboxes--------------------------
+
+if(ae.getActionCommand().equals("modifyManu.jchName")){
+if(modifyManu.jchName.isSelected()) {
+modManu1=modifyManu.txtName.getText();
+modifyManu.txtName.setText("");
+modifyManu.txtName.setEnabled(true);
+}
+else if(modifyManu.txtName.getText().equals("")) {
+modifyManu.txtName.setText(modManu1);
+modifyManu.txtName.setEnabled(false);
+}
+else modifyManu.txtName.setEnabled(false);
+}
+
+if(ae.getActionCommand().equals("modifyManu.jchArea")){
+if(modifyManu.jchArea.isSelected()) {
+modManu3=modifyManu.txtArea.getText();
+modifyManu.txtArea.setText("");
+modifyManu.txtArea.setEnabled(true);
+}
+else if(modifyManu.txtArea.getText().equals("")) {
+modifyManu.txtArea.setText(modManu3);
+modifyManu.txtArea.setEnabled(false);
+}
+else modifyManu.txtArea.setEnabled(false);
+}
+if(ae.getActionCommand().equals("modifyManu.jchAddress")){
+if(modifyManu.jchAddress.isSelected()) {
+modManu4=modifyManu.txtaAddress.getText();
+modifyManu.txtaAddress.setText("");
+modifyManu.txtaAddress.setEnabled(true);
+}
+else if(modifyManu.txtaAddress.getText().equals("")) {
+modifyManu.txtaAddress.setText(modManu4);
+modifyManu.txtaAddress.setEnabled(false);
+}
+else modifyManu.txtaAddress.setEnabled(false);
+}
+if(ae.getActionCommand().equals("modifyManu.jchPhone")){
+if(modifyManu.jchPhone.isSelected()) {
+modManu5=modifyManu.txtPhone.getText();
+modifyManu.txtPhone.setText("");
+modifyManu.txtPhone.setEnabled(true);
+}
+else if(modifyManu.txtPhone.getText().equals("")) {
+modifyManu.txtPhone.setText(modManu5);
+modifyManu.txtPhone.setEnabled(false);
+}
+else modifyManu.txtPhone.setEnabled(false);
+}
+if(ae.getActionCommand().equals("modifyManu.jchEmail")){
+if(modifyManu.jchEmail.isSelected()) {
+modManu6=modifyManu.txtEmail.getText();
+modifyManu.txtEmail.setText("");
+modifyManu.txtEmail.setEnabled(true);
+}
+else if(modifyManu.txtEmail.getText().equals("")) {
+modifyManu.txtEmail.setText(modManu6);
+modifyManu.txtEmail.setEnabled(false);
+}
+else modifyManu.txtEmail.setEnabled(false);
+}
+if(ae.getActionCommand().equals("modifyManu.jchPin")){
+if(modifyManu.jchPin.isSelected()) {
+modManu8=modifyManu.txtPin.getText();
+modifyManu.txtPin.setText("");
+modifyManu.txtPin.setEnabled(true);
+}
+else if(modifyManu.txtPin.getText().equals("")) {
+modifyManu.txtPin.setText(modManu8);
+modifyManu.txtPin.setEnabled(false);
+}
+else modifyManu.txtPin.setEnabled(false);
+}
+if(ae.getActionCommand().equals("modifyManu.jchVat")){
+if(modifyManu.jchVat.isSelected()) {
+modManu9=modifyManu.txtVat.getText();
+modifyManu.txtVat.setText("");
+modifyManu.txtVat.setEnabled(true);
+}
+else if(modifyManu.txtVat.getText().equals("")) {
+modifyManu.txtVat.setText(modManu9);
+modifyManu.txtVat.setEnabled(false);
+}
+else modifyManu.txtVat.setEnabled(false);
+}
+
+
+//---------------------------------------PRODUCT----------------------------------------------
+
+//---------------------------------------Save Product---------------------------------------------
+if(ae.getActionCommand().equals("prod.addProduct.btnSave")){
+model.saveProduct(prod.addProduct.jcbManufacturer,prod.addProduct.txtProductName,prod.addProduct.txtPrice,prod.addProduct.txtCustomerPrice,prod.addProduct.txtBoxQuantity,prod.addProduct.txtBoxMrp);
+}//------------------------------------Clear Product---------------------------
+if(ae.getActionCommand().equals("prod.addProduct.btnClear")){
+model.clearProduct(prod.addProduct.txtProductName,prod.addProduct.txtPrice,prod.addProduct.txtCustomerPrice,prod.addProduct.txtBoxQuantity,prod.addProduct.txtBoxMrp);
+}
+//------------------------------------Cancel Product---------------------------
+if(ae.getActionCommand().equals("prod.addProduct.btnCancel")){
+prod.setVisible(false);
+}
+if(ae.getActionCommand().equals("prod.editProduct.btnCancel")){
+prod.setVisible(false);
+}
+//--------------------------------------Delete Product----------------------------
+if(ae.getActionCommand().equals("prod.editProduct.btnDelete")){
+if(s3.equals("")) JOptionPane.showMessageDialog(null,"Select a row to Delete","Error",JOptionPane.ERROR_MESSAGE);
+else{
+model.editProduct(s3); 
+s3="";
+Object[][] dc=model.searchProduct(prod.editProduct.jcbManufacturer,prod.editProduct.txtSearch);
+ final Object[] header={"Product Id","Product Name","Manufacturer Name"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+prod.editProduct.jtProduct.setModel(jtModel);
+}
+}
+//---------------------------------------Modify Product--------------------------
+if(ae.getActionCommand().equals("prod.editProduct.btnModify")){
+if(s3.equals("Type")) JOptionPane.showMessageDialog(null,"Type to Search.. Dude !" ,"Error",JOptionPane.ERROR_MESSAGE);
+else if(s3.equals("")) JOptionPane.showMessageDialog(null,"Select a row to Modify" ,"Error",JOptionPane.ERROR_MESSAGE);
+
+else { modifyProd=new ModifyProduct();
+
+model.modifyProduct(s3,modifyProd.jcbManufacturer,modifyProd.txtProductName,modifyProd.txtPrice,modifyProd.txtCustomerPrice,modifyProd.txtBoxQuantity,modifyProd.txtBoxMrp);
+
+
+modifyProd.jchProductName.addActionListener(this);
+modifyProd.jchProductName.setActionCommand("modifyProd.jchProductName");
+modifyProd.jchPrice.addActionListener(this);
+modifyProd.jchPrice.setActionCommand("modifyProd.jchPrice");
+modifyProd.jchCustomerPrice.addActionListener(this);
+modifyProd.jchCustomerPrice.setActionCommand("modifyProd.jchCustomerPrice");
+modifyProd.jchBoxMrp.addActionListener(this);
+modifyProd.jchBoxMrp.setActionCommand("modifyProd.jchBoxMrp");
+modifyProd.jchBoxQuantity.addActionListener(this);
+modifyProd.jchBoxQuantity.setActionCommand("modifyProd.jchBoxQuantity");
+
+modifyProd.btnSave.addActionListener(this);
+modifyProd.btnSave.setActionCommand("modifyProd.btnSave");
+modifyProd.btnCancel.addActionListener(this);
+modifyProd.btnCancel.setActionCommand("modifyProd.btnCancel");
+}
+}
+
+if(ae.getActionCommand().equals("modifyProd.btnSave")){
+model.saveModifiedProduct(modifyProd,s3,modifyProd.jcbManufacturer,modifyProd.txtProductName,modifyProd.txtPrice,modifyProd.txtCustomerPrice,modifyProd.txtBoxQuantity,modifyProd.txtBoxMrp);
+	//modifyProd.dispose();
+	Object[][] dc=model.searchProduct(prod.editProduct.jcbManufacturer,prod.editProduct.txtSearch);
+s3="";
+ final Object[] header={"Product Id","Product Name","Manufacturer Name"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+prod.editProduct.jtProduct.setModel(jtModel);
+}
+
+if(ae.getActionCommand().equals("modifyProd.btnCancel")){
+model.clearProduct(modifyProd.txtProductName,modifyProd.txtPrice,modifyProd.txtCustomerPrice,modifyProd.txtBoxQuantity,modifyProd.txtBoxMrp);
+	modifyProd.dispose();
+}
+
+
+//--------------------------------------------------------------chkboxes--------------------------
+
+if(ae.getActionCommand().equals("modifyProd.jchProductName")){
+if(modifyProd.jchProductName.isSelected()) {
+modProd1=modifyProd.txtProductName.getText();
+modifyProd.txtProductName.setText("");
+modifyProd.txtProductName.setEnabled(true);
+}
+else if(modifyProd.txtProductName.getText().equals("")) {
+modifyProd.txtProductName.setText(modProd1);
+modifyProd.txtProductName.setEnabled(false);
+}
+else modifyProd.txtProductName.setEnabled(false);
+}
+
+if(ae.getActionCommand().equals("modifyProd.jchPrice")){
+if(modifyProd.jchPrice.isSelected()) {
+modProd3=modifyProd.txtPrice.getText();
+modifyProd.txtPrice.setText("");
+modifyProd.txtPrice.setEnabled(true);
+}
+else if(modifyProd.txtPrice.getText().equals("")) {
+modifyProd.txtPrice.setText(modProd3);
+modifyProd.txtPrice.setEnabled(false);
+}
+else modifyProd.txtPrice.setEnabled(false);
+}
+if(ae.getActionCommand().equals("modifyProd.jchCustomerPrice")){
+if(modifyProd.jchCustomerPrice.isSelected()) {
+modProd4=modifyProd.txtCustomerPrice.getText();
+modifyProd.txtCustomerPrice.setText("");
+modifyProd.txtCustomerPrice.setEnabled(true);
+}
+else if(modifyProd.txtCustomerPrice.getText().equals("")) {
+modifyProd.txtCustomerPrice.setText(modProd4);
+modifyProd.txtCustomerPrice.setEnabled(false);
+}
+else modifyProd.txtCustomerPrice.setEnabled(false);
+}
+if(ae.getActionCommand().equals("modifyProd.jchBoxMrp")){
+if(modifyProd.jchBoxMrp.isSelected()) {
+modProd5=modifyProd.txtBoxMrp.getText();
+modifyProd.txtBoxMrp.setText("");
+modifyProd.txtBoxMrp.setEnabled(true);
+}
+else if(modifyProd.txtBoxMrp.getText().equals("")) {
+modifyProd.txtBoxMrp.setText(modProd5);
+modifyProd.txtBoxMrp.setEnabled(false);
+}
+else modifyProd.txtBoxMrp.setEnabled(false);
+}
+if(ae.getActionCommand().equals("modifyProd.jchBoxQuantity")){
+if(modifyProd.jchBoxQuantity.isSelected()) {
+modProd6=modifyProd.txtBoxQuantity.getText();
+modifyProd.txtBoxQuantity.setText("");
+modifyProd.txtBoxQuantity.setEnabled(true);
+}
+else if(modifyProd.txtBoxQuantity.getText().equals("")) {
+modifyProd.txtBoxQuantity.setText(modProd6);
+modifyProd.txtBoxQuantity.setEnabled(false);
+}
+else modifyProd.txtBoxQuantity.setEnabled(false);
+}
+//---------------------------------------ORDER----------------------------------------------
+//---------------------------------------Update Order-----------------------------------
+if(ae.getActionCommand().equals("order.viewOrder.btnCancel")){
+order.setVisible(false);
+}
+
+
+if(ae.getActionCommand().equals("order.viewOrder.btnComplete")){
+int q1=0;int q2=0;
+if(i2==0) {JOptionPane.showMessageDialog(null,"Select a row to Complete Order !" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else if(s19.equals("Complete")){JOptionPane.showMessageDialog(null,"Order Already Completed !" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else {
+
+try{
+strQuery="select stock_quantity from stock where product_id="+i5+"";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+q1=connect.rs.getInt(1);
+}
+ q2=i6;
+if(q1<q2){JOptionPane.showMessageDialog(null,"Stock not available" ,"Error",JOptionPane.ERROR_MESSAGE);}
+
+else{
+int q3=q1-q2;
+strQuery="update stock set stock_Quantity="+q3+" where product_id="+i5+"";
+connect.executeQuery("update",strQuery);
+
+i5=0;
+i6=0;
+s19="";
+try{
+strQuery="select * from payment order by payment_Id";
+
+connect.executeQuery("query",strQuery);
+
+if(connect.rs.next()) {connect.rs.beforeFirst();
+int i=1,j=0;
+while(connect.rs.next()){
+if(i!=connect.rs.getInt(1)) {pkey=i; j=1; break; }
+i++;
+}
+connect.rs.last();
+if(j==0) pkey=connect.rs.getInt(1)+1;
+}
+else{
+pkey=1;
+}
+System.out.println("pkey "+pkey);
+int amount=0;
+strQuery="select AMOUNT from order1 where order_id1="+i2+"";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+amount+=connect.rs.getInt(1);
+}
+
+strQuery="insert into payment values("+pkey+","+i2+","+amount+",'"+comp.addComplaint.lblCurrentDate.getText()+"','pending')";
+connect.executeQuery("update",strQuery);
+
+strQuery="update order1 set order_status='Complete' where order_id1="+i2+"";
+connect.executeQuery("update",strQuery);
+i2=0;
+}
+catch(Exception e){System.out.println("Error:40"+e);}
+}
+menu.btnOrder.doClick();
+}catch(Exception e){System.out.println("Error:40"+e);}
+}
+}
+//---------------------------------------Cancel Order-----------------------------------
+if(ae.getActionCommand().equals("addOrder.btnCancel")){
+
+Object[][] dc3=new Object[0][0];
+final Object[] header={"Product Name","Price","Quantity","Amount"};
+DefaultTableModel jtModel=new DefaultTableModel(dc3,header);
+order.addOrder.jtAddProduct.setModel(jtModel);
+rows=0;
+try{
+strQuery="delete from order2 ";
+connect.executeQuery("update",strQuery);
+}catch(Exception e){System.out.println("Error:17"+e);}
+
+order.setVisible(false);
+order.addOrder.txtSearch.setText("");
+
+}
+
+//---------------------------------------Add Order-----------------------------------
+if(ae.getActionCommand().equals("addOrder.btnAdd")){
+int quantity=0,i,j,k,p,stock=0,ordered=0,remaining=0;float amount=0,total=0;boolean count=false;
+
+if(s5.equals("")){JOptionPane.showMessageDialog(null,"Select a row to add Order !" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else if(order.addOrder.txtQuantity.getText().equals("")) JOptionPane.showMessageDialog(null,"Enter Quantity for product !" ,"Error",JOptionPane.ERROR_MESSAGE);
+else {
+try{
+
+strQuery="select * from order2 where name='"+s5+"' and price="+s6+"";
+connect.executeQuery("query",strQuery);
+if(connect.rs.next()) count=true;
+if(count) {
+//connect.rs.next();
+quantity=connect.rs.getInt(3);
+quantity+=Integer.parseInt(order.addOrder.txtQuantity.getText());
+amount=quantity*connect.rs.getFloat(2);
+strQuery="update order2 set quantity="+quantity+",amount="+amount+" where name='"+s5+"' and price="+s6+"";
+connect.executeQuery("update",strQuery);
+}
+else{
+
+
+rows++;
+
+quantity=Integer.parseInt(order.addOrder.txtQuantity.getText());
+amount=quantity*Float.parseFloat(s6);
+
+strQuery="insert into order2 values('"+s5+"',"+s6+","+quantity+","+amount+")";	
+connect.executeQuery("update",strQuery);
+
+strQuery="select s.Stock_quantity,s.stock_ordered from stock s where s.product_id=(select product_id from product where product_name='"+s5+"' and box_price="+s6+")";
+connect.executeQuery("query",strQuery);
+connect.rs.next();
+stock=connect.rs.getInt(1);
+ordered=connect.rs.getInt(2);
+ordered+=quantity;
+remaining=stock-ordered;
+if(remaining<0) remaining=0;
+strQuery="update stock set stock_ordered="+ordered+",stock_remaining="+remaining+" where product_id=(select product_id from product where product_name='"+s5+"' and box_price="+s6+")";	
+connect.executeQuery("update",strQuery);
+
+Object[][] dc=model.searchOrder(order.addOrder.jcbManufacturer,order.addOrder.txtSearch);
+s5="";
+ final Object[] header={"Product Name","Box_Price","Stock","Ordered","Remaining"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+order.addOrder.jtProductList.setModel(jtModel);
+order.addOrder.jtProductList.setAutoResizeMode(0);
+}
+}
+catch(Exception e){System.out.println("Error:18"+e);}
+try{
+ dc2=new Object[rows][4];sc2=new String[rows][4];
+strQuery="select * from order2 order by name";
+connect.executeQuery("query",strQuery);
+connect.rs.next();
+for(i=0;i<rows;i++,connect.rs.next()){
+for(j=0,k=1;j<4;j++,k++){
+dc2[i][j]=connect.rs.getString(k);
+sc2[i][j]=connect.rs.getString(k);
+}
+total+=(connect.rs.getFloat(4));
+}
+final Object[] header={"Product Name","Price","Quantity","Amount"};
+DefaultTableModel jtModel=new DefaultTableModel(dc2,header);
+order.addOrder.jtAddProduct.setModel(jtModel);
+
+
+
+}catch(Exception e){System.out.println("Error:19"+e);}
+String strTotal=Float.toString(total);
+order.addOrder.lblTotal2.setText(strTotal);
+order.addOrder.txtQuantity.setText("");
+s5="";
+s6="";
+}
+}
+
+//---------------------------------------Remove Order-----------------------------------
+if(ae.getActionCommand().equals("addOrder.btnRemove")){
+rows--;if(rows<0) rows=0;
+int quantity=0,i,j,k,p,stock=0,ordered=0,remaining=0;float amount=0,total=0;boolean count=false;
+int r2=0;
+// quantity=Integer.parseInt(order.addOrder.txtQuantity.getText());
+if(s7.equals("")) {JOptionPane.showMessageDialog(null,"Select a row to remove !" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else{
+strQuery="delete from order2 where name='"+s7+"' and price="+s8+" ";
+connect.executeQuery("update",strQuery);
+try{
+quantity=Integer.parseInt(s9);
+strQuery="select s.Stock_quantity,s.stock_ordered from stock s where s.product_id=(select product_id from product where product_name='"+s7+"' and box_price="+s8+")";
+connect.executeQuery("query",strQuery);
+connect.rs.next();System.out.println(s9);
+stock=connect.rs.getInt(1);
+ordered=connect.rs.getInt(2);
+ordered-=quantity;
+remaining=stock-ordered;
+if(remaining<0) remaining=0;
+strQuery="update stock set stock_ordered="+ordered+",stock_remaining="+remaining+" where product_id=(select product_id from product where product_name='"+s7+"' and box_price="+s8+")";	
+connect.executeQuery("update",strQuery);
+
+Object[][] dc=model.searchOrder(order.addOrder.jcbManufacturer,order.addOrder.txtSearch);
+s5="";System.out.println(s9);
+ final Object[] header2={"Product Name","Box_Price","Stock","Ordered","Remaining"};
+ DefaultTableModel jtModel2=new DefaultTableModel(dc,header2);
+order.addOrder.jtProductList.setModel(jtModel2);
+order.addOrder.jtProductList.setAutoResizeMode(0);
+
+
+
+Object[][] dc4=new Object[100][100];
+strQuery="select * from order2 order by name";
+connect.executeQuery("query",strQuery);
+k=0;i=0;j=0;
+while(connect.rs.next()){
+r2++;
+dc4[i][0]=connect.rs.getString(1);
+dc4[i][1]=connect.rs.getString(2);
+dc4[i][2]=connect.rs.getString(3);
+dc4[i][3]=connect.rs.getString(4);
+total+=connect.rs.getFloat(4);
+i++;
+}
+dc2=new Object[r2][4];
+for(i=0;i<r2;i++){
+for(j=0;j<4;j++){
+dc2[i][j]=dc4[i][j];
+}
+
+}
+final Object[] header={"Product Name","Price","Quantity","Amount"};
+DefaultTableModel jtModel=new DefaultTableModel(dc2,header);
+order.addOrder.jtAddProduct.setModel(jtModel);
+}catch(Exception e){System.out.println("Error:20"+e);}
+String strTotal=Float.toString(total);
+order.addOrder.lblTotal2.setText(strTotal);
+order.addOrder.txtQuantity.setText("");
+s10=s7;
+s11=s8;
+s7="";
+s8="";
+}
+
+}
+
+//---------------------------------------Save Order-----------------------------------
+if(ae.getActionCommand().equals("addOrder.btnSave")){
+boolean oflag=true;
+try{
+strQuery="select * from order2";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+oflag=false;
+}
+}
+catch(Exception e){System.out.println("Error:21"+e);}
+
+if(order.addOrder.jcbCompany.getSelectedItem().equals("Select") || order.addOrder.jcbFirstName.getSelectedItem().equals("Select") || order.addOrder.jcbLastName.getSelectedItem().equals("Select")){JOptionPane.showMessageDialog(null,"Select Customer Name ! " ,"Error",JOptionPane.ERROR_MESSAGE);}
+else if(order.addOrder.jcbShipmentDateDay.getSelectedItem().equals("Select") || order.addOrder.jcbShipmentDateMonth.getSelectedItem().equals("Select") || order.addOrder.jcbShipmentDateYear.getSelectedItem().equals("Select")){JOptionPane.showMessageDialog(null,"Select Date ! " ,"Error",JOptionPane.ERROR_MESSAGE);}
+else if(oflag){JOptionPane.showMessageDialog(null,"Select Product ! " ,"Error",JOptionPane.ERROR_MESSAGE);}
+else{
+int customerId=0,productId=0,r2=0,quantity=0;
+float amount,price=0;
+String oDate="",sDate="",oStatus="",name="";
+try{
+strQuery="select cust_id from customer where cust_company='"+order.addOrder.jcbCompany.getSelectedItem()+"' and cust_first_name='"+order.addOrder.jcbFirstName.getSelectedItem()+"' and cust_last_name='"+order.addOrder.jcbLastName.getSelectedItem()+"'";
+connect.executeQuery("query",strQuery);
+connect.rs.next();
+
+customerId=connect.rs.getInt(1);
+System.out.println(customerId);
+
+
+sDate=order.addOrder.jcbShipmentDateDay.getSelectedItem()+"-"+order.addOrder.jcbShipmentDateMonth.getSelectedItem()+"-"+order.addOrder.jcbShipmentDateYear.getSelectedItem();
+System.out.println(sDate);
+oDate=calendar;
+System.out.println(oDate);
+
+strQuery="select unique(order_id1) from order1 order by Order_Id1";
+
+connect.executeQuery("query",strQuery);
+
+if(connect.rs.next()) {connect.rs.beforeFirst();
+int i=1,j=0;
+while(connect.rs.next()){
+if(i!=connect.rs.getInt(1)) {pkeyo=i; j=1; break; }
+i++;
+}
+connect.rs.last();
+if(j==0) pkeyo=connect.rs.getInt(1)+1;
+}
+else{
+pkeyo=1;
+}
+System.out.println("pkeyo "+pkeyo);
+
+
+strQuery="select * from order2 order by name";
+connect2.executeQuery("query",strQuery);
+pkey=0;
+while(connect2.rs.next()){
+
+pkey++;
+
+/*strQuery="select * from order1 order by Order_Id2";
+
+connect.executeQuery("query",strQuery);
+
+if(connect.rs.next()) {connect.rs.beforeFirst();
+int i=1,j=0;
+while(connect.rs.next()){
+if(i!=connect.rs.getInt(2)) {pkey=i; j=1; break; }
+i++;
+}
+connect.rs.last();
+if(j==0) pkey=connect.rs.getInt(1)+1;
+}
+else{
+pkey=1;
+}
+System.out.println("pkey "+pkey);*/
+
+name=connect2.rs.getString(1);
+System.out.println(name);
+price=connect2.rs.getFloat(2);
+System.out.println(price);
+strQuery="select product_id from product where product_name='"+name+"' and box_price="+price+"";
+connect.executeQuery("query",strQuery);
+connect.rs.next();
+productId=connect.rs.getInt(1);
+System.out.println("p "+productId);
+quantity=connect2.rs.getInt(3);
+amount=connect2.rs.getFloat(4);
+
+strQuery="insert into order1 values("+pkeyo+","+pkey+","+customerId+","+productId+","+quantity+","+amount+",'"+oDate+"','"+sDate+"','Pending')";
+connect.executeQuery("update",strQuery);
+}
+}
+catch(Exception e){System.out.println("Error:22"+e);}
+Object[][] dc3=new Object[0][0];
+final Object[] header={"Product Name","Price","Quantity","Amount"};
+DefaultTableModel jtModel=new DefaultTableModel(dc3,header);
+order.addOrder.jtAddProduct.setModel(jtModel);
+rows=0;
+try{
+strQuery="delete from order2 ";
+connect.executeQuery("update",strQuery);
+}catch(Exception e){System.out.println("Error:23"+e);}
+
+r2=0;
+Object[][] dc4=new Object[100][100];
+strQuery="select * from order1 where Customer_Id="+customerId+" order by order_id1";
+connect.executeQuery("query",strQuery);
+int i=0,j;
+try{
+while(connect.rs.next()){
+r2++;
+for(j=0;j<8;j++){
+if(j!=2)
+dc4[i][j]=connect.rs.getString(j+1);
+}
+
+i++;
+}
+Object[][] dc5=new Object[r2][8];
+for(i=0;i<r2;i++){
+for(j=0;j<8;j++){
+dc5[i][j]=dc4[i][j];
+}
+}
+
+final Object[] header4={"Order Id1","Customer Id","Product Id","Quantity"};
+DefaultTableModel jtModel2=new DefaultTableModel(dc5,header4);
+order.updateOrder.jtUpdateOrder.setModel(jtModel2);
+}catch(Exception e){System.out.println("Error:24"+e);}
+}
+menu.btnOrder.doClick();
+}
+
+
+//--------------------------------------EMPLOYEE--------------------------------------------------------
+//------------------------------------------ADD Employee--------------------------------------
+if(ae.getActionCommand().equals("emp.addEmployee.btnSave"))
+{
+
+model.saveEmployee(emp.addEmployee.txtFirstName,emp.addEmployee.txtMiddleName,emp.addEmployee.txtLastName,emp.addEmployee.jrbMale,emp.addEmployee.jrbFemale,emp.addEmployee.jcbDateOfBirthDay,emp.addEmployee.jcbDateOfBirthMonth,emp.addEmployee.jcbDateOfBirthYear,emp.addEmployee.jcbQualification,emp.addEmployee.txtRAddress,emp.addEmployee.jcbRState,emp.addEmployee.txtRArea,emp.addEmployee.txtRPin,emp.addEmployee.txtRPhone,emp.addEmployee.txtEmail,emp.addEmployee.txtNAddress,emp.addEmployee.jcbNState,emp.addEmployee.txtNArea,emp.addEmployee.txtNPin,emp.addEmployee.txtNPhone,emp.addEmployee.jcbDateOfJoiningDay,emp.addEmployee.jcbDateOfJoiningMonth,emp.addEmployee.jcbDateOfJoiningYear,emp.addEmployee.jcbDepartment,emp.addEmployee.txtDesignation,emp.addEmployee.txtPayOfDay,emp.addEmployee.txtOverTimePay);
+
+}
+if(ae.getActionCommand().equals("emp.addEmployee.btnCancel")){
+emp.setVisible(false);
+
+}
+//---------------------------------------Delete Employee--------------------------------------
+if(ae.getActionCommand().equals("emp.editEmployee.btnDelete")){
+if(s3.equals("")) JOptionPane.showMessageDialog(null,"Select a row to Delete" ,"Error",JOptionPane.ERROR_MESSAGE);
+else{
+model.editEmployee(s3); 
+s3="";
+Object[][] dc=model.searchEmployee(emp.editEmployee.txtSearch);
+ final Object[] header={"Id","First Name","Middle Name","Last Name"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+emp.editEmployee.jtEmployee.setModel(jtModel);
+}
+}
+//----------------------------------------Modify Employee------------------------------------------
+if(ae.getActionCommand().equals("emp.editEmployee.btnModify"))
+{
+if(s3.equals("")) JOptionPane.showMessageDialog(null,"Select a row to Delete" ,"Error",JOptionPane.ERROR_MESSAGE);
+else
+{
+modifyEmp=new ModifyEmployee();
+model.modifyEmployee(s3,modifyEmp.txtFirstName,modifyEmp.txtMiddleName,modifyEmp.txtLastName,modifyEmp.jrbMale,modifyEmp.jrbFemale,modifyEmp.jcbDateOfBirthDay,modifyEmp.jcbDateOfBirthMonth,modifyEmp.jcbDateOfBirthYear,modifyEmp.jcbQualification,modifyEmp.txtRAddress,modifyEmp.jcbRState,modifyEmp.txtRArea,modifyEmp.txtRPin,modifyEmp.txtRPhone,modifyEmp.txtEmail,modifyEmp.txtNAddress,modifyEmp.jcbNState,modifyEmp.txtNArea,modifyEmp.txtNPin,modifyEmp.txtNPhone,modifyEmp.jcbDateOfJoiningDay,modifyEmp.jcbDateOfJoiningMonth,modifyEmp.jcbDateOfJoiningYear,modifyEmp.jcbDepartment,modifyEmp.txtDesignation,modifyEmp.txtPayOfDay,modifyEmp.txtOverTimePay);
+
+modifyEmp.btnSave.addActionListener(this);
+modifyEmp.btnSave.setActionCommand("modifyEmp.btnSave");
+modifyEmp.btnCancel.addActionListener(this);
+modifyEmp.btnCancel.setActionCommand("modifyEmp.btnCancel");
+
+modifyEmp.jchFirstName.addActionListener(this);
+modifyEmp.jchFirstName.setActionCommand("modifyEmp.jchFirstName");
+modifyEmp.jchMiddleName.addActionListener(this);
+modifyEmp.jchMiddleName.setActionCommand("modifyEmp.jchMiddleName");
+modifyEmp.jchLastName.addActionListener(this);
+modifyEmp.jchLastName.setActionCommand("modifyEmp.jchLastName");
+modifyEmp.jchRArea.addActionListener(this);
+modifyEmp.jchRArea.setActionCommand("modifyEmp.jchRArea");
+modifyEmp.jchRAddress.addActionListener(this);
+modifyEmp.jchRAddress.setActionCommand("modifyEmp.jchRAddress");
+modifyEmp.jchRPhone.addActionListener(this);
+modifyEmp.jchRPhone.setActionCommand("modifyEmp.jchRPhone");
+modifyEmp.jchEmail.addActionListener(this);
+modifyEmp.jchEmail.setActionCommand("modifyEmp.jchEmail");
+modifyEmp.jchRPin.addActionListener(this);
+modifyEmp.jchRPin.setActionCommand("modifyEmp.jchRPin");
+modifyEmp.jchNArea.addActionListener(this);
+modifyEmp.jchNArea.setActionCommand("modifyEmp.jchNArea");
+modifyEmp.jchNAddress.addActionListener(this);
+modifyEmp.jchNAddress.setActionCommand("modifyEmp.jchNAddress");
+modifyEmp.jchNPhone.addActionListener(this);
+modifyEmp.jchNPhone.setActionCommand("modifyEmp.jchNPhone");
+modifyEmp.jchNPin.addActionListener(this);
+modifyEmp.jchNPin.setActionCommand("modifyEmp.jchNPin");
+modifyEmp.jchDesignation.addActionListener(this);
+modifyEmp.jchDesignation.setActionCommand("modifyEmp.jchDesignation");
+modifyEmp.jchPayOfDay.addActionListener(this);
+modifyEmp.jchPayOfDay.setActionCommand("modifyEmp.jchPayOfDay");
+modifyEmp.jchOverTimePay.addActionListener(this);
+modifyEmp.jchOverTimePay.setActionCommand("modifyEmp.jchOverTimePay");
+}
+}
+
+if(ae.getActionCommand().equals("modifyEmp.btnSave"))
+{
+model.saveModifiedEmployee(modifyEmp,s3,modifyEmp.txtFirstName,modifyEmp.txtMiddleName,modifyEmp.txtLastName,modifyEmp.jrbMale,modifyEmp.jrbFemale,modifyEmp.jcbDateOfBirthDay,modifyEmp.jcbDateOfBirthMonth,modifyEmp.jcbDateOfBirthYear,modifyEmp.jcbQualification,modifyEmp.txtRAddress,modifyEmp.jcbRState,modifyEmp.txtRArea,modifyEmp.txtRPin,modifyEmp.txtRPhone,modifyEmp.txtEmail,modifyEmp.txtNAddress,modifyEmp.jcbNState,modifyEmp.txtNArea,modifyEmp.txtNPin,modifyEmp.txtNPhone,modifyEmp.jcbDateOfJoiningDay,modifyEmp.jcbDateOfJoiningMonth,modifyEmp.jcbDateOfJoiningYear,modifyEmp.jcbDepartment,modifyEmp.txtDesignation,modifyEmp.txtPayOfDay,modifyEmp.txtOverTimePay);
+s3="";
+Object[][] dc=model.searchEmployee(emp.editEmployee.txtSearch);
+ final Object[] header={"Id","First Name","Middle Name","Last Name"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+emp.editEmployee.jtEmployee.setModel(jtModel);
+
+}
+if(ae.getActionCommand().equals("modifyEmp.btnCancel"))
+{
+modifyEmp.dispose();
+}
+//---------------------------------------------Checkbox employee---------------------------------
+if(ae.getActionCommand().equals("modifyEmp.jchFirstName")){
+if(modifyEmp.jchFirstName.isSelected()) {
+modEmp1=modifyEmp.txtFirstName.getText();
+modifyEmp.txtFirstName.setText("");
+modifyEmp.txtFirstName.setEnabled(true);
+}
+else if(modifyEmp.txtFirstName.getText().equals("")) {
+modifyEmp.txtFirstName.setText(modEmp1);
+modifyEmp.txtFirstName.setEnabled(false);
+}
+else modifyEmp.txtFirstName.setEnabled(false);
+}
+
+if(ae.getActionCommand().equals("modifyEmp.jchMiddleName")){
+if(modifyEmp.jchMiddleName.isSelected()) {
+modEmp2=modifyEmp.txtMiddleName.getText();
+modifyEmp.txtMiddleName.setText("");
+modifyEmp.txtMiddleName.setEnabled(true);
+}
+else if(modifyEmp.txtMiddleName.getText().equals("")) {
+modifyEmp.txtMiddleName.setText(modEmp2);
+modifyEmp.txtMiddleName.setEnabled(false);
+}
+else modifyEmp.txtMiddleName.setEnabled(false);
+}
+
+if(ae.getActionCommand().equals("modifyEmp.jchLastName")){
+if(modifyEmp.jchLastName.isSelected()) {
+modEmp3=modifyEmp.txtLastName.getText();
+modifyEmp.txtLastName.setText("");
+modifyEmp.txtLastName.setEnabled(true);
+}
+else if(modifyEmp.txtLastName.getText().equals("")) {
+modifyEmp.txtLastName.setText(modEmp3);
+modifyEmp.txtLastName.setEnabled(false);
+}
+else modifyEmp.txtLastName.setEnabled(false);
+}
+
+if(ae.getActionCommand().equals("modifyEmp.jchRArea")){
+if(modifyEmp.jchRArea.isSelected()) {
+modEmp4=modifyEmp.txtRArea.getText();
+modifyEmp.txtRArea.setText("");
+modifyEmp.txtRArea.setEnabled(true);
+}
+else if(modifyEmp.txtRArea.getText().equals("")) {
+modifyEmp.txtRArea.setText(modEmp4);
+modifyEmp.txtRArea.setEnabled(false);
+}
+else modifyEmp.txtRArea.setEnabled(false);
+
+}
+
+if(ae.getActionCommand().equals("modifyEmp.jchRAddress")){
+if(modifyEmp.jchRAddress.isSelected()) {
+modEmp5=modifyEmp.txtRAddress.getText();
+modifyEmp.txtRAddress.setText("");
+modifyEmp.txtRAddress.setEnabled(true);
+}
+else if(modifyEmp.txtRAddress.getText().equals("")) {
+modifyEmp.txtRAddress.setText(modEmp5);
+modifyEmp.txtRAddress.setEnabled(false);
+}
+else modifyEmp.txtRAddress.setEnabled(false);
+}
+
+if(ae.getActionCommand().equals("modifyEmp.jchRPhone")){
+if(modifyEmp.jchRPhone.isSelected()) {
+modEmp6=modifyEmp.txtRPhone.getText();
+modifyEmp.txtRPhone.setText("");
+modifyEmp.txtRPhone.setEnabled(true);
+}
+else if(modifyEmp.txtRPhone.getText().equals("")) {
+modifyEmp.txtRPhone.setText(modEmp6);
+modifyEmp.txtRPhone.setEnabled(false);
+}
+else modifyEmp.txtRPhone.setEnabled(false);
+}
+
+if(ae.getActionCommand().equals("modifyEmp.jchEmail")){
+if(modifyEmp.jchEmail.isSelected()) {
+modEmp7=modifyEmp.txtEmail.getText();
+modifyEmp.txtEmail.setText("");
+modifyEmp.txtEmail.setEnabled(true);
+}
+else if(modifyEmp.txtEmail.getText().equals("")) {
+modifyEmp.txtEmail.setText(modEmp7);
+modifyEmp.txtEmail.setEnabled(false);
+}
+else modifyEmp.txtEmail.setEnabled(false);
+}
+
+
+
+if(ae.getActionCommand().equals("modifyEmp.jchRPin")){
+if(modifyEmp.jchRPin.isSelected()) {
+modEmp8=modifyEmp.txtRPin.getText();
+modifyEmp.txtRPin.setText("");
+modifyEmp.txtRPin.setEnabled(true);
+}
+else if(modifyEmp.txtRPin.getText().equals("")) {
+modifyEmp.txtRPin.setText(modEmp8);
+modifyEmp.txtRPin.setEnabled(false);
+}
+else modifyEmp.txtRPin.setEnabled(false);
+}
+
+
+
+if(ae.getActionCommand().equals("modifyEmp.jchNArea")){
+if(modifyEmp.jchNArea.isSelected()) {
+modEmp9=modifyEmp.txtNArea.getText();
+modifyEmp.txtNArea.setText("");
+modifyEmp.txtNArea.setEnabled(true);
+}
+else if(modifyEmp.txtNArea.getText().equals("")) {
+modifyEmp.txtNArea.setText(modEmp9);
+modifyEmp.txtNArea.setEnabled(false);
+}
+else modifyEmp.txtNArea.setEnabled(false);
+
+}
+
+if(ae.getActionCommand().equals("modifyEmp.jchNAddress")){
+if(modifyEmp.jchNAddress.isSelected()) {
+modEmp10=modifyEmp.txtNAddress.getText();
+modifyEmp.txtNAddress.setText("");
+modifyEmp.txtNAddress.setEnabled(true);
+}
+else if(modifyEmp.txtNAddress.getText().equals("")) {
+modifyEmp.txtNAddress.setText(modEmp10);
+modifyEmp.txtNAddress.setEnabled(false);
+}
+else modifyEmp.txtNAddress.setEnabled(false);
+}
+
+if(ae.getActionCommand().equals("modifyEmp.jchNPhone")){
+if(modifyEmp.jchNPhone.isSelected()) {
+modEmp11=modifyEmp.txtRPhone.getText();
+modifyEmp.txtNPhone.setText("");
+modifyEmp.txtNPhone.setEnabled(true);
+}
+else if(modifyEmp.txtNPhone.getText().equals("")) {
+modifyEmp.txtNPhone.setText(modEmp11);
+modifyEmp.txtNPhone.setEnabled(false);
+}
+else modifyEmp.txtNPhone.setEnabled(false);
+}
+
+
+
+if(ae.getActionCommand().equals("modifyEmp.jchNPin")){
+if(modifyEmp.jchNPin.isSelected()) {
+modEmp12=modifyEmp.txtNPin.getText();
+modifyEmp.txtNPin.setText("");
+modifyEmp.txtNPin.setEnabled(true);
+}
+else if(modifyEmp.txtNPin.getText().equals("")) {
+modifyEmp.txtNPin.setText(modEmp12);
+modifyEmp.txtNPin.setEnabled(false);
+}
+else modifyEmp.txtNPin.setEnabled(false);
+}
+
+if(ae.getActionCommand().equals("modifyEmp.jchDesignation")){
+if(modifyEmp.jchDesignation.isSelected()) {
+modEmp13=modifyEmp.txtDesignation.getText();
+modifyEmp.txtDesignation.setText("");
+modifyEmp.txtDesignation.setEnabled(true);
+}
+else if(modifyEmp.txtDesignation.getText().equals("")) {
+modifyEmp.txtDesignation.setText(modEmp13);
+modifyEmp.txtDesignation.setEnabled(false);
+}
+else modifyEmp.txtDesignation.setEnabled(false);
+}
+
+
+if(ae.getActionCommand().equals("modifyEmp.jchPayOfDay")){
+if(modifyEmp.jchPayOfDay.isSelected()) {
+modEmp14=modifyEmp.txtPayOfDay.getText();
+modifyEmp.txtPayOfDay.setText("");
+modifyEmp.txtPayOfDay.setEnabled(true);
+}
+else if(modifyEmp.txtPayOfDay.getText().equals("")) {
+modifyEmp.txtPayOfDay.setText(modEmp14);
+modifyEmp.txtPayOfDay.setEnabled(false);
+}
+else modifyEmp.txtPayOfDay.setEnabled(false);
+}
+
+
+if(ae.getActionCommand().equals("modifyEmp.jchOverTimePay")){
+if(modifyEmp.jchOverTimePay.isSelected()) {
+modEmp15=modifyEmp.txtOverTimePay.getText();
+modifyEmp.txtOverTimePay.setText("");
+modifyEmp.txtOverTimePay.setEnabled(true);
+}
+else if(modifyEmp.txtOverTimePay.getText().equals("")) {
+modifyEmp.txtOverTimePay.setText(modEmp15);
+modifyEmp.txtOverTimePay.setEnabled(false);
+}
+else modifyEmp.txtOverTimePay.setEnabled(false);
+}
+//----------------------------------COMPLAINT---------------------------------------------------
+if(ae.getActionCommand().equals("comp.viewComplaint.btnCancel")){
+comp.setVisible(false);
+}
+if(ae.getActionCommand().equals("comp.viewComplaint.btnDelete")){
+if(s16.equals("")) {JOptionPane.showMessageDialog(null,"Select Row to Delete" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else{
+strQuery="delete from complaint where complaint_id="+s16+"";
+connect.executeQuery("update",strQuery);
+s16="";
+try{
+int j=0;
+strQuery="select * from complaint";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){j++;}
+Object[][] objs=new Object[j][8];
+strQuery="select * from complaint";
+connect.executeQuery("query",strQuery);
+int i=0;
+while(connect.rs.next()){
+ objs[i][0]=connect.rs.getInt(1);
+ objs[i][1]=connect.rs.getInt(2);
+ objs[i][2]=connect.rs.getInt(3);
+ objs[i][3]=connect.rs.getInt(4);
+objs[i][4]=connect.rs.getInt(5);
+objs[i][5]=connect.rs.getString(6);
+objs[i][6]=connect.rs.getString(7);
+objs[i][7]=connect.rs.getString(8);
+ i++;
+ }
+ final Object[] header={"Complaint Id","Order Id1","Order Id2","Product Id","Customer_Id","Description","Date","Status"};
+
+ DefaultTableModel jtModel=new DefaultTableModel(objs,header);
+comp.viewComplaint.jtViewComplaint.setModel(jtModel);
+ }
+catch(Exception e){System.out.println("Error:37"+e);}
+}
+}
+if(ae.getActionCommand().equals("comp.viewComplaint.btnClear")){
+if(s16.equals("")) {JOptionPane.showMessageDialog(null,"Select Row to Clear" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else{
+strQuery="update complaint set Complaint_status='Cleared' where complaint_id="+s16+"";
+connect.executeQuery("update",strQuery);
+s16="";
+try{
+int j=0;
+strQuery="select * from complaint";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){j++;}
+Object[][] objs=new Object[j][8];
+strQuery="select * from complaint";
+connect.executeQuery("query",strQuery);
+int i=0;
+while(connect.rs.next()){
+ objs[i][0]=connect.rs.getInt(1);
+ objs[i][1]=connect.rs.getInt(2);
+ objs[i][2]=connect.rs.getInt(3);
+ objs[i][3]=connect.rs.getInt(4);
+objs[i][4]=connect.rs.getInt(5);
+objs[i][5]=connect.rs.getString(6);
+objs[i][6]=connect.rs.getString(7);
+objs[i][7]=connect.rs.getString(8);
+ i++;
+ }
+ final Object[] header={"Complaint Id","Order Id1","Order Id2","Product Id","Customer_Id","Description","Date","Status"};
+
+ DefaultTableModel jtModel=new DefaultTableModel(objs,header);
+comp.viewComplaint.jtViewComplaint.setModel(jtModel);
+ }
+catch(Exception e){System.out.println("Error:37"+e);}
+}
+}
+
+if(ae.getActionCommand().equals("comp.addComplaint.jrbOrder")){
+comp.addComplaint.jcbOrderId.setEnabled(true);
+comp.addComplaint.jcbProductName.setEnabled(false);
+}
+if(ae.getActionCommand().equals("comp.addComplaint.jrbProduct")){
+comp.addComplaint.jcbProductName.setEnabled(true);
+}
+if(ae.getActionCommand().equals("comp.addComplaint.btnCancel")){
+comp.setVisible(false);
+}
+if(ae.getActionCommand().equals("comp.addComplaint.btnSave")){
+
+if(comp.addComplaint.jcbLastName.getSelectedItem().equals("Select")){
+JOptionPane.showMessageDialog(null,"Select Name" ,"Error",JOptionPane.ERROR_MESSAGE);
+}
+else if(comp.addComplaint.jcbOrderId.getSelectedItem().equals("Select")){
+JOptionPane.showMessageDialog(null,"Select Order_ID" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else if(comp.addComplaint.jcbProductName.isEnabled() && comp.addComplaint.jcbProductName.getSelectedItem().equals("Select")){
+JOptionPane.showMessageDialog(null,"Select Product Name" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else if(comp.addComplaint.txtaDescription.equals("")){
+JOptionPane.showMessageDialog(null,"Enter Description" ,"Error",JOptionPane.ERROR_MESSAGE);
+}
+else{
+int cust_id=0,order_id2=0,prod_id=0;
+String des=comp.addComplaint.txtaDescription.getText();
+try{
+strQuery="select cust_id from customer where cust_company='"+comp.addComplaint.jcbCompany.getSelectedItem()+"' and cust_first_name='"+comp.addComplaint.jcbFirstName.getSelectedItem()+"' and cust_last_name='"+comp.addComplaint.jcbLastName.getSelectedItem()+"' ";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+cust_id=connect.rs.getInt(1);
+
+}
+strQuery="select order_id2 from order1 where order_id1="+comp.addComplaint.jcbOrderId.getSelectedItem()+" and product_id=(select product_id from product where product_name='"+comp.addComplaint.jcbProductName.getSelectedItem()+"') ";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+order_id2=connect.rs.getInt(1);
+
+}
+strQuery="select product_id from product where product_name='"+comp.addComplaint.jcbProductName.getSelectedItem()+"'";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+prod_id=connect.rs.getInt(1);
+
+}
+
+strQuery="select * from complaint order by complaint_Id";
+
+connect.executeQuery("query",strQuery);
+
+if(connect.rs.next()) {connect.rs.beforeFirst();
+int i=1,j=0;
+while(connect.rs.next()){
+if(i!=connect.rs.getInt(1)) {pkey=i; j=1; break; }
+i++;
+}
+connect.rs.last();
+if(j==0) pkey=connect.rs.getInt(1)+1;
+}
+else{
+pkey=1;
+}
+System.out.println("pkey "+pkey);
+
+
+strQuery="insert into complaint values("+pkey+","+comp.addComplaint.jcbOrderId.getSelectedItem()+","+order_id2+","+prod_id+","+cust_id+",'"+des+"','"+comp.addComplaint.lblCurrentDate.getText()+"','pending')";
+connect.executeQuery("update",strQuery);
+}
+catch(Exception e){System.out.println("Error:34"+e);}
+JOptionPane.showMessageDialog(null,"Data Inserted" ,"Information",JOptionPane.INFORMATION_MESSAGE);
+comp.addComplaint.txtaDescription.setText("");
+}
+}
+//----------------------------------REPORT---------------------------------------------------
+//----------------------------------Order Report---------------------------------------------------
+if(ae.getActionCommand().equals("report1.ordReport.jrbOrderDate")){
+report1.ordReport.panel3.remove(report1.ordReport.panel5);
+report1.ordReport.panel3.add(report1.ordReport.panel4);
+report1.ordReport.panel4.setVisible(true);
+report1.ordReport.panel5.setVisible(false);
+}
+
+if(ae.getActionCommand().equals("report1.ordReport.btnReport")){
+//if(jrbOrderDate.isSelected()){
+int total=0;
+String date1=report1.ordReport.jcbStartDate.getSelectedItem()+"-"+report1.ordReport.jcbStartMonth.getSelectedItem()+"-"+report1.ordReport.jcbStartYear.getSelectedItem();
+System.out.println(date1);
+String date2=report1.ordReport.jcbEndDate.getSelectedItem()+"-"+report1.ordReport.jcbEndMonth.getSelectedItem()+"-"+report1.ordReport.jcbEndYear.getSelectedItem();
+try {
+
+
+          OutputStream file = new FileOutputStream(new File("C:\\Bill.pdf"));
+ 
+            Document document = new Document();
+            PdfWriter.getInstance(document, file);
+            document.open();
+            document.add(new Paragraph("SEERAN'S SUPPLIERS"));
+			document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------"));
+			document.add(new Paragraph(""));
+            document.add(new Paragraph(new Date().toString()));
+			 Paragraph p1=new Paragraph("SALES REPORT");
+  document.add(p1);
+ document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------------"));
+ CMYKColor color = new CMYKColor( 0, 1, (float)0.2, (float)0.667 );
+String text = "kievan wrote more: different color and font type.";
+Font o = FontFactory.getFont( FontFactory.TIMES_BOLD, 14, Font.BOLD, color );
+//document.add(new Paragraph("Order Id : "+bill.jcbOrderId.getSelectedItem()+"      "+"Customer Details :"+bill.jcbFirstName.getSelectedItem()+" "+bill.jcbLastName.getSelectedItem(),o));
+
+document.add(new Paragraph(""));
+document.add(new Paragraph(""));
+ document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------------"));
+ //Paragraph p2=new Paragraph("Order_Id | Product_Id | Quantity | Order_Date | Shipment_Date | Order_Status",o);
+ PdfPTable table1=new PdfPTable(6);
+ table1.addCell("Order Id");
+ table1.addCell("Product Id");
+
+ table1.addCell("Quantity");
+  table1.addCell("Amount");
+ table1.addCell("Order_Date");
+
+ table1.addCell("Shipment_Date");
+
+ document.add(table1);
+  //Paragraph p2=new Paragraph("Manufacturer|Product |Quantity | Amount |Purchase_Date ",o);
+  //document.add(p2);
+  int i=0;
+if(report1.ordReport.jrbOrderDate.isSelected()){
+ strQuery="select * from order1 where order_date between '"+date1+"' and '"+date2+"'";i=1;}
+ else if(report1.ordReport.jrbOrderDate.isSelected()){ strQuery="select * from order1 where product_id=(select product_id from product where product_name='"+report1.ordReport.jcbProduct.getSelectedItem()+"')";i=1;}
+ else{JOptionPane.showMessageDialog(null,"Select an option" ,"Error",JOptionPane.ERROR_MESSAGE);}
+ if(i==1){
+ connect.executeQuery("query",strQuery);
+ while(connect.rs.next()){
+ PdfPTable table=new PdfPTable(6);
+       table.addCell(connect.rs.getString(2));
+       table.addCell(connect.rs.getString(4));
+       table.addCell(connect.rs.getString(5));
+       table.addCell(connect.rs.getString(6));
+	   table.addCell(connect.rs.getString(7));
+	   table.addCell(connect.rs.getString(8));
+       document.add(table);
+ //Paragraph p=new Paragraph(connect.rs.getString(2)+"                    "+connect.rs.getString(4)+"                  "+connect.rs.getString(5)+"               "+connect.rs.getString(7)+"       "+connect.rs.getString(8)+"       "+connect.rs.getString(9));
+  //document.add(p);
+    total+=connect.rs.getInt(6);
+ }
+
+ 
+ //Paragraph p=new Paragraph(mname+"            "+pname+""+connect.rs.getString(5)+"    "+connect.rs.getString(6)+"    "+connect.rs.getString(7));
+  //document.add(p);
+
+ 
+ 
+ document.add(new Paragraph(""));
+   document.add(new Paragraph("Total Amount : "+total,o));
+ document.addAuthor("DrAGoN");
+document.addCreationDate();
+document.addCreator("iText library");
+document.addTitle("My First PDF");
+ 
+            document.close();
+            file.close();
+ 
+    if(Desktop.getDesktop().isSupported(Desktop.Action.OPEN)) {
+			Desktop.getDesktop().open(new File("C:\\Bill.pdf"));}
+        } 
+		}
+		catch (Exception e) {
+ System.out.println("Error:33"+e);
+            e.printStackTrace();
+        
+
+
+}
+}
+if(ae.getActionCommand().equals("report1.ordReport.jrbProductType")){
+report1.ordReport.panel3.remove(report1.ordReport.panel4);
+report1.ordReport.panel3.add(report1.ordReport.panel5);
+report1.ordReport.panel4.setVisible(false);
+report1.ordReport.panel5.setVisible(true);
+}
+//----------------------------------Purchase Report---------------------------------------------------
+if(ae.getActionCommand().equals("report1.purReport.jrbPurchaseDate")){
+report1.purReport.panel3.remove(report1.purReport.panel5);
+report1.purReport.panel3.add(report1.purReport.panel4);
+report1.purReport.panel4.setVisible(true);
+report1.purReport.panel5.setVisible(false);
+}
+
+if(ae.getActionCommand().equals("report1.purReport.jrbProductType")){
+report1.purReport.panel3.remove(report1.purReport.panel4);
+report1.purReport.panel3.add(report1.purReport.panel5);
+report1.purReport.panel4.setVisible(false);
+report1.purReport.panel5.setVisible(true);
+}
+//----------------------------------Complaint Report---------------------------------------------------
+if(ae.getActionCommand().equals("report1.comReport.jrbComplaintDate")){
+report1.comReport.panel3.remove(report1.comReport.panel5);
+report1.comReport.panel3.add(report1.comReport.panel4);
+report1.comReport.panel4.setVisible(true);
+report1.comReport.panel5.setVisible(false);
+}
+
+if(ae.getActionCommand().equals("report1.comReport.jrbCustomer")){
+report1.comReport.panel3.remove(report1.comReport.panel4);
+report1.comReport.panel3.add(report1.comReport.panel5);
+report1.comReport.panel4.setVisible(false);
+report1.comReport.panel5.setVisible(true);
+}
+//-------------------------------------------------------------------------------------
+}
+//--------------------------------------MOUSE LISTENER------------------------------------
+   public void mousePressed(MouseEvent e){if(cust.isSelected()) System.out.println("Error:25"+e);menu.getLayeredPane().setPosition(cust,0);} 
+   // dont use these so leave them empty 
+   public void mouseClicked(MouseEvent e){if(e.getSource().equals(cust)){ System.out.println("Error:25"+e);menu.getLayeredPane().setPosition(cust,0);}} 
+   public void mouseEntered(MouseEvent e){} 
+   public void mouseExited(MouseEvent e){} 
+   public void mouseReleased(MouseEvent e){} 
+//--------------------------------------KEY LISTENER------------------------------------
+public void  keyPressed(KeyEvent ke){}
+public void  keyTyped(KeyEvent ke){}
+public void  keyReleased(KeyEvent ke){
+
+//-------------------------------------------Customer-------------------------------------
+if(ke.getSource().equals(cust.editCust.txtSearch)) 
+{
+Object[][] dc=model.searchCustomer(cust.editCust.txtSearch,cust.editCust.jcbSearch);
+s1="";
+ final Object[] header={"Customer Id","Name","Last Name","Company"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+cust.editCust.jtCustomer.setModel(jtModel);
+}
+//-------------------------------------------Manufacturer-------------------------------------
+if(ke.getSource().equals(manu.editManu.txtSearch)) 
+{
+Object[][] dc=model.searchManufacturer(manu.editManu.txtSearch);
+s2="";
+ final Object[] header={"Manufacturer Id","Name"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+manu.editManu.jtManufacturer.setModel(jtModel);
+}
+//-------------------------------------------Product-------------------------------------
+if(ke.getSource().equals(prod.editProduct.txtSearch)) 
+{
+Object[][] dc=model.searchProduct(prod.editProduct.jcbManufacturer,prod.editProduct.txtSearch);
+s3="";
+ final Object[] header={"Product Id","Product Name","Manufacturer Name"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+prod.editProduct.jtProduct.setModel(jtModel);
+}
+//-------------------------------------------Stock--------------------------------------
+if(ke.getSource().equals(stock.upStock.txtSearch)) 
+{
+Object[][] dc=model.searchStock(stock.upStock.jcbManufacturer,stock.upStock.txtSearch);
+s4="";
+ final Object[] header={"Stock Id","Product Name","Stock"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+stock.upStock.jtStock.setModel(jtModel);
+}
+//-------------------------------------------Order--------------------------------------
+if(ke.getSource().equals(order.addOrder.txtSearch)) 
+{
+Object[][] dc=model.searchOrder(order.addOrder.jcbManufacturer,order.addOrder.txtSearch);
+s5="";
+ final Object[] header={"Product Name","MRP","Box_Price","Stock","Ordered","Remaining"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+order.addOrder.jtProductList.setModel(jtModel);
+order.addOrder.jtProductList.setAutoResizeMode(0);
+
+}
+//-------------------------------------------customer view search--------------------------
+if(ke.getSource().equals(view.viewCust.txtCustomerName))
+{
+Object[][] vc = model.searchView(view.viewCust.txtCustomerName,"Customer","Cust_id",10);
+ final Object[] headerCust={"id","First Name","Last Name","State","Area","Address","Contactno.","Email","Company","Pincode"};
+ DefaultTableModel jtModelCust=new DefaultTableModel(vc,headerCust);
+view.viewCust.jtViewCustomer.setModel(jtModelCust);
+}
+
+
+if(ke.getSource().equals(emp.editEmployee.txtSearch)) 
+{
+Object[][] dc=model.searchEmployee(emp.editEmployee.txtSearch);
+s="";
+ final Object[] header={"Id","First Name","Middle Name","Last Name"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+emp.editEmployee.jtEmployee.setModel(jtModel);
+}
+//------------------------------------------Manufacturer view search---------------------------
+if(ke.getSource().equals(view.viewManu.txtManufacturerName))
+{
+Object[][] vm = model.searchView(view.viewManu.txtManufacturerName,"Manufacturer","Manu_id",9);
+ final Object[] headerManu={"id","Manufacturer","State","Area","Address","Contactno.","Email","Pincode","Vat"};
+ DefaultTableModel jtModelManu=new DefaultTableModel(vm,headerManu);
+view.viewManu.jtViewManufacturer.setModel(jtModelManu);
+
+}
+
+
+if(ke.getSource().equals(view.viewProd.txtProductName))
+{
+Object[][] vp = model.searchView(view.viewProd.txtProductName,"Product","Product_id",8);
+ final Object[] headerProd={"id","Manufacturer","State","Area","Address","Contactno.","Email","Pincode"};
+ DefaultTableModel jtModelProd=new DefaultTableModel(vp,headerProd);
+view.viewProd.jtViewProduct.setModel(jtModelProd);
+
+}
+
+//-------------------------------------------------------------------------------
+}
+//--------------------------------------CHANGE LISTENER------------------------------------------------
+
+public void itemStateChanged(ItemEvent ie){
+
+if(ie.getSource().equals(cust.editCust.jcbSearch)){
+Object[][] dc=model.searchCustomer(cust.editCust.txtSearch,cust.editCust.jcbSearch);
+
+ final Object[] header={"Customer Id","Name","Last Name","Company"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+cust.editCust.jtCustomer.setModel(jtModel);
+}
+
+if(ie.getSource().equals(prod.editProduct.jcbManufacturer)){
+Object[][] dc=model.searchProduct(prod.editProduct.jcbManufacturer,prod.editProduct.txtSearch);
+s3="";
+ final Object[] header={"Product Id","Product Name","Manufacturer Name"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+prod.editProduct.jtProduct.setModel(jtModel);
+
+}
+if(ie.getSource().equals(stock.upStock.jcbManufacturer)){
+Object[][] dc=model.searchStock(stock.upStock.jcbManufacturer,stock.upStock.txtSearch);
+
+ final Object[] header={"Stock Id","Product Name","Stock"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+stock.upStock.jtStock.setModel(jtModel);
+}
+if(ie.getSource().equals(stock.adStock.jcbManufacturer)){
+try{
+stock.adStock.jcbProduct.removeAllItems();
+stock.adStock.jcbProduct.addItem("Select");
+
+strQuery="select Product_name from product where manu_id=(select manu_id from manufacturer where manu_name='"+stock.adStock.jcbManufacturer.getSelectedItem()+"')";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+stock.adStock.jcbProduct.addItem(connect.rs.getString(1));
+
+}
+
+}
+catch(Exception e){System.out.println("Error:25"+e);}
+
+}
+if(ie.getSource().equals(order.addOrder.jcbCompany)){
+
+try{
+order.addOrder.jcbFirstName.removeAllItems();
+order.addOrder.jcbFirstName.addItem("Select");
+
+strQuery="select * from customer  where cust_company='"+order.addOrder.jcbCompany.getSelectedItem()+"' order by Cust_First_Name";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+order.addOrder.jcbFirstName.addItem(connect.rs.getString(2));
+
+}
+order.updateOrder.jcbCompany.setSelectedItem(order.addOrder.jcbCompany.getSelectedItem());
+}
+catch(Exception e){System.out.println("Error:25"+e);}
+}
+
+if(ie.getSource().equals(order.updateOrder.jcbCompany)){
+
+try{
+order.updateOrder.jcbFirstName.removeAllItems();
+order.updateOrder.jcbFirstName.addItem("Select");
+
+strQuery="select * from customer  where cust_company='"+order.updateOrder.jcbCompany.getSelectedItem()+"' order by Cust_First_Name";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+order.updateOrder.jcbFirstName.addItem(connect.rs.getString(2));
+
+}
+
+}
+catch(Exception e){System.out.println("Error:26"+e);}
+}
+
+if(ie.getSource().equals(order.addOrder.jcbFirstName)){
+
+try{
+order.addOrder.jcbLastName.removeAllItems();
+order.addOrder.jcbLastName.addItem("Select");
+
+strQuery="select * from customer  where cust_first_name='"+order.addOrder.jcbFirstName.getSelectedItem()+"' order by Cust_Last_Name";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+order.addOrder.jcbLastName.addItem(connect.rs.getString(3));
+
+}
+order.updateOrder.jcbFirstName.setSelectedItem(order.addOrder.jcbFirstName.getSelectedItem());
+}
+catch(Exception e){System.out.println("Error:27"+e);}
+}
+if(ie.getSource().equals(order.updateOrder.jcbFirstName)){
+
+try{
+order.updateOrder.jcbLastName.removeAllItems();
+order.updateOrder.jcbLastName.addItem("Select");
+
+strQuery="select * from customer  where cust_first_name='"+order.updateOrder.jcbFirstName.getSelectedItem()+"' order by Cust_Last_Name";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+order.updateOrder.jcbLastName.addItem(connect.rs.getString(3));
+
+}
+
+}
+catch(Exception e){System.out.println("Error:28"+e);}
+}
+if(ie.getSource().equals(order.addOrder.jcbLastName)){
+order.updateOrder.jcbLastName.setSelectedItem(order.addOrder.jcbLastName.getSelectedItem());
+}
+
+
+if(ie.getSource().equals(order.addOrder.jcbManufacturer)){
+Object[][] dc=model.searchOrder(order.addOrder.jcbManufacturer,order.addOrder.txtSearch);
+s5="";
+ final Object[] header={"Product Name","Box_Price","Stock","Ordered","Remaining"};
+ DefaultTableModel jtModel=new DefaultTableModel(dc,header);
+order.addOrder.jtProductList.setModel(jtModel);
+order.addOrder.jtProductList.setAutoResizeMode(0);
+}
+if(ie.getSource().equals(comp.addComplaint.jcbCompany)){
+
+try{
+comp.addComplaint.jcbFirstName.removeAllItems();
+comp.addComplaint.jcbFirstName.addItem("Select");
+
+strQuery="select * from customer  where cust_company='"+comp.addComplaint.jcbCompany.getSelectedItem()+"' order by Cust_First_Name";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+comp.addComplaint.jcbFirstName.addItem(connect.rs.getString(2));
+
+}
+
+}
+catch(Exception e){System.out.println("Error:29"+e);}
+}
+
+if(ie.getSource().equals(comp.addComplaint.jcbFirstName)){
+
+try{
+comp.addComplaint.jcbLastName.removeAllItems();
+comp.addComplaint.jcbLastName.addItem("Select");
+
+strQuery="select * from customer  where cust_first_name='"+comp.addComplaint.jcbFirstName.getSelectedItem()+"' order by Cust_Last_Name";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+comp.addComplaint.jcbLastName.addItem(connect.rs.getString(3));
+
+}
+
+}
+catch(Exception e){System.out.println("Error:30"+e);}
+}
+
+if(ie.getSource().equals(comp.addComplaint.jcbLastName)){
+
+try{
+comp.addComplaint.jcbOrderId.removeAllItems();
+comp.addComplaint.jcbOrderId.addItem("Select");
+
+strQuery="select unique(order_id1) from order1  where customer_id=(select cust_id from customer where cust_company='"+comp.addComplaint.jcbCompany.getSelectedItem()+"' and cust_First_Name='"+comp.addComplaint.jcbFirstName.getSelectedItem()+"' and cust_Last_name='"+comp.addComplaint.jcbLastName.getSelectedItem()+"' )";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+comp.addComplaint.jcbOrderId.addItem(connect.rs.getString(1));
+
+}
+
+}
+catch(Exception e){System.out.println("Error:31"+e);}
+}
+
+if(ie.getSource().equals(comp.addComplaint.jcbOrderId)){
+
+try{
+
+comp.addComplaint.jcbProductName.removeAllItems();
+comp.addComplaint.jcbProductName.addItem("Select");
+
+strQuery="select product_id from order1 where order_id1="+comp.addComplaint.jcbOrderId.getSelectedItem()+"";
+connect2.executeQuery("query",strQuery);
+while(connect2.rs.next()){
+System.out.println(connect2.rs.getInt(1));
+strQuery="select product_name from product where product_id="+connect2.rs.getString(1)+"";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+comp.addComplaint.jcbProductName.addItem(connect.rs.getString(1));
+}
+}
+
+}
+
+catch(Exception e){System.out.println("Error:32"+e);}
+}
+
+
+if(ie.getSource().equals(report1.ordReport.jcbManufacturer)){
+try{
+report1.ordReport.jcbProduct.removeAllItems();
+report1.ordReport.jcbProduct.addItem("Select");
+
+strQuery="select Product_name from product where manu_id=(select manu_id from manufacturer where manu_name='"+report1.ordReport.jcbManufacturer.getSelectedItem()+"')";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+report1.ordReport.jcbProduct.addItem(connect.rs.getString(1));
+
+}
+
+}
+catch(Exception e){System.out.println("Error:25"+e);}
+
+}
+
+
+if(ie.getSource().equals(bill.jcbCompany)){
+
+try{
+bill.jcbFirstName.removeAllItems();
+bill.jcbFirstName.addItem("Select");
+
+strQuery="select * from customer  where cust_company='"+bill.jcbCompany.getSelectedItem()+"' order by Cust_First_Name";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+bill.jcbFirstName.addItem(connect.rs.getString(2));
+
+}
+
+}
+catch(Exception e){System.out.println("Error:29"+e);}
+}
+
+if(ie.getSource().equals(bill.jcbFirstName)){
+
+try{
+bill.jcbLastName.removeAllItems();
+bill.jcbLastName.addItem("Select");
+
+strQuery="select * from customer  where cust_first_name='"+bill.jcbFirstName.getSelectedItem()+"' order by Cust_Last_Name";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+bill.jcbLastName.addItem(connect.rs.getString(3));
+
+}
+
+}
+catch(Exception e){System.out.println("Error:30"+e);}
+}
+
+if(ie.getSource().equals(bill.jcbLastName)){
+
+try{
+bill.jcbOrderId.removeAllItems();
+bill.jcbOrderId.addItem("Select");
+
+strQuery="select unique(order_id1) from order1  where customer_id=(select cust_id from customer where cust_company='"+bill.jcbCompany.getSelectedItem()+"' and cust_First_Name='"+bill.jcbFirstName.getSelectedItem()+"' and cust_Last_name='"+bill.jcbLastName.getSelectedItem()+"' )";
+connect.executeQuery("query",strQuery);
+while(connect.rs.next()){
+bill.jcbOrderId.addItem(connect.rs.getString(1));
+
+}
+
+}
+catch(Exception e){System.out.println("Error:31"+e);}
+}
+//------------------------------------------------------------------------------------------------------
+}
+class ClockListener implements ActionListener {
+    	public void actionPerformed(ActionEvent e) {
+    		//... Whenever this is called, get the current time and
+    		//    display it in the textfield.
+            Calendar now = Calendar.getInstance();
+            int h = now.get(Calendar.HOUR_OF_DAY);
+            int m = now.get(Calendar.MINUTE);
+            int s = now.get(Calendar.SECOND);
+			//menu.lblLoginTime.setText("" + h + ":" + m + ":" + s);
+            menu._timeField.setText("" + h + ":" + m + ":" + s);
+            //... The following is an easier way to format the time,
+            //    but requires knowing how to use the format method.
+            //_timeField.setText(String.format("%1$tH:%1$tM:%1$tS", now));
+    	}
+    }
+
+//-------------------------------------------DON CLASS--------------------------------------------------
+public static void main(String[] args){
+MyController Controller=new MyController();
+
+}
+//---------------------------------------THE END--------------------------------------------------------
+}

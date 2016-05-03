@@ -1,0 +1,11 @@
+You will require windows XP to run this project.
+
+1.Install Oracle 10G and JDK 1.6 update 23 or above.
+2.While installing oracle 10G give username and password as sys, sys.
+3.Go to oracle Login page on your PC(internet not required).
+4.Login as admin and create a user with any username and password.
+5.Go to the file "Connectionn.java" and type your username and password in the URL "jdbc:oracle:oci:username/password@localhost:1521:XE"
+5.Copy "ojdbc14.jar" and "ojdbc14_g.jar" from "C:\oraclexe\app\oracle\product\10.2.0\server\jdbc\lib" and paste them into "C:\Program Files\Java\jre6\lib\ext" and into "C:\Program Files\Java\jdk1.6.0_25\jre\lib\ext"
+6.Copy "iText-5.0.6.jar" from resourses folder present with this project into "C:\Program Files\Java\jre6\lib\ext" and into "C:\Program Files\Java\jdk1.6.0_25\jre\lib\ext"
+7.Run the file "MyController.java" from the command prompt and the project Login page will appear.
+

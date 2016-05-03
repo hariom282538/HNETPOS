@@ -1,0 +1,93 @@
+
+if(ae.getActionCommand().equals("bill.btnGenerate")){
+if(bill.jcbSaleId.getSelectedItem().equals("Select")){JOptionPane.showMessageDialog(null,"Select sale Id to generate Bill" ,"Error",JOptionPane.ERROR_MESSAGE);}
+else{
+
+try {
+
+
+            OutputStream file = new FileOutputStream(new File("C:\\Bill.pdf"));
+ 
+            Document document = new Document();
+            PdfWriter.getInstance(document, file);
+            document.open();
+            document.add(new Paragraph("KHARIDO BECHO DUPAHIYA"));
+			document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------"));
+			document.add(new Paragraph(""));
+            document.add(new Paragraph(new Date().toString()));
+			 Paragraph p1=new Paragraph("Bill");
+  document.add(p1);
+ document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------------"));
+ CMYKColor color = new CMYKColor( 0, 1, (float)0.2, (float)0.667 );
+String text = "kievan wrote more: different color and font type.";
+Font o = FontFactory.getFont( FontFactory.TIMES_BOLD, 14, Font.BOLD, color );
+document.add(new Paragraph("sale Id : "+bill.jcbSaleId.getSelectedItem()+"      "+"Customer Details :"+bill.jcbFirstName.getSelectedItem()+" "+bill.jcbLastName.getSelectedItem(),o));
+
+document.add(new Paragraph(""));
+document.add(new Paragraph(""));
+ document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------------"));
+ PdfPTable table1=new PdfPTable(5);
+ table1.addCell("Manufacturer");
+ table1.addCell("Product");
+
+ table1.addCell("Quantity");
+
+ table1.addCell("Amount");
+
+ table1.addCell("Purchase_Date");
+ document.add(table1);
+  //Paragraph p2=new Paragraph("Manufacturer|Product |Quantity | Amount |Purchase_Date ",o);
+  //document.add(p2);
+String mname="";
+String pname="";
+  int total=0;
+
+strQuery="select * from sale1 where sale_id1="+bill.jcbSaleId.getSelectedItem()+"";
+ connect.executeQuery("query",strQuery);
+ while(connect.rs.next()){
+ strQuery="select product_name from product where product_id="+connect.rs.getString(4)+"";
+ connect2.executeQuery("query",strQuery);
+ while(connect2.rs.next()){
+  pname=connect2.rs.getString(1);
+ }
+ 
+ strQuery="select manu_name from manufacturer where manu_id=(select manu_id from product where product_id="+connect.rs.getString(4)+")";
+ connect3.executeQuery("query",strQuery);
+ while(connect3.rs.next()){
+  mname=connect3.rs.getString(1);
+ }
+ PdfPTable table=new PdfPTable(5);
+       table.addCell(mname);
+       table.addCell(pname);
+       table.addCell(connect.rs.getString(5));
+       table.addCell(connect.rs.getString(6));
+	   table.addCell(connect.rs.getString(7));
+       document.add(table);
+ //Paragraph p=new Paragraph(mname+"            "+pname+""+connect.rs.getString(5)+"    "+connect.rs.getString(6)+"    "+connect.rs.getString(7));
+  //document.add(p);
+  total+=connect.rs.getInt(6);
+ }
+ 
+ document.add(new Paragraph(""));
+   document.add(new Paragraph("Total Amount : "+total,o));
+ document.addAuthor("DrAGoN");
+document.addCreationDate();
+document.addCreator("iText library");
+document.addTitle("My First PDF");
+ 
+            document.close();
+            file.close();
+ 
+    if(Desktop.getDesktop().isSupported(Desktop.Action.OPEN)) {
+			Desktop.getDesktop().open(new File("C:\\Bill.pdf"));}
+        } catch (Exception e) {
+ System.out.println("Error:33"+e);
+            e.printStackTrace();
+        }
+
+
+
+}
+
+
+}
