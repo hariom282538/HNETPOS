@@ -1,0 +1,2191 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN' 'http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml' >
+<head>
+<title>demo</title>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'/>
+<style type='text/css'>
+body {
+    font-family: 'trebuchet MS', 'Lucida sans', Dialog;
+    font-size: 12px;
+    color: #444;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.bordered {
+    border: solid #ccc 1px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 1px #ccc;
+    -moz-box-shadow: 0 1px 1px #ccc;
+    box-shadow: 0 1px 1px #ccc;
+}
+
+.bordered tr:hover {
+    background: #fbf8e9;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+.bordered td, .bordered th {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding: 4px;
+    text-align: left;
+}
+
+.bordered th {
+    background-color: #d7d7ea;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f4f4fb), to(#d7d7ea));
+    background-image: -webkit-linear-gradient(top, #f4f4fb, #d7d7ea);
+    background-image:    -moz-linear-gradient(top, #f4f4fb, #d7d7ea);
+    background-image:     -ms-linear-gradient(top, #f4f4fb, #d7d7ea);
+    background-image:      -o-linear-gradient(top, #f4f4fb, #d7d7ea);
+    background-image:         linear-gradient(top, #f4f4fb, #d7d7ea);
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+    border-top: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+.bordered td:first-child, .bordered th:first-child {
+    border-left: none;
+}
+
+.bordered th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+}
+
+.bordered th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+
+.bordered th:only-child{
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.bordered tr:last-child td:first-child {
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+
+.bordered tr:last-child td:last-child {
+    -moz-border-radius: 0 0 6px 0;
+    -webkit-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+}
+
+</style>
+</head>
+
+<body>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'   width='1740' height='1415' viewbox='0 0 1740 1415' >
+  <script type='text/ecmascript'>
+  <![CDATA[
+  function hghl(el) { for ( var i in el ){ document.getElementById(el[i]).setAttribute('class','highlight');  }  }
+  function uhghl(el) { for ( var i in el ){ document.getElementById(el[i]).setAttribute('class','scene'); }  } 
+  ]]>
+  </script> 
+
+<style type='text/css'>
+  text                { fill:#000000; font-family: Segoe UI Symbol, 'Segoe UI Symbol', Dialog; font-size:12px; }
+  text:hover          { fill:#a00000; font-size:13px; }
+  text.highlight      { fill:#a00000; font-size:13px; }
+  text.colType        { fill:#b3b3b3; }
+  path                { stroke:#54402e; stroke-width:1.15; fill:none; }
+  path.scene          { stroke-width:10; opacity:0;}
+  path.highlight      { stroke-width:10; stroke:blue; opacity:0.1;}
+  rect.table          { fill:#ffffff; stroke:#101010; stroke-width:0.2; filter:url(#shadow); }
+  line.table          { stroke:#222; stroke-width:0.2; }
+  rect.callout        { fill:url(#calloutGradient); stroke:#bebdbd; stroke-width:0.5; filter: url(#shadow);}
+  rect.grp            { stroke:#b1b1b1; stroke-width:1.7; }
+</style>
+<defs>
+  <pattern patternUnits='userSpaceOnUse' id='layoutBgA' width='10' height='20' x='0' y='0' viewBox='0 0 5 10'>  
+     <line x1='-2' y1='1' x2='7' y2='10' stroke='#f3f3f3' stroke-width='.5'/>  
+     <line x1='-2' y1='6' x2='7' y2='15' stroke='#f3f3f3' stroke-width='.5'/>  
+     <line x1='-2' y1='-4' x2='7' y2='5' stroke='#f3f3f3' stroke-width='.5'/>  
+  </pattern>  
+  <radialGradient id='layoutBgB' gradientUnits='userSpaceOnUse' cx='50%' cy='50%' r='75%' fx='46%' fy='22%'>
+     <stop offset='0%' stop-opacity='.2' stop-color='#f0f0f0' />  
+     <stop offset='100%' stop-color='#e7e7e7' />  
+  </radialGradient>
+  <linearGradient id='tableHeaderGradient1' x1='0%' y1='0%' x2='0%' y2='90%' >
+          <stop offset='-50%' stop-color='#b3ccf5'/> 
+          <stop offset='20%' stop-color='#fafafa'/> 
+          <stop offset='100%' stop-color='#b3ccf5'/> 
+   </linearGradient>
+  <linearGradient id='tableHeaderGradient2' x1='0%' y1='0%' x2='0%' y2='90%' >
+          <stop offset='-50%' stop-color='#f5d8b3'/> 
+          <stop offset='20%' stop-color='#fafafa'/> 
+          <stop offset='100%' stop-color='#f5d8b3'/> 
+   </linearGradient>
+  <linearGradient id='tableHeaderGradient3' x1='0%' y1='0%' x2='0%' y2='90%' >
+          <stop offset='-50%' stop-color='#b3b3f5'/> 
+          <stop offset='20%' stop-color='#fafafa'/> 
+          <stop offset='100%' stop-color='#b3b3f5'/> 
+   </linearGradient>
+  <linearGradient id='tableHeaderGradient0' x1='0%' y1='0%' x2='0%' y2='90%' >
+          <stop offset='-50%' stop-color='#bef5b3'/> 
+          <stop offset='20%' stop-color='#fafafa'/> 
+          <stop offset='100%' stop-color='#bef5b3'/> 
+   </linearGradient>
+  <linearGradient id='groupUnderTitleLine' x1='0%' y1='0%' x2='100%' y2='0%' >
+          <stop offset='0%' stop-color='#999999' stop-opacity='0.7'/> 
+          <stop offset='100%' stop-color='#999999' stop-opacity='0' /> 
+   </linearGradient>
+  <radialGradient id='calloutGradient' cx='25%' cy='20%' r='80%' fx='10%' fy='10%'>
+	   <stop offset='0%' stop-color='#ffffff' />
+    <stop offset='100%' stop-color='#f8f6d1' />
+  </radialGradient>
+  <filter id='shadow' width='120%' height='120%'> 
+      <feOffset result='offOut' in='SourceGraphic' dx='2' dy='2' /> 
+      <feColorMatrix result='matrixOut' in='offOut' type='matrix' 
+      values='0.1 0 0 0 0 0 0.1 0 0 0 0 0 0.1 0 0 0 0 0 0.5 0' /> 
+      <feGaussianBlur result='blurOut' in='matrixOut' stdDeviation='2' /> 
+      <feBlend in='SourceGraphic' in2='blurOut' mode='normal' /> 
+    </filter> 
+  <filter id='fkShadow' height='130%'> 
+    <feGaussianBlur in='SourceAlpha' stdDeviation='1.5'/> <!-- stdDeviation is how much to blur -->
+    <feOffset dx='1.2' dy='1.2' result='offsetblur'/> <!-- how much to offset -->
+    <feMerge>
+    <feMergeNode/> <!-- this contains the offset blurred image -->
+    <feMergeNode in='SourceGraphic'/> <!-- this contains the element that the filter is applied to -->
+    </feMerge>
+  </filter>
+  <radialGradient id='legendGradient' fx='5%' fy='5%' r='75%' spreadMethod='pad'>
+          <stop offset='0%' stop-color='#eaeef6' stop-opacity='1'/> 
+          <stop offset='100%' stop-color='#cad2e3' stop-opacity='1' /> 
+   </radialGradient>
+  <symbol id='calloutArrowDown' overflow='visible' >
+      <path d='M 0,0 L 7,11 L 15,0 z' style='fill:#f8f6d1;stroke:none; filter: url(#shadow);' />
+      <path d='M 0,0 L 7,11 L 15,0' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='calloutArrowUp' overflow='visible' >
+      <path d='M 0,15 L 7,3 L 15,15 z' style='fill:#ffffff; stroke:none; filter: url(#shadow);' />
+      <path d='M 0,15 L 7,3 L 15,15' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='pk' overflow='visible' >
+    <g transform='scale(0.99)'>
+     <path style='fill:#fbea8e;stroke:#763f17;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;'
+        d='M 9.3678877,3.5695485 C 9.1030218,3.2729386 9.0796382,2.7628519 9.3396185,2.4517097 9.5449651,2.1956495 9.9040386,2.0980533 10.199638,2.2169415 10.533525,2.3415459 10.775153,2.706942 10.750675,3.0842709 10.737029,3.3980003 10.541153,3.699122 10.258248,3.8066067 9.966649,3.9250429 9.6169668,3.8418805 9.4008073,3.6062324 9.3894892,3.5943518 9.3785264,3.582104 9.3678886,3.5695487 z M 11.226617,6.9916004 C 11.888137,6.3548946 12.293488,5.4172188 12.311087,4.442353 12.378144,2.7379364 11.248678,1.0541269 9.7322318,0.44767357 8.3887112,-0.1280313 6.7865012,0.26822889 5.8918395,1.4007929 5.080823,2.3839145 4.9336815,3.8452096 5.3635544,5.101615 L 4.3670905,5.315913 C 4.0664984,5.3682645 4.0967703,5.6316724 4.2574957,5.8208829 L 4.9124,6.5655244 4.1543436,7.2512357 3.2136002,7.2163506 3.1674775,8.5586827 2.0406832,8.5086512 1.5965306,8.9299953 1.5471661,10.179833 0.75616674,10.195223 0.2112857,10.758575 0.15354288,11.735988 0.07199052,12.765553 c 0.36440953,0.238225 0.79006967,0.195492 1.44938278,-0.02675 L 6.3033562,8.1282037 6.8217102,8.6765688 C 6.9985465,8.8799427 7.3003699,8.7497574 7.358381,8.5016252 L 7.4938877,7.5084164 c 0.8537488,0.3985387 1.8303125,0.4711541 2.6851793,0.1427713 0.393927,-0.1407258 0.746858,-0.3701772 1.04755,-0.6595873 z'/>
+     <path d='M 6.8014948,6.3102123 0.15369063,13.024481 0.21560535,12.141962 6.0062342,6.2683782 z'
+        style='fill:#ffe5a5;fill-opacity:1;stroke:#854e31;stroke-width:0.06912433;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.00300009'/>
+    </g>
+  </symbol>
+  <symbol id='unq' overflow='visible' >
+    <g transform='scale(0.99)'>
+      <rect style='fill:#e07554;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+         width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+         d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+         transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+      <text x='5.5' y='7.7' style='font-size:8px;fill:#8a8a8a;'>1</text>
+    </g>
+  </symbol>
+  <symbol id='idx' overflow='visible' >
+    <g transform='scale(0.99)'>
+      <rect style='fill:#e07554;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+         width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+         d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+         transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+    </g>
+  </symbol>
+  <symbol id='fk' overflow='visible' >
+    <g transform='scale(0.87)'>
+      <path style='fill:#b7d0f6;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+      d='M 12.48,0.33 7.07,0.89 9.067,2.974 0.329,11.731 1.073,12.597 9.811,3.841 11.77,5.78 z' />
+    </g>
+  </symbol>
+  <symbol id='ref' overflow='visible' >
+    <g transform='scale(0.87)'>
+      <path style='fill:#b7d0f6;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.10,12.70 5.31,12.15 3.40,10.06 11.82,1.32 11.11,0.45 2.68,9.19 0.80,7.24 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag' overflow='visible' >
+    <g transform='scale(0.92)'>
+      <path style='fill:#b7d0f6;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='nn' overflow='visible' >
+  <path style='stroke:#9b3e50;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0,0 3,3 M 0,3 3,0 z'/>
+  </symbol>
+  <marker id='arrow01' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 15.000,3.750 L 7.500,2.500 L 7.500,7.500 L 15.000,3.750 z' style='fill:#5e554d;' />
+  </marker>
+  <marker id='arrow1' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 15.000,3.750 L 7.500,2.500 L 7.500,7.500 L 15.000,3.750 z' style='fill:#5e554d;' />
+  </marker>
+  <marker id='foot01' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <circle cx='11.25' cy='3.75' r='2.50' style='fill:white;stroke:#5e554d;' />
+    <path d='M 3.75,0.00 L 3.75, 7.50 z' />
+  </marker>
+  <marker id='foot0p' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <circle cx='11.25' cy='3.75' r='2.50' style='fill:white;stroke:#5e554d;' />
+    <path d='M 0.00,0.00 L 7.50,3.75 L 0.00,7.50' />
+  </marker>
+  <marker id='foot1' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <path d='M 7.50,0.00 L 7.50, 7.50 z' />
+    <path d='M 3.75,0.00 L 3.75, 7.50 z' />
+  </marker>
+  <marker id='foot1p' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <path d='M 7.50,0.00 L 7.50, 7.50 z' />
+    <path d='M 0.00,0.00 L 7.50,3.75 L 0.00,7.50' />
+  </marker>
+</defs>
+
+<!-- ============= Desktop ============= -->
+<rect x='1' y='1' width='1738' height='1413' rx='7' ry='7' style='fill:url(#layoutBgA); stroke:#333333; stroke-width:0.5;' />
+<rect x='1' y='1' width='1738' height='1413' rx='7' ry='7' style='fill:url(#layoutBgB)'/>
+
+<!-- ============= Legend ============= -->
+<g transform='translate(10,10)'>
+  <rect x='10' y='10' width='260' height='64' rx='6' ry='6' style='fill:url(#legendGradient);filter:url(#shadow);'/> 
+  <text x='20' y='30'><tspan>Project</tspan> MySql @ <a xlink:href='http://www.dbschema.com' text-decoration='underline'>DbSchema.com</a></text> 
+  <text x='20' y='44'><tspan>Layout</tspan> demo</text> 
+  <text x='20' y='58' style='fill:#777'><tspan>Column comments as mouse-over tooltips.</tspan></text> 
+</g>
+
+<g transform='translate(0,110)'>
+<!-- ============= Group 'manufacturer' ============= -->
+<rect class='grp' style='fill:#f7f1e9;stroke:#d4c7b6' x='554' y='535' width='587' height='455' />
+<text x='565' y='550'>manufacturer</text>
+<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='565' y='553' width='565' height='2' />
+
+<!-- ============= Group 'order2' ============= -->
+<rect class='grp' style='fill:#ebf7e9;stroke:#bad4b6' x='29' y='535' width='467' height='740' />
+<text x='40' y='550'>order2</text>
+<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='40' y='553' width='445' height='2' />
+
+<!-- ============= Group 'payment' ============= -->
+<rect class='grp' style='fill:#e9eef7;stroke:#b6c1d4' x='1199' y='535' width='512' height='485' />
+<text x='1210' y='550'>payment</text>
+<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='1210' y='553' width='490' height='2' />
+
+<!-- ============= Group 'purchase_stock_log' ============= -->
+<rect class='grp' style='fill:#e9e9f7;stroke:#b6b6d4' x='554' y='10' width='647' height='470' />
+<text x='565' y='25'>purchase_stock_log</text>
+<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='565' y='28' width='625' height='2' />
+
+<!-- ============= Fk 'complaint_complaint_ibfk_1' ============= -->
+<path id='complaint_complaint_ibfk_1'  onmouseover="hghl(['complaint_complaint_ibfk_1','demo.complaint.CUSTOMER_ID','demo.customer.Cust_Id'])" onmouseout="uhghl(['complaint_complaint_ibfk_1','demo.complaint.CUSTOMER_ID','demo.customer.Cust_Id'])" transform='translate(7,0)' class='scene' d='M 1395 600 L 1350,600' >
+	<title>Fk complaint_ibfk_1
+complaint ref customer ( CUSTOMER_ID -> Cust_Id )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 1395 600 L 1350,600' ></path>
+<text x='1323' y='595' transform='rotate(0 1323,595)' title='Fk complaint_ibfk_1
+complaint ref customer ( CUSTOMER_ID -> Cust_Id )' style='fill:#a1a0a0;'>CUSTOMER_ID</text>
+<!-- ============= Fk 'order1_order1_ibfk_2' ============= -->
+<path id='order1_order1_ibfk_2'  onmouseover="hghl(['order1_order1_ibfk_2','demo.order1.CUSTOMER_ID','demo.customer.Cust_Id'])" onmouseout="uhghl(['order1_order1_ibfk_2','demo.order1.CUSTOMER_ID','demo.customer.Cust_Id'])" transform='translate(7,0)' class='scene' d='M 930 75 L 1222,75 Q 1230,75 1230,82 L 1230,555' >
+	<title>Fk order1_ibfk_2
+order1 ref customer ( CUSTOMER_ID -> Cust_Id )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 930 75 L 1222,75 Q 1230,75 1230,82 L 1230,555' ></path>
+<text x='937' y='70' transform='rotate(0 937,70)' title='Fk order1_ibfk_2
+order1 ref customer ( CUSTOMER_ID -> Cust_Id )' style='fill:#a1a0a0;'>CUSTOMER_ID</text>
+<!-- ============= Fk 'order1_order1_ibfk_1' ============= -->
+<path id='order1_order1_ibfk_1'  onmouseover="hghl(['order1_order1_ibfk_1','demo.order1.PRODUCT_ID','demo.product.PRODUCT_ID'])" onmouseout="uhghl(['order1_order1_ibfk_1','demo.order1.PRODUCT_ID','demo.product.PRODUCT_ID'])" transform='translate(7,0)' class='scene' d='M 795 75 L 750,75' >
+	<title>Fk order1_ibfk_1
+order1 ref product ( PRODUCT_ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 795 75 L 750,75' ></path>
+<text x='731' y='70' transform='rotate(0 731,70)' title='Fk order1_ibfk_1
+order1 ref product ( PRODUCT_ID )' style='fill:#a1a0a0;'>PRODUCT_ID</text>
+<!-- ============= Fk 'order1_log_order1_log_ibfk_2' ============= -->
+<path id='order1_log_order1_log_ibfk_2'  onmouseover="hghl(['order1_log_order1_log_ibfk_2','demo.order1_log.CUSTOMER_ID','demo.customer.Cust_Id'])" onmouseout="uhghl(['order1_log_order1_log_ibfk_2','demo.order1_log.CUSTOMER_ID','demo.customer.Cust_Id'])" transform='translate(7,0)' class='scene' d='M 1170 450 L 1237,450 Q 1245,450 1245,457 L 1245,555' >
+	<title>Fk order1_log_ibfk_2
+order1_log ref customer ( CUSTOMER_ID -> Cust_Id )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 1170 450 L 1237,450 Q 1245,450 1245,457 L 1245,555' ></path>
+<text x='1177' y='445' transform='rotate(0 1177,445)' title='Fk order1_log_ibfk_2
+order1_log ref customer ( CUSTOMER_ID -> Cust_Id )' style='fill:#a1a0a0;'>CUSTOMER_ID</text>
+<!-- ============= Fk 'order1_log_order1_log_ibfk_1' ============= -->
+<path id='order1_log_order1_log_ibfk_1'  onmouseover="hghl(['order1_log_order1_log_ibfk_1','demo.order1_log.PRODUCT_ID','demo.product.PRODUCT_ID'])" onmouseout="uhghl(['order1_log_order1_log_ibfk_1','demo.order1_log.PRODUCT_ID','demo.product.PRODUCT_ID'])" transform='translate(7,0)' class='scene' d='M 1035 285 L 1012,285 Q 1005,285 1005,277 L 1005,247 Q 1005,240 997,240 L 742,240 Q 735,240 735,232 L 735,225' >
+	<title>Fk order1_log_ibfk_1
+order1_log ref product ( PRODUCT_ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 1035 285 L 1012,285 Q 1005,285 1005,277 L 1005,247 Q 1005,240 997,240 L 742,240 Q 735,240 735,232 L 735,225' ></path>
+<text x='971' y='280' transform='rotate(0 971,280)' title='Fk order1_log_ibfk_1
+order1_log ref product ( PRODUCT_ID )' style='fill:#a1a0a0;'>PRODUCT_ID</text>
+<!-- ============= Fk 'product_product_ibfk_1' ============= -->
+<path id='product_product_ibfk_1'  onmouseover="hghl(['product_product_ibfk_1','demo.product.MANU_ID','demo.manufacturer.MANU_ID'])" onmouseout="uhghl(['product_product_ibfk_1','demo.product.MANU_ID','demo.manufacturer.MANU_ID'])" transform='translate(7,0)' class='scene' d='M 615 195 L 547,195 Q 540,195 540,202 L 540,922 Q 540,930 547,930 L 780,930' >
+	<title>Fk product_ibfk_1
+product ref manufacturer ( MANU_ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 615 195 L 547,195 Q 540,195 540,202 L 540,922 Q 540,930 547,930 L 780,930' ></path>
+<text x='568' y='190' transform='rotate(0 568,190)' title='Fk product_ibfk_1
+product ref manufacturer ( MANU_ID )' style='fill:#a1a0a0;'>MANU_ID</text>
+<!-- ============= Fk 'purchase_order_purchase_order_ibfk_9' ============= -->
+<path id='purchase_order_purchase_order_ibfk_9'  onmouseover="hghl(['purchase_order_purchase_order_ibfk_9','demo.purchase_order.manu_id','demo.manufacturer.MANU_ID'])" onmouseout="uhghl(['purchase_order_purchase_order_ibfk_9','demo.purchase_order.manu_id','demo.manufacturer.MANU_ID'])" transform='translate(7,0)' class='scene' d='M 810 735 L 810,780' >
+	<title>Fk purchase_order_ibfk_9
+purchase_order ref manufacturer ( manu_id -> MANU_ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 810 735 L 810,780' ></path>
+<text x='823' y='735' transform='rotate(90 823,735)' title='Fk purchase_order_ibfk_9
+purchase_order ref manufacturer ( manu_id -> MANU_ID )' style='fill:#a1a0a0;'>manu_id</text>
+<!-- ============= Fk 'purchase_order_purchase_order_ibfk_8' ============= -->
+<path id='purchase_order_purchase_order_ibfk_8'  onmouseover="hghl(['purchase_order_purchase_order_ibfk_8','demo.purchase_order.product_id','demo.product.PRODUCT_ID'])" onmouseout="uhghl(['purchase_order_purchase_order_ibfk_8','demo.purchase_order.product_id','demo.product.PRODUCT_ID'])" transform='translate(7,0)' class='scene' d='M 780 570 L 772,570 Q 765,570 765,562 L 765,217 Q 765,210 757,210 L 750,210' >
+	<title>Fk purchase_order_ibfk_8
+purchase_order ref product ( product_id -> PRODUCT_ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 780 570 L 772,570 Q 765,570 765,562 L 765,217 Q 765,210 757,210 L 750,210' ></path>
+<text x='726' y='565' transform='rotate(0 726,565)' title='Fk purchase_order_ibfk_8
+purchase_order ref product ( product_id -> PRODUCT_ID )' style='fill:#a1a0a0;'>product_id</text>
+<!-- ============= Fk 'purchase_stock_purchase_stock_ibfk_2' ============= -->
+<path id='purchase_stock_purchase_stock_ibfk_2'  onmouseover="hghl(['purchase_stock_purchase_stock_ibfk_2','demo.purchase_stock.MANU_ID','demo.manufacturer.MANU_ID'])" onmouseout="uhghl(['purchase_stock_purchase_stock_ibfk_2','demo.purchase_stock.MANU_ID','demo.manufacturer.MANU_ID'])" transform='translate(7,0)' class='scene' d='M 735 450 L 735,757 Q 735,765 742,765 L 817,765 Q 825,765 825,772 L 825,780' >
+	<title>Fk purchase_stock_ibfk_2
+purchase_stock ref manufacturer ( MANU_ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 735 450 L 735,757 Q 735,765 742,765 L 817,765 Q 825,765 825,772 L 825,780' ></path>
+<text x='748' y='450' transform='rotate(90 748,450)' title='Fk purchase_stock_ibfk_2
+purchase_stock ref manufacturer ( MANU_ID )' style='fill:#a1a0a0;'>MANU_ID</text>
+<!-- ============= Fk 'purchase_stock_purchase_stock_ibfk_1' ============= -->
+<path id='purchase_stock_purchase_stock_ibfk_1'  onmouseover="hghl(['purchase_stock_purchase_stock_ibfk_1','demo.purchase_stock.PRODUCT_ID','demo.product.PRODUCT_ID'])" onmouseout="uhghl(['purchase_stock_purchase_stock_ibfk_1','demo.purchase_stock.PRODUCT_ID','demo.product.PRODUCT_ID'])" transform='translate(7,0)' class='scene' d='M 645 270 L 645,225' >
+	<title>Fk purchase_stock_ibfk_1
+purchase_stock ref product ( PRODUCT_ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 645 270 L 645,225' ></path>
+<text x='647' y='265' transform='rotate(270 647,265)' title='Fk purchase_stock_ibfk_1
+purchase_stock ref product ( PRODUCT_ID )' style='fill:#a1a0a0;'>PRODUCT_ID</text>
+<!-- ============= Fk 'purchase_stock_log_purchase_stock_log_ibfk_2' ============= -->
+<path id='purchase_stock_log_purchase_stock_log_ibfk_2'  onmouseover="hghl(['purchase_stock_log_purchase_stock_log_ibfk_2','demo.purchase_stock_log.MANU_ID','demo.manufacturer.MANU_ID'])" onmouseout="uhghl(['purchase_stock_log_purchase_stock_log_ibfk_2','demo.purchase_stock_log.MANU_ID','demo.manufacturer.MANU_ID'])" transform='translate(7,0)' class='scene' d='M 975 450 L 975,757 Q 975,765 967,765 L 907,765 Q 900,765 900,772 L 900,780' >
+	<title>Fk purchase_stock_log_ibfk_2
+purchase_stock_log ref manufacturer ( MANU_ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 975 450 L 975,757 Q 975,765 967,765 L 907,765 Q 900,765 900,772 L 900,780' ></path>
+<text x='988' y='450' transform='rotate(90 988,450)' title='Fk purchase_stock_log_ibfk_2
+purchase_stock_log ref manufacturer ( MANU_ID )' style='fill:#a1a0a0;'>MANU_ID</text>
+<!-- ============= Fk 'purchase_stock_log_purchase_stock_log_ibfk_1' ============= -->
+<path id='purchase_stock_log_purchase_stock_log_ibfk_1'  onmouseover="hghl(['purchase_stock_log_purchase_stock_log_ibfk_1','demo.purchase_stock_log.PRODUCT_ID','demo.product.PRODUCT_ID'])" onmouseout="uhghl(['purchase_stock_log_purchase_stock_log_ibfk_1','demo.purchase_stock_log.PRODUCT_ID','demo.product.PRODUCT_ID'])" transform='translate(7,0)' class='scene' d='M 795 285 L 787,285 Q 780,285 780,277 L 780,202 Q 780,195 772,195 L 750,195' >
+	<title>Fk purchase_stock_log_ibfk_1
+purchase_stock_log ref product ( PRODUCT_ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 795 285 L 787,285 Q 780,285 780,277 L 780,202 Q 780,195 772,195 L 750,195' ></path>
+<text x='731' y='280' transform='rotate(0 731,280)' title='Fk purchase_stock_log_ibfk_1
+purchase_stock_log ref product ( PRODUCT_ID )' style='fill:#a1a0a0;'>PRODUCT_ID</text>
+<!-- ============= Fk 'sale1_sale1_ibfk_5' ============= -->
+<path id='sale1_sale1_ibfk_5'  onmouseover="hghl(['sale1_sale1_ibfk_5','demo.sale1.Customer_Id','demo.customer.Cust_Id'])" onmouseout="uhghl(['sale1_sale1_ibfk_5','demo.sale1.Customer_Id','demo.customer.Cust_Id'])" transform='translate(7,0)' class='scene' d='M 1575 960 L 1252,960 Q 1245,960 1245,952 L 1245,765' >
+	<title>Fk sale1_ibfk_5
+sale1 ref customer ( Customer_Id -> Cust_Id )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 1575 960 L 1252,960 Q 1245,960 1245,952 L 1245,765' ></path>
+<text x='1513' y='955' transform='rotate(0 1513,955)' title='Fk sale1_ibfk_5
+sale1 ref customer ( Customer_Id -> Cust_Id )' style='fill:#a1a0a0;'>Customer_Id</text>
+<!-- ============= Fk 'sale1_sale1_ibfk_6' ============= -->
+<path id='sale1_sale1_ibfk_6'  onmouseover="hghl(['sale1_sale1_ibfk_6','demo.sale1.product_id','demo.product.PRODUCT_ID'])" onmouseout="uhghl(['sale1_sale1_ibfk_6','demo.sale1.product_id','demo.product.PRODUCT_ID'])" transform='translate(7,0)' class='scene' d='M 1575 975 L 1192,975 Q 1185,975 1185,967 L 1185,262 Q 1185,255 1177,255 L 727,255 Q 720,255 720,247 L 720,225' >
+	<title>Fk sale1_ibfk_6
+sale1 ref product ( product_id -> PRODUCT_ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 1575 975 L 1192,975 Q 1185,975 1185,967 L 1185,262 Q 1185,255 1177,255 L 727,255 Q 720,255 720,247 L 720,225' ></path>
+<text x='1521' y='970' transform='rotate(0 1521,970)' title='Fk sale1_ibfk_6
+sale1 ref product ( product_id -> PRODUCT_ID )' style='fill:#a1a0a0;'>product_id</text>
+<!-- ============= Fk 'stock_stock_ibfk_1' ============= -->
+<path id='stock_stock_ibfk_1'  onmouseover="hghl(['stock_stock_ibfk_1','demo.stock.PRODUCT_ID','demo.product.PRODUCT_ID'])" onmouseout="uhghl(['stock_stock_ibfk_1','demo.stock.PRODUCT_ID','demo.product.PRODUCT_ID'])" transform='translate(7,0)' class='scene' d='M 1035 105 L 952,105 Q 945,105 945,97 L 945,22 Q 945,15 937,15 L 742,15 Q 735,15 735,22 L 735,45' >
+	<title>Fk stock_ibfk_1
+stock ref product ( PRODUCT_ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 1035 105 L 952,105 Q 945,105 945,97 L 945,22 Q 945,15 937,15 L 742,15 Q 735,15 735,22 L 735,45' ></path>
+<text x='971' y='100' transform='rotate(0 971,100)' title='Fk stock_ibfk_1
+stock ref product ( PRODUCT_ID )' style='fill:#a1a0a0;'>PRODUCT_ID</text>
+<!-- ============= Table 'beforelogin' ============= -->
+<rect class='table' x='390' y='1178' width='90' height='75' rx='7' ry='7' />
+<path d='M 390.50 1204.50 L 390.50 1185.50 Q 390.50 1178.50 397.50 1178.50 L 472.50 1178.50 Q 479.50 1178.50 479.50 1185.50 L 479.50 1204.50 L390.50 1204.50 ' style='fill:url(#tableHeaderGradient0); stroke:none;' />
+<a xlink:href='#beforelogin'><text x='401' y='1196'>beforelogin</text><title>Table demo.beforelogin</title></a>
+  <a xlink:href='#beforelogin.USERNAME'><text id='demo.beforelogin.USERNAME' x='408' y='1222'>USERNAME</text><title>USERNAME
+varchar&#40;50&#41;</title></a>
+  <a xlink:href='#beforelogin.PASSWORD'><text id='demo.beforelogin.PASSWORD' x='408' y='1237'>PASSWORD</text><title>PASSWORD
+varchar&#40;50&#41;</title></a>
+
+<!-- ============= Table 'complaint' ============= -->
+<rect class='table' x='1410' y='593' width='165' height='165' rx='7' ry='7' />
+<path d='M 1410.50 619.50 L 1410.50 600.50 Q 1410.50 593.50 1417.50 593.50 L 1567.50 593.50 Q 1574.50 593.50 1574.50 600.50 L 1574.50 619.50 L1410.50 619.50 ' style='fill:url(#tableHeaderGradient1); stroke:none;' />
+<a xlink:href='#complaint'><text x='1464' y='611'>complaint</text><title>Table demo.complaint</title></a>
+  <use id='nn' x='1412' y='627' xlink:href='#nn'/><a xlink:href='#complaint.COMPLAINT_ID'><use id='pk' x='1412' y='626' xlink:href='#pk'/><title>Pk pk_complaint ( COMPLAINT_ID ) </title></a>
+<a xlink:href='#complaint.COMPLAINT_ID'><text id='demo.complaint.COMPLAINT_ID' x='1428' y='637'>COMPLAINT_ID</text><title>COMPLAINT_ID
+* int</title></a>
+  <a xlink:href='#complaint.ORDER_ID1'><text id='demo.complaint.ORDER_ID1' x='1428' y='652'>ORDER_ID1</text><title>ORDER_ID1
+int</title></a>
+  <a xlink:href='#complaint.ORDER_ID2'><text id='demo.complaint.ORDER_ID2' x='1428' y='667'>ORDER_ID2</text><title>ORDER_ID2
+int</title></a>
+  <a xlink:href='#complaint.PRODUCT_ID'><text id='demo.complaint.PRODUCT_ID' x='1428' y='682'>PRODUCT_ID</text><title>PRODUCT_ID
+int</title></a>
+  <a xlink:href='#complaint.CUSTOMER_ID'><use id='idx' x='1412' y='686' xlink:href='#idx'/><title>CUSTOMER_ID ( CUSTOMER_ID ) </title></a>
+<a xlink:href='#complaint.CUSTOMER_ID'><text id='demo.complaint.CUSTOMER_ID' x='1428' y='697' onmouseover="hghl(['complaint_complaint_ibfk_1'])" onmouseout="uhghl(['complaint_complaint_ibfk_1'])">CUSTOMER_ID</text><title>CUSTOMER_ID
+int</title></a>
+<a xlink:href='#complaint.CUSTOMER_ID'><use id='fk' x='1563' y='686' xlink:href='#fk'/><title>References customer ( CUSTOMER_ID -> Cust_Id ) </title></a>
+  <a xlink:href='#complaint.COMPLAINT_DESCRIBTION'><text id='demo.complaint.COMPLAINT_DESCRIBTION' x='1428' y='712'>COMPLAINT_DESCRIBTION</text><title>COMPLAINT_DESCRIBTION
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#complaint.COMPLAINT_DATE'><text id='demo.complaint.COMPLAINT_DATE' x='1428' y='727'>COMPLAINT_DATE</text><title>COMPLAINT_DATE
+varchar&#40;25&#41;</title></a>
+  <a xlink:href='#complaint.COMPLAINT_STATUS'><text id='demo.complaint.COMPLAINT_STATUS' x='1428' y='742'>COMPLAINT_STATUS</text><title>COMPLAINT_STATUS
+varchar&#40;4000&#41;</title></a>
+
+<!-- ============= Table 'customer' ============= -->
+<rect class='table' x='1215' y='563' width='135' height='195' rx='7' ry='7' />
+<path d='M 1215.50 589.50 L 1215.50 570.50 Q 1215.50 563.50 1222.50 563.50 L 1342.50 563.50 Q 1349.50 563.50 1349.50 570.50 L 1349.50 589.50 L1215.50 589.50 ' style='fill:url(#tableHeaderGradient1); stroke:none;' />
+<a xlink:href='#customer'><text x='1256' y='581'>customer</text><title>Table demo.customer</title></a>
+  <use id='nn' x='1217' y='597' xlink:href='#nn'/><a xlink:href='#customer.Cust_Id'><use id='pk' x='1217' y='596' xlink:href='#pk'/><title>Pk pk_customer ( Cust_Id ) </title></a>
+<a xlink:href='#customer.Cust_Id'><text id='demo.customer.Cust_Id' x='1233' y='607' onmouseover="hghl(['complaint_complaint_ibfk_1','order1_order1_ibfk_2','order1_log_order1_log_ibfk_2','sale1_sale1_ibfk_5'])" onmouseout="uhghl(['complaint_complaint_ibfk_1','order1_order1_ibfk_2','order1_log_order1_log_ibfk_2','sale1_sale1_ibfk_5'])">Cust_Id</text><title>Cust_Id
+* int</title></a>
+<a xlink:href='#customer.Cust_Id'><use id='ref' x='1338' y='596' xlink:href='#ref'/><title>Referred by complaint ( CUSTOMER_ID -> Cust_Id ) 
+Referred by order1 ( CUSTOMER_ID -> Cust_Id ) 
+Referred by order1_log ( CUSTOMER_ID -> Cust_Id ) 
+Referred by sale1 ( Customer_Id -> Cust_Id ) </title></a>
+  <a xlink:href='#customer.CUST_FIRST_NAME'><text id='demo.customer.CUST_FIRST_NAME' x='1233' y='622'>CUST_FIRST_NAME</text><title>CUST_FIRST_NAME
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#customer.CUST_LAST_NAME'><text id='demo.customer.CUST_LAST_NAME' x='1233' y='637'>CUST_LAST_NAME</text><title>CUST_LAST_NAME
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#customer.CUST_STATE'><text id='demo.customer.CUST_STATE' x='1233' y='652'>CUST_STATE</text><title>CUST_STATE
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#customer.CUST_AREA'><text id='demo.customer.CUST_AREA' x='1233' y='667'>CUST_AREA</text><title>CUST_AREA
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#customer.CUST_ADDRESS'><text id='demo.customer.CUST_ADDRESS' x='1233' y='682'>CUST_ADDRESS</text><title>CUST_ADDRESS
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#customer.CUST_PHONE'><text id='demo.customer.CUST_PHONE' x='1233' y='697'>CUST_PHONE</text><title>CUST_PHONE
+varchar&#40;40&#41;</title></a>
+  <a xlink:href='#customer.CUST_EMAIL'><text id='demo.customer.CUST_EMAIL' x='1233' y='712'>CUST_EMAIL</text><title>CUST_EMAIL
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#customer.CUST_COMPANY'><text id='demo.customer.CUST_COMPANY' x='1233' y='727'>CUST_COMPANY</text><title>CUST_COMPANY
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#customer.CUST_PIN'><text id='demo.customer.CUST_PIN' x='1233' y='742'>CUST_PIN</text><title>CUST_PIN
+int</title></a>
+
+<!-- ============= Table 'employee' ============= -->
+<rect class='table' x='240' y='563' width='150' height='390' rx='7' ry='7' />
+<path d='M 240.50 589.50 L 240.50 570.50 Q 240.50 563.50 247.50 563.50 L 382.50 563.50 Q 389.50 563.50 389.50 570.50 L 389.50 589.50 L240.50 589.50 ' style='fill:url(#tableHeaderGradient0); stroke:none;' />
+<a xlink:href='#employee'><text x='287' y='581'>employee</text><title>Table demo.employee</title></a>
+  <a xlink:href='#employee.EMP_ID'><text id='demo.employee.EMP_ID' x='258' y='607'>EMP_ID</text><title>EMP_ID
+int</title></a>
+  <a xlink:href='#employee.EMP_FIRST_NAME'><text id='demo.employee.EMP_FIRST_NAME' x='258' y='622'>EMP_FIRST_NAME</text><title>EMP_FIRST_NAME
+varchar&#40;20&#41;</title></a>
+  <a xlink:href='#employee.EMP_MIDDLE_NAME'><text id='demo.employee.EMP_MIDDLE_NAME' x='258' y='637'>EMP_MIDDLE_NAME</text><title>EMP_MIDDLE_NAME
+varchar&#40;20&#41;</title></a>
+  <a xlink:href='#employee.EMP_LAST_NAME'><text id='demo.employee.EMP_LAST_NAME' x='258' y='652'>EMP_LAST_NAME</text><title>EMP_LAST_NAME
+varchar&#40;20&#41;</title></a>
+  <a xlink:href='#employee.EMP_SEX'><text id='demo.employee.EMP_SEX' x='258' y='667'>EMP_SEX</text><title>EMP_SEX
+varchar&#40;6&#41;</title></a>
+  <a xlink:href='#employee.EMP_DATEOFBIRTH'><text id='demo.employee.EMP_DATEOFBIRTH' x='258' y='682'>EMP_DATEOFBIRTH</text><title>EMP_DATEOFBIRTH
+varchar&#40;25&#41;</title></a>
+  <a xlink:href='#employee.EMP_QUALIFICATION'><text id='demo.employee.EMP_QUALIFICATION' x='258' y='697'>EMP_QUALIFICATION</text><title>EMP_QUALIFICATION
+varchar&#40;20&#41;</title></a>
+  <a xlink:href='#employee.EMP_RADDRESS'><text id='demo.employee.EMP_RADDRESS' x='258' y='712'>EMP_RADDRESS</text><title>EMP_RADDRESS
+varchar&#40;30&#41;</title></a>
+  <a xlink:href='#employee.EMP_RSTATE'><text id='demo.employee.EMP_RSTATE' x='258' y='727'>EMP_RSTATE</text><title>EMP_RSTATE
+varchar&#40;20&#41;</title></a>
+  <a xlink:href='#employee.EMP_RAREA'><text id='demo.employee.EMP_RAREA' x='258' y='742'>EMP_RAREA</text><title>EMP_RAREA
+varchar&#40;20&#41;</title></a>
+  <a xlink:href='#employee.EMP_RPINCODE'><text id='demo.employee.EMP_RPINCODE' x='258' y='757'>EMP_RPINCODE</text><title>EMP_RPINCODE
+int</title></a>
+  <a xlink:href='#employee.EMP_RCONTACTNO'><text id='demo.employee.EMP_RCONTACTNO' x='258' y='772'>EMP_RCONTACTNO</text><title>EMP_RCONTACTNO
+int</title></a>
+  <a xlink:href='#employee.EMP_NADDRESS'><text id='demo.employee.EMP_NADDRESS' x='258' y='787'>EMP_NADDRESS</text><title>EMP_NADDRESS
+varchar&#40;30&#41;</title></a>
+  <a xlink:href='#employee.EMP_NSTATE'><text id='demo.employee.EMP_NSTATE' x='258' y='802'>EMP_NSTATE</text><title>EMP_NSTATE
+varchar&#40;20&#41;</title></a>
+  <a xlink:href='#employee.EMP_NAREA'><text id='demo.employee.EMP_NAREA' x='258' y='817'>EMP_NAREA</text><title>EMP_NAREA
+varchar&#40;20&#41;</title></a>
+  <a xlink:href='#employee.EMP_NPINCODE'><text id='demo.employee.EMP_NPINCODE' x='258' y='832'>EMP_NPINCODE</text><title>EMP_NPINCODE
+int</title></a>
+  <a xlink:href='#employee.EMP_NCONTACTNO'><text id='demo.employee.EMP_NCONTACTNO' x='258' y='847'>EMP_NCONTACTNO</text><title>EMP_NCONTACTNO
+int</title></a>
+  <a xlink:href='#employee.EMP_DATEOFJOINING'><text id='demo.employee.EMP_DATEOFJOINING' x='258' y='862'>EMP_DATEOFJOINING</text><title>EMP_DATEOFJOINING
+varchar&#40;10&#41;</title></a>
+  <a xlink:href='#employee.EMP_DEPARTMENT'><text id='demo.employee.EMP_DEPARTMENT' x='258' y='877'>EMP_DEPARTMENT</text><title>EMP_DEPARTMENT
+varchar&#40;15&#41;</title></a>
+  <a xlink:href='#employee.EMP_DESIGNATION'><text id='demo.employee.EMP_DESIGNATION' x='258' y='892'>EMP_DESIGNATION</text><title>EMP_DESIGNATION
+varchar&#40;15&#41;</title></a>
+  <a xlink:href='#employee.EMP_PAYOFDAY'><text id='demo.employee.EMP_PAYOFDAY' x='258' y='907'>EMP_PAYOFDAY</text><title>EMP_PAYOFDAY
+varchar&#40;5&#41;</title></a>
+  <a xlink:href='#employee.EMP_OVERTIMEPAY'><text id='demo.employee.EMP_OVERTIMEPAY' x='258' y='922'>EMP_OVERTIMEPAY</text><title>EMP_OVERTIMEPAY
+varchar&#40;5&#41;</title></a>
+  <a xlink:href='#employee.EMP_EMAIL'><text id='demo.employee.EMP_EMAIL' x='258' y='937'>EMP_EMAIL</text><title>EMP_EMAIL
+varchar&#40;30&#41;</title></a>
+
+<!-- ============= Table 'instance' ============= -->
+<rect class='table' x='390' y='1013' width='75' height='60' rx='7' ry='7' />
+<path d='M 390.50 1039.50 L 390.50 1020.50 Q 390.50 1013.50 397.50 1013.50 L 457.50 1013.50 Q 464.50 1013.50 464.50 1020.50 L 464.50 1039.50 L390.50 1039.50 ' style='fill:url(#tableHeaderGradient0); stroke:none;' />
+<a xlink:href='#instance'><text x='403' y='1031'>instance</text><title>Table demo.instance</title></a>
+  <a xlink:href='#instance.VALUE'><text id='demo.instance.VALUE' x='408' y='1057'>VALUE</text><title>VALUE
+int</title></a>
+
+<!-- ============= Table 'login' ============= -->
+<rect class='table' x='90' y='878' width='90' height='75' rx='7' ry='7' />
+<path d='M 90.50 904.50 L 90.50 885.50 Q 90.50 878.50 97.50 878.50 L 172.50 878.50 Q 179.50 878.50 179.50 885.50 L 179.50 904.50 L90.50 904.50 ' style='fill:url(#tableHeaderGradient0); stroke:none;' />
+<a xlink:href='#login'><text x='118' y='896'>login</text><title>Table demo.login</title></a>
+  <a xlink:href='#login.USERNAME'><text id='demo.login.USERNAME' x='108' y='922'>USERNAME</text><title>USERNAME
+varchar&#40;20&#41;</title></a>
+  <a xlink:href='#login.PASSWORD'><text id='demo.login.PASSWORD' x='108' y='937'>PASSWORD</text><title>PASSWORD
+varchar&#40;20&#41;</title></a>
+
+<!-- ============= Table 'manufacturer' ============= -->
+<rect class='table' x='795' y='788' width='120' height='180' rx='7' ry='7' />
+<path d='M 795.50 814.50 L 795.50 795.50 Q 795.50 788.50 802.50 788.50 L 907.50 788.50 Q 914.50 788.50 914.50 795.50 L 914.50 814.50 L795.50 814.50 ' style='fill:url(#tableHeaderGradient2); stroke:none;' />
+<a xlink:href='#manufacturer'><text x='817' y='806'>manufacturer</text><title>Table demo.manufacturer</title></a>
+  <use id='nn' x='797' y='822' xlink:href='#nn'/><a xlink:href='#manufacturer.MANU_ID'><use id='pk' x='797' y='821' xlink:href='#pk'/><title>Pk pk_manufacturer ( MANU_ID ) </title></a>
+<a xlink:href='#manufacturer.MANU_ID'><text id='demo.manufacturer.MANU_ID' x='813' y='832' onmouseover="hghl(['product_product_ibfk_1','purchase_order_purchase_order_ibfk_9','purchase_stock_purchase_stock_ibfk_2','purchase_stock_log_purchase_stock_log_ibfk_2'])" onmouseout="uhghl(['product_product_ibfk_1','purchase_order_purchase_order_ibfk_9','purchase_stock_purchase_stock_ibfk_2','purchase_stock_log_purchase_stock_log_ibfk_2'])">MANU_ID</text><title>MANU_ID
+* int</title></a>
+<a xlink:href='#manufacturer.MANU_ID'><use id='ref' x='903' y='821' xlink:href='#ref'/><title>Referred by product ( MANU_ID ) 
+Referred by purchase_order ( manu_id -> MANU_ID ) 
+Referred by purchase_stock ( MANU_ID ) 
+Referred by purchase_stock_log ( MANU_ID ) </title></a>
+  <a xlink:href='#manufacturer.MANU_NAME'><text id='demo.manufacturer.MANU_NAME' x='813' y='847'>MANU_NAME</text><title>MANU_NAME
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#manufacturer.MANU_STATE'><text id='demo.manufacturer.MANU_STATE' x='813' y='862'>MANU_STATE</text><title>MANU_STATE
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#manufacturer.MANU_AREA'><text id='demo.manufacturer.MANU_AREA' x='813' y='877'>MANU_AREA</text><title>MANU_AREA
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#manufacturer.MANU_ADDRESS'><text id='demo.manufacturer.MANU_ADDRESS' x='813' y='892'>MANU_ADDRESS</text><title>MANU_ADDRESS
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#manufacturer.MANU_PHONE'><text id='demo.manufacturer.MANU_PHONE' x='813' y='907'>MANU_PHONE</text><title>MANU_PHONE
+int</title></a>
+  <a xlink:href='#manufacturer.MANU_EMAIL'><text id='demo.manufacturer.MANU_EMAIL' x='813' y='922'>MANU_EMAIL</text><title>MANU_EMAIL
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#manufacturer.MANU_PIN'><text id='demo.manufacturer.MANU_PIN' x='813' y='937'>MANU_PIN</text><title>MANU_PIN
+varchar&#40;4000&#41;</title></a>
+  <use id='nn' x='797' y='942' xlink:href='#nn'/><a xlink:href='#manufacturer.manu_vat'><text id='demo.manufacturer.manu_vat' x='813' y='952'>manu_vat</text><title>manu_vat
+* varchar&#40;5&#41;</title></a>
+
+<!-- ============= Table 'modifyf' ============= -->
+<rect class='table' x='45' y='1013' width='135' height='195' rx='7' ry='7' />
+<path d='M 45.50 1039.50 L 45.50 1020.50 Q 45.50 1013.50 52.50 1013.50 L 172.50 1013.50 Q 179.50 1013.50 179.50 1020.50 L 179.50 1039.50 L45.50 1039.50 ' style='fill:url(#tableHeaderGradient0); stroke:none;' />
+<a xlink:href='#modifyf'><text x='90' y='1031'>modifyf</text><title>Table demo.modifyf</title></a>
+  <use id='nn' x='47' y='1047' xlink:href='#nn'/><a xlink:href='#modifyf.Cust_Id'><use id='pk' x='47' y='1046' xlink:href='#pk'/><title>Pk pk_modifyf ( Cust_Id ) </title></a>
+<a xlink:href='#modifyf.Cust_Id'><text id='demo.modifyf.Cust_Id' x='63' y='1057'>Cust_Id</text><title>Cust_Id
+* int</title></a>
+  <a xlink:href='#modifyf.CUST_FIRST_NAME'><text id='demo.modifyf.CUST_FIRST_NAME' x='63' y='1072'>CUST_FIRST_NAME</text><title>CUST_FIRST_NAME
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#modifyf.CUST_LAST_NAME'><text id='demo.modifyf.CUST_LAST_NAME' x='63' y='1087'>CUST_LAST_NAME</text><title>CUST_LAST_NAME
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#modifyf.CUST_STATE'><text id='demo.modifyf.CUST_STATE' x='63' y='1102'>CUST_STATE</text><title>CUST_STATE
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#modifyf.CUST_AREA'><text id='demo.modifyf.CUST_AREA' x='63' y='1117'>CUST_AREA</text><title>CUST_AREA
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#modifyf.CUST_ADDRESS'><text id='demo.modifyf.CUST_ADDRESS' x='63' y='1132'>CUST_ADDRESS</text><title>CUST_ADDRESS
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#modifyf.CUST_PHONE'><text id='demo.modifyf.CUST_PHONE' x='63' y='1147'>CUST_PHONE</text><title>CUST_PHONE
+varchar&#40;40&#41;</title></a>
+  <a xlink:href='#modifyf.CUST_EMAIL'><text id='demo.modifyf.CUST_EMAIL' x='63' y='1162'>CUST_EMAIL</text><title>CUST_EMAIL
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#modifyf.CUST_COMPANY'><text id='demo.modifyf.CUST_COMPANY' x='63' y='1177'>CUST_COMPANY</text><title>CUST_COMPANY
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#modifyf.CUST_PIN'><text id='demo.modifyf.CUST_PIN' x='63' y='1192'>CUST_PIN</text><title>CUST_PIN
+int</title></a>
+
+<!-- ============= Table 'order1' ============= -->
+<rect class='table' x='810' y='38' width='120' height='180' rx='7' ry='7' />
+<path d='M 810.50 64.50 L 810.50 45.50 Q 810.50 38.50 817.50 38.50 L 922.50 38.50 Q 929.50 38.50 929.50 45.50 L 929.50 64.50 L810.50 64.50 ' style='fill:url(#tableHeaderGradient3); stroke:none;' />
+<a xlink:href='#order1'><text x='850' y='56'>order1</text><title>Table demo.order1</title></a>
+  <use id='nn' x='812' y='72' xlink:href='#nn'/><a xlink:href='#order1.ORDER_ID1'><use id='pk' x='812' y='71' xlink:href='#pk'/><title>Pk pk_order1 ( ORDER_ID1, ORDER_ID2 ) </title></a>
+<a xlink:href='#order1.ORDER_ID1'><text id='demo.order1.ORDER_ID1' x='828' y='82'>ORDER_ID1</text><title>ORDER_ID1
+* int default 0</title></a>
+  <use id='nn' x='812' y='87' xlink:href='#nn'/><a xlink:href='#order1.ORDER_ID2'><use id='pk' x='812' y='86' xlink:href='#pk'/><title>Pk pk_order1 ( ORDER_ID1, ORDER_ID2 ) </title></a>
+<a xlink:href='#order1.ORDER_ID2'><text id='demo.order1.ORDER_ID2' x='828' y='97'>ORDER_ID2</text><title>ORDER_ID2
+* int default 0</title></a>
+  <a xlink:href='#order1.CUSTOMER_ID'><use id='idx' x='812' y='101' xlink:href='#idx'/><title>ORDER1_FK ( CUSTOMER_ID ) </title></a>
+<a xlink:href='#order1.CUSTOMER_ID'><text id='demo.order1.CUSTOMER_ID' x='828' y='112' onmouseover="hghl(['order1_order1_ibfk_2'])" onmouseout="uhghl(['order1_order1_ibfk_2'])">CUSTOMER_ID</text><title>CUSTOMER_ID
+int</title></a>
+<a xlink:href='#order1.CUSTOMER_ID'><use id='fk' x='918' y='101' xlink:href='#fk'/><title>References customer ( CUSTOMER_ID -> Cust_Id ) </title></a>
+  <a xlink:href='#order1.PRODUCT_ID'><use id='idx' x='812' y='116' xlink:href='#idx'/><title>ORDER1_FK2 ( PRODUCT_ID ) </title></a>
+<a xlink:href='#order1.PRODUCT_ID'><text id='demo.order1.PRODUCT_ID' x='828' y='127' onmouseover="hghl(['order1_order1_ibfk_1'])" onmouseout="uhghl(['order1_order1_ibfk_1'])">PRODUCT_ID</text><title>PRODUCT_ID
+int</title></a>
+<a xlink:href='#order1.PRODUCT_ID'><use id='fk' x='918' y='116' xlink:href='#fk'/><title>References product ( PRODUCT_ID ) </title></a>
+  <a xlink:href='#order1.QUANTITY'><text id='demo.order1.QUANTITY' x='828' y='142'>QUANTITY</text><title>QUANTITY
+int</title></a>
+  <a xlink:href='#order1.AMOUNT'><text id='demo.order1.AMOUNT' x='828' y='157'>AMOUNT</text><title>AMOUNT
+int</title></a>
+  <a xlink:href='#order1.ORDER_DATE'><text id='demo.order1.ORDER_DATE' x='828' y='172'>ORDER_DATE</text><title>ORDER_DATE
+datetime</title></a>
+  <a xlink:href='#order1.SHIPMENT_DATE'><text id='demo.order1.SHIPMENT_DATE' x='828' y='187'>SHIPMENT_DATE</text><title>SHIPMENT_DATE
+datetime</title></a>
+  <a xlink:href='#order1.ORDER_STATUS'><text id='demo.order1.ORDER_STATUS' x='828' y='202'>ORDER_STATUS</text><title>ORDER_STATUS
+varchar&#40;4000&#41;</title></a>
+
+<!-- ============= Table 'order1_log' ============= -->
+<rect class='table' x='1050' y='278' width='120' height='180' rx='7' ry='7' />
+<path d='M 1050.50 304.50 L 1050.50 285.50 Q 1050.50 278.50 1057.50 278.50 L 1162.50 278.50 Q 1169.50 278.50 1169.50 285.50 L 1169.50 304.50 L1050.50 304.50 ' style='fill:url(#tableHeaderGradient3); stroke:none;' />
+<a xlink:href='#order1_log'><text x='1079' y='296'>order1_log</text><title>Table demo.order1_log</title></a>
+  <use id='nn' x='1052' y='312' xlink:href='#nn'/><a xlink:href='#order1_log.ORDER_ID1'><use id='pk' x='1052' y='311' xlink:href='#pk'/><title>Pk pk_order1_log ( ORDER_ID1, ORDER_ID2 ) </title></a>
+<a xlink:href='#order1_log.ORDER_ID1'><text id='demo.order1_log.ORDER_ID1' x='1068' y='322'>ORDER_ID1</text><title>ORDER_ID1
+* int default 0</title></a>
+  <use id='nn' x='1052' y='327' xlink:href='#nn'/><a xlink:href='#order1_log.ORDER_ID2'><use id='pk' x='1052' y='326' xlink:href='#pk'/><title>Pk pk_order1_log ( ORDER_ID1, ORDER_ID2 ) </title></a>
+<a xlink:href='#order1_log.ORDER_ID2'><text id='demo.order1_log.ORDER_ID2' x='1068' y='337'>ORDER_ID2</text><title>ORDER_ID2
+* int default 0</title></a>
+  <a xlink:href='#order1_log.CUSTOMER_ID'><use id='idx' x='1052' y='341' xlink:href='#idx'/><title>ORDER1_LOG_FK ( CUSTOMER_ID ) </title></a>
+<a xlink:href='#order1_log.CUSTOMER_ID'><text id='demo.order1_log.CUSTOMER_ID' x='1068' y='352' onmouseover="hghl(['order1_log_order1_log_ibfk_2'])" onmouseout="uhghl(['order1_log_order1_log_ibfk_2'])">CUSTOMER_ID</text><title>CUSTOMER_ID
+int</title></a>
+<a xlink:href='#order1_log.CUSTOMER_ID'><use id='fk' x='1158' y='341' xlink:href='#fk'/><title>References customer ( CUSTOMER_ID -> Cust_Id ) </title></a>
+  <a xlink:href='#order1_log.PRODUCT_ID'><use id='idx' x='1052' y='356' xlink:href='#idx'/><title>ORDER1_LOG_FK2 ( PRODUCT_ID ) </title></a>
+<a xlink:href='#order1_log.PRODUCT_ID'><text id='demo.order1_log.PRODUCT_ID' x='1068' y='367' onmouseover="hghl(['order1_log_order1_log_ibfk_1'])" onmouseout="uhghl(['order1_log_order1_log_ibfk_1'])">PRODUCT_ID</text><title>PRODUCT_ID
+int</title></a>
+<a xlink:href='#order1_log.PRODUCT_ID'><use id='fk' x='1158' y='356' xlink:href='#fk'/><title>References product ( PRODUCT_ID ) </title></a>
+  <a xlink:href='#order1_log.QUANTITY'><text id='demo.order1_log.QUANTITY' x='1068' y='382'>QUANTITY</text><title>QUANTITY
+int</title></a>
+  <a xlink:href='#order1_log.AMOUNT'><text id='demo.order1_log.AMOUNT' x='1068' y='397'>AMOUNT</text><title>AMOUNT
+int</title></a>
+  <a xlink:href='#order1_log.ORDER_DATE'><text id='demo.order1_log.ORDER_DATE' x='1068' y='412'>ORDER_DATE</text><title>ORDER_DATE
+datetime</title></a>
+  <a xlink:href='#order1_log.SHIPMENT_DATE'><text id='demo.order1_log.SHIPMENT_DATE' x='1068' y='427'>SHIPMENT_DATE</text><title>SHIPMENT_DATE
+datetime</title></a>
+  <a xlink:href='#order1_log.ORDER_STATUS'><text id='demo.order1_log.ORDER_STATUS' x='1068' y='442'>ORDER_STATUS</text><title>ORDER_STATUS
+varchar&#40;4000&#41;</title></a>
+
+<!-- ============= Table 'order2' ============= -->
+<rect class='table' x='240' y='1013' width='90' height='105' rx='7' ry='7' />
+<path d='M 240.50 1039.50 L 240.50 1020.50 Q 240.50 1013.50 247.50 1013.50 L 322.50 1013.50 Q 329.50 1013.50 329.50 1020.50 L 329.50 1039.50 L240.50 1039.50 ' style='fill:url(#tableHeaderGradient0); stroke:none;' />
+<a xlink:href='#order2'><text x='265' y='1031'>order2</text><title>Table demo.order2</title></a>
+  <a xlink:href='#order2.NAME'><text id='demo.order2.NAME' x='258' y='1057'>NAME</text><title>NAME
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#order2.PRICE'><text id='demo.order2.PRICE' x='258' y='1072'>PRICE</text><title>PRICE
+int</title></a>
+  <a xlink:href='#order2.QUANTITY'><text id='demo.order2.QUANTITY' x='258' y='1087'>QUANTITY</text><title>QUANTITY
+int</title></a>
+  <a xlink:href='#order2.AMOUNT'><text id='demo.order2.AMOUNT' x='258' y='1102'>AMOUNT</text><title>AMOUNT
+int</title></a>
+
+<!-- ============= Table 'payment' ============= -->
+<rect class='table' x='1410' y='818' width='120' height='120' rx='7' ry='7' />
+<path d='M 1410.50 844.50 L 1410.50 825.50 Q 1410.50 818.50 1417.50 818.50 L 1522.50 818.50 Q 1529.50 818.50 1529.50 825.50 L 1529.50 844.50 L1410.50 844.50 ' style='fill:url(#tableHeaderGradient1); stroke:none;' />
+<a xlink:href='#payment'><text x='1445' y='836'>payment</text><title>Table demo.payment</title></a>
+  <use id='nn' x='1412' y='852' xlink:href='#nn'/><a xlink:href='#payment.PAYMENT_ID'><use id='pk' x='1412' y='851' xlink:href='#pk'/><title>Pk pk_payment ( PAYMENT_ID ) </title></a>
+<a xlink:href='#payment.PAYMENT_ID'><text id='demo.payment.PAYMENT_ID' x='1428' y='862'>PAYMENT_ID</text><title>PAYMENT_ID
+* int default 0</title></a>
+  <a xlink:href='#payment.ORDER_ID'><text id='demo.payment.ORDER_ID' x='1428' y='877'>ORDER_ID</text><title>ORDER_ID
+int</title></a>
+  <a xlink:href='#payment.AMOUNT'><text id='demo.payment.AMOUNT' x='1428' y='892'>AMOUNT</text><title>AMOUNT
+int</title></a>
+  <a xlink:href='#payment.PAYMENT_DATE'><text id='demo.payment.PAYMENT_DATE' x='1428' y='907'>PAYMENT_DATE</text><title>PAYMENT_DATE
+varchar&#40;25&#41;</title></a>
+  <a xlink:href='#payment.PAYMENT_STATUS'><text id='demo.payment.PAYMENT_STATUS' x='1428' y='922'>PAYMENT_STATUS</text><title>PAYMENT_STATUS
+varchar&#40;4000&#41;</title></a>
+
+<!-- ============= Table 'product' ============= -->
+<rect class='table' x='630' y='53' width='120' height='165' rx='7' ry='7' />
+<path d='M 630.50 79.50 L 630.50 60.50 Q 630.50 53.50 637.50 53.50 L 742.50 53.50 Q 749.50 53.50 749.50 60.50 L 749.50 79.50 L630.50 79.50 ' style='fill:url(#tableHeaderGradient3); stroke:none;' />
+<a xlink:href='#product'><text x='666' y='71'>product</text><title>Table demo.product</title></a>
+  <use id='nn' x='632' y='87' xlink:href='#nn'/><a xlink:href='#product.PRODUCT_ID'><use id='pk' x='632' y='86' xlink:href='#pk'/><title>Pk pk_product ( PRODUCT_ID ) </title></a>
+<a xlink:href='#product.PRODUCT_ID'><text id='demo.product.PRODUCT_ID' x='648' y='97' onmouseover="hghl(['order1_order1_ibfk_1','order1_log_order1_log_ibfk_1','purchase_order_purchase_order_ibfk_8','purchase_stock_purchase_stock_ibfk_1','purchase_stock_log_purchase_stock_log_ibfk_1','sale1_sale1_ibfk_6','stock_stock_ibfk_1'])" onmouseout="uhghl(['order1_order1_ibfk_1','order1_log_order1_log_ibfk_1','purchase_order_purchase_order_ibfk_8','purchase_stock_purchase_stock_ibfk_1','purchase_stock_log_purchase_stock_log_ibfk_1','sale1_sale1_ibfk_6','stock_stock_ibfk_1'])">PRODUCT_ID</text><title>PRODUCT_ID
+* int</title></a>
+<a xlink:href='#product.PRODUCT_ID'><use id='ref' x='738' y='86' xlink:href='#ref'/><title>Referred by order1 ( PRODUCT_ID ) 
+Referred by order1_log ( PRODUCT_ID ) 
+Referred by purchase_order ( product_id -> PRODUCT_ID ) 
+Referred by purchase_stock ( PRODUCT_ID ) 
+Referred by purchase_stock_log ( PRODUCT_ID ) 
+Referred by sale1 ( product_id -> PRODUCT_ID ) 
+Referred by stock ( PRODUCT_ID ) </title></a>
+  <a xlink:href='#product.MANU_ID'><use id='idx' x='632' y='101' xlink:href='#idx'/><title>MANU_ID ( MANU_ID ) </title></a>
+<a xlink:href='#product.MANU_ID'><text id='demo.product.MANU_ID' x='648' y='112' onmouseover="hghl(['product_product_ibfk_1'])" onmouseout="uhghl(['product_product_ibfk_1'])">MANU_ID</text><title>MANU_ID
+int</title></a>
+<a xlink:href='#product.MANU_ID'><use id='fk' x='738' y='101' xlink:href='#fk'/><title>References manufacturer ( MANU_ID ) </title></a>
+  <a xlink:href='#product.PRODUCT_NAME'><text id='demo.product.PRODUCT_NAME' x='648' y='127'>PRODUCT_NAME</text><title>PRODUCT_NAME
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#product.PRODUCT_MRP'><text id='demo.product.PRODUCT_MRP' x='648' y='142'>PRODUCT_MRP</text><title>PRODUCT_MRP
+int</title></a>
+  <a xlink:href='#product.PRODUCT_PRICE'><text id='demo.product.PRODUCT_PRICE' x='648' y='157'>PRODUCT_PRICE</text><title>PRODUCT_PRICE
+int</title></a>
+  <a xlink:href='#product.BOX_QUANTITY'><text id='demo.product.BOX_QUANTITY' x='648' y='172'>BOX_QUANTITY</text><title>BOX_QUANTITY
+int</title></a>
+  <a xlink:href='#product.BOX_PRICE'><text id='demo.product.BOX_PRICE' x='648' y='187'>BOX_PRICE</text><title>BOX_PRICE
+int</title></a>
+  <use id='nn' x='632' y='192' xlink:href='#nn'/><a xlink:href='#product.AUTO_BOX_PRICE'><text id='demo.product.AUTO_BOX_PRICE' x='648' y='202'>AUTO_BOX_PRICE</text><title>AUTO_BOX_PRICE
+* int</title></a>
+
+<!-- ============= Table 'purchase_order' ============= -->
+<rect class='table' x='795' y='563' width='165' height='165' rx='7' ry='7' />
+<path d='M 795.50 589.50 L 795.50 570.50 Q 795.50 563.50 802.50 563.50 L 952.50 563.50 Q 959.50 563.50 959.50 570.50 L 959.50 589.50 L795.50 589.50 ' style='fill:url(#tableHeaderGradient2); stroke:none;' />
+<a xlink:href='#purchase_order'><text x='834' y='581'>purchase_order</text><title>Table demo.purchase_order</title></a>
+  <a xlink:href='#purchase_order.purchase_id'><text id='demo.purchase_order.purchase_id' x='813' y='607'>purchase_id</text><title>purchase_id
+int</title></a>
+  <a xlink:href='#purchase_order.manu_id'><use id='idx' x='797' y='611' xlink:href='#idx'/><title>manu_id ( manu_id ) </title></a>
+<a xlink:href='#purchase_order.manu_id'><text id='demo.purchase_order.manu_id' x='813' y='622' onmouseover="hghl(['purchase_order_purchase_order_ibfk_9'])" onmouseout="uhghl(['purchase_order_purchase_order_ibfk_9'])">manu_id</text><title>manu_id
+int</title></a>
+<a xlink:href='#purchase_order.manu_id'><use id='fk' x='948' y='611' xlink:href='#fk'/><title>References manufacturer ( manu_id -> MANU_ID ) </title></a>
+  <a xlink:href='#purchase_order.product_id'><use id='idx' x='797' y='626' xlink:href='#idx'/><title>product_id ( product_id ) </title></a>
+<a xlink:href='#purchase_order.product_id'><text id='demo.purchase_order.product_id' x='813' y='637' onmouseover="hghl(['purchase_order_purchase_order_ibfk_8'])" onmouseout="uhghl(['purchase_order_purchase_order_ibfk_8'])">product_id</text><title>product_id
+int</title></a>
+<a xlink:href='#purchase_order.product_id'><use id='fk' x='948' y='626' xlink:href='#fk'/><title>References product ( product_id -> PRODUCT_ID ) </title></a>
+  <a xlink:href='#purchase_order.purchase_quantity'><text id='demo.purchase_order.purchase_quantity' x='813' y='652'>purchase_quantity</text><title>purchase_quantity
+int</title></a>
+  <a xlink:href='#purchase_order.purchase_amount'><text id='demo.purchase_order.purchase_amount' x='813' y='667'>purchase_amount</text><title>purchase_amount
+float&#40;12&#44;0&#41;</title></a>
+  <a xlink:href='#purchase_order.purchase_order_date'><text id='demo.purchase_order.purchase_order_date' x='813' y='682'>purchase_order_date</text><title>purchase_order_date
+varchar&#40;30&#41;</title></a>
+  <a xlink:href='#purchase_order.purchase_received_date'><text id='demo.purchase_order.purchase_received_date' x='813' y='697'>purchase_received_date</text><title>purchase_received_date
+varchar&#40;30&#41;</title></a>
+  <a xlink:href='#purchase_order.purchase_status'><text id='demo.purchase_order.purchase_status' x='813' y='712'>purchase_status</text><title>purchase_status
+varchar&#40;30&#41;</title></a>
+
+<!-- ============= Table 'purchase_stock' ============= -->
+<rect class='table' x='570' y='278' width='180' height='165' rx='7' ry='7' />
+<path d='M 570.50 304.50 L 570.50 285.50 Q 570.50 278.50 577.50 278.50 L 742.50 278.50 Q 749.50 278.50 749.50 285.50 L 749.50 304.50 L570.50 304.50 ' style='fill:url(#tableHeaderGradient3); stroke:none;' />
+<a xlink:href='#purchase_stock'><text x='617' y='296'>purchase_stock</text><title>Table demo.purchase_stock</title></a>
+  <use id='nn' x='572' y='312' xlink:href='#nn'/><a xlink:href='#purchase_stock.PURCHASE_ID'><use id='pk' x='572' y='311' xlink:href='#pk'/><title>Pk pk_purchase_stock ( PURCHASE_ID ) </title></a>
+<a xlink:href='#purchase_stock.PURCHASE_ID'><text id='demo.purchase_stock.PURCHASE_ID' x='588' y='322'>PURCHASE_ID</text><title>PURCHASE_ID
+* int default 0</title></a>
+  <a xlink:href='#purchase_stock.MANU_ID'><use id='idx' x='572' y='326' xlink:href='#idx'/><title>PURCHASE_STOCK_FK ( MANU_ID ) </title></a>
+<a xlink:href='#purchase_stock.MANU_ID'><text id='demo.purchase_stock.MANU_ID' x='588' y='337' onmouseover="hghl(['purchase_stock_purchase_stock_ibfk_2'])" onmouseout="uhghl(['purchase_stock_purchase_stock_ibfk_2'])">MANU_ID</text><title>MANU_ID
+int</title></a>
+<a xlink:href='#purchase_stock.MANU_ID'><use id='fk' x='738' y='326' xlink:href='#fk'/><title>References manufacturer ( MANU_ID ) </title></a>
+  <a xlink:href='#purchase_stock.PRODUCT_ID'><use id='idx' x='572' y='341' xlink:href='#idx'/><title>PURCHASE_STOCK_FK2 ( PRODUCT_ID ) </title></a>
+<a xlink:href='#purchase_stock.PRODUCT_ID'><text id='demo.purchase_stock.PRODUCT_ID' x='588' y='352' onmouseover="hghl(['purchase_stock_purchase_stock_ibfk_1'])" onmouseout="uhghl(['purchase_stock_purchase_stock_ibfk_1'])">PRODUCT_ID</text><title>PRODUCT_ID
+int</title></a>
+<a xlink:href='#purchase_stock.PRODUCT_ID'><use id='fk' x='738' y='341' xlink:href='#fk'/><title>References product ( PRODUCT_ID ) </title></a>
+  <a xlink:href='#purchase_stock.PURCHASE_QUANTITY'><text id='demo.purchase_stock.PURCHASE_QUANTITY' x='588' y='367'>PURCHASE_QUANTITY</text><title>PURCHASE_QUANTITY
+int</title></a>
+  <a xlink:href='#purchase_stock.PURCHASE_AMOUNT'><text id='demo.purchase_stock.PURCHASE_AMOUNT' x='588' y='382'>PURCHASE_AMOUNT</text><title>PURCHASE_AMOUNT
+int</title></a>
+  <a xlink:href='#purchase_stock.PURCHASE_ORDER_DATE'><text id='demo.purchase_stock.PURCHASE_ORDER_DATE' x='588' y='397'>PURCHASE_ORDER_DATE</text><title>PURCHASE_ORDER_DATE
+datetime</title></a>
+  <a xlink:href='#purchase_stock.PURCHASE_RECEIVED_DATE'><text id='demo.purchase_stock.PURCHASE_RECEIVED_DATE' x='588' y='412'>PURCHASE_RECEIVED_DATE</text><title>PURCHASE_RECEIVED_DATE
+datetime</title></a>
+  <a xlink:href='#purchase_stock.PURCHASE_STATUS'><text id='demo.purchase_stock.PURCHASE_STATUS' x='588' y='427'>PURCHASE_STATUS</text><title>PURCHASE_STATUS
+varchar&#40;4000&#41;</title></a>
+
+<!-- ============= Table 'purchase_stock_log' ============= -->
+<rect class='table' x='810' y='278' width='180' height='165' rx='7' ry='7' />
+<path d='M 810.50 304.50 L 810.50 285.50 Q 810.50 278.50 817.50 278.50 L 982.50 278.50 Q 989.50 278.50 989.50 285.50 L 989.50 304.50 L810.50 304.50 ' style='fill:url(#tableHeaderGradient3); stroke:none;' />
+<a xlink:href='#purchase_stock_log'><text x='846' y='296'>purchase_stock_log</text><title>Table demo.purchase_stock_log</title></a>
+  <use id='nn' x='812' y='312' xlink:href='#nn'/><a xlink:href='#purchase_stock_log.PURCHASE_ID'><use id='pk' x='812' y='311' xlink:href='#pk'/><title>Pk pk_purchase_stock_log ( PURCHASE_ID ) </title></a>
+<a xlink:href='#purchase_stock_log.PURCHASE_ID'><text id='demo.purchase_stock_log.PURCHASE_ID' x='828' y='322'>PURCHASE_ID</text><title>PURCHASE_ID
+* int default 0</title></a>
+  <a xlink:href='#purchase_stock_log.MANU_ID'><use id='idx' x='812' y='326' xlink:href='#idx'/><title>PURCHASE_STOCK_LOG_FK ( MANU_ID ) </title></a>
+<a xlink:href='#purchase_stock_log.MANU_ID'><text id='demo.purchase_stock_log.MANU_ID' x='828' y='337' onmouseover="hghl(['purchase_stock_log_purchase_stock_log_ibfk_2'])" onmouseout="uhghl(['purchase_stock_log_purchase_stock_log_ibfk_2'])">MANU_ID</text><title>MANU_ID
+int</title></a>
+<a xlink:href='#purchase_stock_log.MANU_ID'><use id='fk' x='978' y='326' xlink:href='#fk'/><title>References manufacturer ( MANU_ID ) </title></a>
+  <a xlink:href='#purchase_stock_log.PRODUCT_ID'><use id='idx' x='812' y='341' xlink:href='#idx'/><title>PURCHASE_STOCK_LOG_FK2 ( PRODUCT_ID ) </title></a>
+<a xlink:href='#purchase_stock_log.PRODUCT_ID'><text id='demo.purchase_stock_log.PRODUCT_ID' x='828' y='352' onmouseover="hghl(['purchase_stock_log_purchase_stock_log_ibfk_1'])" onmouseout="uhghl(['purchase_stock_log_purchase_stock_log_ibfk_1'])">PRODUCT_ID</text><title>PRODUCT_ID
+int</title></a>
+<a xlink:href='#purchase_stock_log.PRODUCT_ID'><use id='fk' x='978' y='341' xlink:href='#fk'/><title>References product ( PRODUCT_ID ) </title></a>
+  <a xlink:href='#purchase_stock_log.PURCHASE_QUANTITY'><text id='demo.purchase_stock_log.PURCHASE_QUANTITY' x='828' y='367'>PURCHASE_QUANTITY</text><title>PURCHASE_QUANTITY
+int</title></a>
+  <a xlink:href='#purchase_stock_log.PURCHASE_AMOUNT'><text id='demo.purchase_stock_log.PURCHASE_AMOUNT' x='828' y='382'>PURCHASE_AMOUNT</text><title>PURCHASE_AMOUNT
+int</title></a>
+  <a xlink:href='#purchase_stock_log.PURCHASE_ORDER_DATE'><text id='demo.purchase_stock_log.PURCHASE_ORDER_DATE' x='828' y='397'>PURCHASE_ORDER_DATE</text><title>PURCHASE_ORDER_DATE
+datetime</title></a>
+  <a xlink:href='#purchase_stock_log.PURCHASE_RECEIVED_DATE'><text id='demo.purchase_stock_log.PURCHASE_RECEIVED_DATE' x='828' y='412'>PURCHASE_RECEIVED_DATE</text><title>PURCHASE_RECEIVED_DATE
+datetime</title></a>
+  <a xlink:href='#purchase_stock_log.PURCHASE_STATUS'><text id='demo.purchase_stock_log.PURCHASE_STATUS' x='828' y='427'>PURCHASE_STATUS</text><title>PURCHASE_STATUS
+varchar&#40;4000&#41;</title></a>
+
+<!-- ============= Table 'sale1' ============= -->
+<rect class='table' x='1590' y='818' width='105' height='180' rx='7' ry='7' />
+<path d='M 1590.50 844.50 L 1590.50 825.50 Q 1590.50 818.50 1597.50 818.50 L 1687.50 818.50 Q 1694.50 818.50 1694.50 825.50 L 1694.50 844.50 L1590.50 844.50 ' style='fill:url(#tableHeaderGradient1); stroke:none;' />
+<a xlink:href='#sale1'><text x='1626' y='836'>sale1</text><title>Table demo.sale1</title></a>
+  <use id='nn' x='1592' y='852' xlink:href='#nn'/><a xlink:href='#sale1.sale_id1'><use id='pk' x='1592' y='851' xlink:href='#pk'/><title>Pk pk_sale1 ( sale_id1 ) </title></a>
+<a xlink:href='#sale1.sale_id1'><text id='demo.sale1.sale_id1' x='1608' y='862'>sale_id1</text><title>sale_id1
+* int</title></a>
+  <a xlink:href='#sale1.sale_id2'><text id='demo.sale1.sale_id2' x='1608' y='877'>sale_id2</text><title>sale_id2
+int</title></a>
+  <a xlink:href='#sale1.Customer_Id'><use id='idx' x='1592' y='881' xlink:href='#idx'/><title>Customer_Id ( Customer_Id ) </title></a>
+<a xlink:href='#sale1.Customer_Id'><text id='demo.sale1.Customer_Id' x='1608' y='892' onmouseover="hghl(['sale1_sale1_ibfk_5'])" onmouseout="uhghl(['sale1_sale1_ibfk_5'])">Customer_Id</text><title>Customer_Id
+int</title></a>
+<a xlink:href='#sale1.Customer_Id'><use id='fk' x='1683' y='881' xlink:href='#fk'/><title>References customer ( Customer_Id -> Cust_Id ) </title></a>
+  <a xlink:href='#sale1.product_id'><use id='idx' x='1592' y='896' xlink:href='#idx'/><title>product_id ( product_id ) </title></a>
+<a xlink:href='#sale1.product_id'><text id='demo.sale1.product_id' x='1608' y='907' onmouseover="hghl(['sale1_sale1_ibfk_6'])" onmouseout="uhghl(['sale1_sale1_ibfk_6'])">product_id</text><title>product_id
+int</title></a>
+<a xlink:href='#sale1.product_id'><use id='fk' x='1683' y='896' xlink:href='#fk'/><title>References product ( product_id -> PRODUCT_ID ) </title></a>
+  <a xlink:href='#sale1.Quantity'><text id='demo.sale1.Quantity' x='1608' y='922'>Quantity</text><title>Quantity
+int</title></a>
+  <a xlink:href='#sale1.amount'><text id='demo.sale1.amount' x='1608' y='937'>amount</text><title>amount
+int</title></a>
+  <a xlink:href='#sale1.order_date'><text id='demo.sale1.order_date' x='1608' y='952'>order_date</text><title>order_date
+varchar&#40;25&#41;</title></a>
+  <a xlink:href='#sale1.sale_date'><text id='demo.sale1.sale_date' x='1608' y='967'>sale_date</text><title>sale_date
+varchar&#40;25&#41;</title></a>
+  <a xlink:href='#sale1.sale_status'><text id='demo.sale1.sale_status' x='1608' y='982'>sale_status</text><title>sale_status
+varchar&#40;25&#41;</title></a>
+
+<!-- ============= Table 'sale2' ============= -->
+<rect class='table' x='1275' y='818' width='75' height='105' rx='7' ry='7' />
+<path d='M 1275.50 844.50 L 1275.50 825.50 Q 1275.50 818.50 1282.50 818.50 L 1342.50 818.50 Q 1349.50 818.50 1349.50 825.50 L 1349.50 844.50 L1275.50 844.50 ' style='fill:url(#tableHeaderGradient1); stroke:none;' />
+<a xlink:href='#sale2'><text x='1296' y='836'>sale2</text><title>Table demo.sale2</title></a>
+  <a xlink:href='#sale2.name'><text id='demo.sale2.name' x='1293' y='862'>name</text><title>name
+varchar&#40;25&#41;</title></a>
+  <a xlink:href='#sale2.price'><text id='demo.sale2.price' x='1293' y='877'>price</text><title>price
+varchar&#40;15&#41;</title></a>
+  <a xlink:href='#sale2.quantity'><text id='demo.sale2.quantity' x='1293' y='892'>quantity</text><title>quantity
+int</title></a>
+  <a xlink:href='#sale2.amount'><text id='demo.sale2.amount' x='1293' y='907'>amount</text><title>amount
+int</title></a>
+
+<!-- ============= Table 'stock' ============= -->
+<rect class='table' x='1050' y='98' width='135' height='120' rx='7' ry='7' />
+<path d='M 1050.50 124.50 L 1050.50 105.50 Q 1050.50 98.50 1057.50 98.50 L 1177.50 98.50 Q 1184.50 98.50 1184.50 105.50 L 1184.50 124.50 L1050.50 124.50 ' style='fill:url(#tableHeaderGradient3); stroke:none;' />
+<a xlink:href='#stock'><text x='1101' y='116'>stock</text><title>Table demo.stock</title></a>
+  <use id='nn' x='1052' y='132' xlink:href='#nn'/><a xlink:href='#stock.STOCK_ID'><use id='pk' x='1052' y='131' xlink:href='#pk'/><title>Pk pk_stock ( STOCK_ID ) </title></a>
+<a xlink:href='#stock.STOCK_ID'><text id='demo.stock.STOCK_ID' x='1068' y='142'>STOCK_ID</text><title>STOCK_ID
+* int</title></a>
+  <a xlink:href='#stock.PRODUCT_ID'><use id='idx' x='1052' y='146' xlink:href='#idx'/><title>PRODUCT_ID ( PRODUCT_ID ) </title></a>
+<a xlink:href='#stock.PRODUCT_ID'><text id='demo.stock.PRODUCT_ID' x='1068' y='157' onmouseover="hghl(['stock_stock_ibfk_1'])" onmouseout="uhghl(['stock_stock_ibfk_1'])">PRODUCT_ID</text><title>PRODUCT_ID
+int</title></a>
+<a xlink:href='#stock.PRODUCT_ID'><use id='fk' x='1173' y='146' xlink:href='#fk'/><title>References product ( PRODUCT_ID ) </title></a>
+  <a xlink:href='#stock.STOCK_QUANTITY'><text id='demo.stock.STOCK_QUANTITY' x='1068' y='172'>STOCK_QUANTITY</text><title>STOCK_QUANTITY
+int</title></a>
+  <a xlink:href='#stock.STOCK_ORDERED'><text id='demo.stock.STOCK_ORDERED' x='1068' y='187'>STOCK_ORDERED</text><title>STOCK_ORDERED
+int</title></a>
+  <a xlink:href='#stock.STOCK_REMAINING'><text id='demo.stock.STOCK_REMAINING' x='1068' y='202'>STOCK_REMAINING</text><title>STOCK_REMAINING
+int</title></a>
+
+<!-- ============= Table 'tmp_purchase_order' ============= -->
+<rect class='table' x='975' y='788' width='150' height='120' rx='7' ry='7' />
+<path d='M 975.50 814.50 L 975.50 795.50 Q 975.50 788.50 982.50 788.50 L 1117.50 788.50 Q 1124.50 788.50 1124.50 795.50 L 1124.50 814.50 L975.50 814.50 ' style='fill:url(#tableHeaderGradient2); stroke:none;' />
+<a xlink:href='#tmp_purchase_order'><text x='994' y='806'>tmp_purchase_order</text><title>Table demo.tmp_purchase_order</title></a>
+  <a xlink:href='#tmp_purchase_order.manu_name'><text id='demo.tmp_purchase_order.manu_name' x='993' y='832'>manu_name</text><title>manu_name
+varchar&#40;30&#41;</title></a>
+  <a xlink:href='#tmp_purchase_order.product_name'><text id='demo.tmp_purchase_order.product_name' x='993' y='847'>product_name</text><title>product_name
+varchar&#40;30&#41;</title></a>
+  <a xlink:href='#tmp_purchase_order.purchase_quantity'><text id='demo.tmp_purchase_order.purchase_quantity' x='993' y='862'>purchase_quantity</text><title>purchase_quantity
+int</title></a>
+  <a xlink:href='#tmp_purchase_order.purchase_amount'><text id='demo.tmp_purchase_order.purchase_amount' x='993' y='877'>purchase_amount</text><title>purchase_amount
+float&#40;12&#44;0&#41;</title></a>
+  <a xlink:href='#tmp_purchase_order.purchase_order_date'><text id='demo.tmp_purchase_order.purchase_order_date' x='993' y='892'>purchase_order_date</text><title>purchase_order_date
+varchar&#40;25&#41;</title></a>
+
+<!-- ============= Table 'tmp_purchase_stock' ============= -->
+<rect class='table' x='570' y='788' width='165' height='120' rx='7' ry='7' />
+<path d='M 570.50 814.50 L 570.50 795.50 Q 570.50 788.50 577.50 788.50 L 727.50 788.50 Q 734.50 788.50 734.50 795.50 L 734.50 814.50 L570.50 814.50 ' style='fill:url(#tableHeaderGradient2); stroke:none;' />
+<a xlink:href='#tmp_purchase_stock'><text x='597' y='806'>tmp_purchase_stock</text><title>Table demo.tmp_purchase_stock</title></a>
+  <a xlink:href='#tmp_purchase_stock.MANU_NAME'><text id='demo.tmp_purchase_stock.MANU_NAME' x='588' y='832'>MANU_NAME</text><title>MANU_NAME
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#tmp_purchase_stock.PRODUCT_NAME'><text id='demo.tmp_purchase_stock.PRODUCT_NAME' x='588' y='847'>PRODUCT_NAME</text><title>PRODUCT_NAME
+varchar&#40;4000&#41;</title></a>
+  <a xlink:href='#tmp_purchase_stock.PURCHASE_QUANTITY'><text id='demo.tmp_purchase_stock.PURCHASE_QUANTITY' x='588' y='862'>PURCHASE_QUANTITY</text><title>PURCHASE_QUANTITY
+int</title></a>
+  <a xlink:href='#tmp_purchase_stock.PURCHASE_AMOUNT'><text id='demo.tmp_purchase_stock.PURCHASE_AMOUNT' x='588' y='877'>PURCHASE_AMOUNT</text><title>PURCHASE_AMOUNT
+int</title></a>
+  <a xlink:href='#tmp_purchase_stock.PURCHASE_ORDER_DATE'><text id='demo.tmp_purchase_stock.PURCHASE_ORDER_DATE' x='588' y='892'>PURCHASE_ORDER_DATE</text><title>PURCHASE_ORDER_DATE
+datetime</title></a>
+
+</g></svg>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='beforelogin'>Table beforelogin</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='beforelogin.USERNAME'>USERNAME</a></td>
+		<td> varchar&#40; 50 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='beforelogin.PASSWORD'>PASSWORD</a></td>
+		<td> varchar&#40; 50 &#41;   </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='complaint'>Table complaint</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='complaint.COMPLAINT_ID'>COMPLAINT&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='complaint.ORDER_ID1'>ORDER&#95;ID1</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='complaint.ORDER_ID2'>ORDER&#95;ID2</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='complaint.PRODUCT_ID'>PRODUCT&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='complaint.CUSTOMER_ID'>CUSTOMER&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='complaint.COMPLAINT_DESCRIBTION'>COMPLAINT&#95;DESCRIBTION</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='complaint.COMPLAINT_DATE'>COMPLAINT&#95;DATE</a></td>
+		<td> varchar&#40; 25 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='complaint.COMPLAINT_STATUS'>COMPLAINT&#95;STATUS</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>pk&#95;complaint</td>
+		<td> ON COMPLAINT&#95;ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>CUSTOMER&#95;ID</td>
+		<td> ON CUSTOMER&#95;ID</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Foreign Keys</b></th></tr>
+	<tr>
+		<td>&nbsp;</td><td>complaint_ibfk_1</td>
+		<td > ( CUSTOMER&#95;ID ) ref <a href='#customer'>customer</a> (Cust&#95;Id) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='customer'>Table customer</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='customer.Cust_Id'>Cust&#95;Id</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customer.CUST_FIRST_NAME'>CUST&#95;FIRST&#95;NAME</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customer.CUST_LAST_NAME'>CUST&#95;LAST&#95;NAME</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customer.CUST_STATE'>CUST&#95;STATE</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customer.CUST_AREA'>CUST&#95;AREA</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customer.CUST_ADDRESS'>CUST&#95;ADDRESS</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customer.CUST_PHONE'>CUST&#95;PHONE</a></td>
+		<td> varchar&#40; 40 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customer.CUST_EMAIL'>CUST&#95;EMAIL</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customer.CUST_COMPANY'>CUST&#95;COMPANY</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='customer.CUST_PIN'>CUST&#95;PIN</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>pk&#95;customer</td>
+		<td> ON Cust&#95;Id</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='employee'>Table employee</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_ID'>EMP&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_FIRST_NAME'>EMP&#95;FIRST&#95;NAME</a></td>
+		<td> varchar&#40; 20 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_MIDDLE_NAME'>EMP&#95;MIDDLE&#95;NAME</a></td>
+		<td> varchar&#40; 20 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_LAST_NAME'>EMP&#95;LAST&#95;NAME</a></td>
+		<td> varchar&#40; 20 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_SEX'>EMP&#95;SEX</a></td>
+		<td> varchar&#40; 6 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_DATEOFBIRTH'>EMP&#95;DATEOFBIRTH</a></td>
+		<td> varchar&#40; 25 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_QUALIFICATION'>EMP&#95;QUALIFICATION</a></td>
+		<td> varchar&#40; 20 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_RADDRESS'>EMP&#95;RADDRESS</a></td>
+		<td> varchar&#40; 30 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_RSTATE'>EMP&#95;RSTATE</a></td>
+		<td> varchar&#40; 20 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_RAREA'>EMP&#95;RAREA</a></td>
+		<td> varchar&#40; 20 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_RPINCODE'>EMP&#95;RPINCODE</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_RCONTACTNO'>EMP&#95;RCONTACTNO</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_NADDRESS'>EMP&#95;NADDRESS</a></td>
+		<td> varchar&#40; 30 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_NSTATE'>EMP&#95;NSTATE</a></td>
+		<td> varchar&#40; 20 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_NAREA'>EMP&#95;NAREA</a></td>
+		<td> varchar&#40; 20 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_NPINCODE'>EMP&#95;NPINCODE</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_NCONTACTNO'>EMP&#95;NCONTACTNO</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_DATEOFJOINING'>EMP&#95;DATEOFJOINING</a></td>
+		<td> varchar&#40; 10 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_DEPARTMENT'>EMP&#95;DEPARTMENT</a></td>
+		<td> varchar&#40; 15 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_DESIGNATION'>EMP&#95;DESIGNATION</a></td>
+		<td> varchar&#40; 15 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_PAYOFDAY'>EMP&#95;PAYOFDAY</a></td>
+		<td> varchar&#40; 5 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_OVERTIMEPAY'>EMP&#95;OVERTIMEPAY</a></td>
+		<td> varchar&#40; 5 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='employee.EMP_EMAIL'>EMP&#95;EMAIL</a></td>
+		<td> varchar&#40; 30 &#41;   </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='instance'>Table instance</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='instance.VALUE'>VALUE</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='login'>Table login</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='login.USERNAME'>USERNAME</a></td>
+		<td> varchar&#40; 20 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='login.PASSWORD'>PASSWORD</a></td>
+		<td> varchar&#40; 20 &#41;   </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='manufacturer'>Table manufacturer</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='manufacturer.MANU_ID'>MANU&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='manufacturer.MANU_NAME'>MANU&#95;NAME</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='manufacturer.MANU_STATE'>MANU&#95;STATE</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='manufacturer.MANU_AREA'>MANU&#95;AREA</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='manufacturer.MANU_ADDRESS'>MANU&#95;ADDRESS</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='manufacturer.MANU_PHONE'>MANU&#95;PHONE</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='manufacturer.MANU_EMAIL'>MANU&#95;EMAIL</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='manufacturer.MANU_PIN'>MANU&#95;PIN</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='manufacturer.manu_vat'>manu&#95;vat</a></td>
+		<td> varchar&#40; 5 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>pk&#95;manufacturer</td>
+		<td> ON MANU&#95;ID</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='modifyf'>Table modifyf</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='modifyf.Cust_Id'>Cust&#95;Id</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='modifyf.CUST_FIRST_NAME'>CUST&#95;FIRST&#95;NAME</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='modifyf.CUST_LAST_NAME'>CUST&#95;LAST&#95;NAME</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='modifyf.CUST_STATE'>CUST&#95;STATE</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='modifyf.CUST_AREA'>CUST&#95;AREA</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='modifyf.CUST_ADDRESS'>CUST&#95;ADDRESS</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='modifyf.CUST_PHONE'>CUST&#95;PHONE</a></td>
+		<td> varchar&#40; 40 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='modifyf.CUST_EMAIL'>CUST&#95;EMAIL</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='modifyf.CUST_COMPANY'>CUST&#95;COMPANY</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='modifyf.CUST_PIN'>CUST&#95;PIN</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>pk&#95;modifyf</td>
+		<td> ON Cust&#95;Id</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='order1'>Table order1</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='order1.ORDER_ID1'>ORDER&#95;ID1</a></td>
+		<td> int   DEFO 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='order1.ORDER_ID2'>ORDER&#95;ID2</a></td>
+		<td> int   DEFO 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order1.CUSTOMER_ID'>CUSTOMER&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order1.PRODUCT_ID'>PRODUCT&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order1.QUANTITY'>QUANTITY</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order1.AMOUNT'>AMOUNT</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order1.ORDER_DATE'>ORDER&#95;DATE</a></td>
+		<td> datetime   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order1.SHIPMENT_DATE'>SHIPMENT&#95;DATE</a></td>
+		<td> datetime   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order1.ORDER_STATUS'>ORDER&#95;STATUS</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>pk&#95;order1</td>
+		<td> ON ORDER&#95;ID1&#44; ORDER&#95;ID2</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>ORDER1&#95;FK</td>
+		<td> ON CUSTOMER&#95;ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>ORDER1&#95;FK2</td>
+		<td> ON PRODUCT&#95;ID</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Foreign Keys</b></th></tr>
+	<tr>
+		<td>&nbsp;</td><td>order1_ibfk_2</td>
+		<td > ( CUSTOMER&#95;ID ) ref <a href='#customer'>customer</a> (Cust&#95;Id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td><td>order1_ibfk_1</td>
+		<td > ( PRODUCT&#95;ID ) ref <a href='#product'>product</a> (PRODUCT&#95;ID) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='order1_log'>Table order1_log</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='order1_log.ORDER_ID1'>ORDER&#95;ID1</a></td>
+		<td> int   DEFO 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='order1_log.ORDER_ID2'>ORDER&#95;ID2</a></td>
+		<td> int   DEFO 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order1_log.CUSTOMER_ID'>CUSTOMER&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order1_log.PRODUCT_ID'>PRODUCT&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order1_log.QUANTITY'>QUANTITY</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order1_log.AMOUNT'>AMOUNT</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order1_log.ORDER_DATE'>ORDER&#95;DATE</a></td>
+		<td> datetime   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order1_log.SHIPMENT_DATE'>SHIPMENT&#95;DATE</a></td>
+		<td> datetime   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order1_log.ORDER_STATUS'>ORDER&#95;STATUS</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>pk&#95;order1&#95;log</td>
+		<td> ON ORDER&#95;ID1&#44; ORDER&#95;ID2</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>ORDER1&#95;LOG&#95;FK</td>
+		<td> ON CUSTOMER&#95;ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>ORDER1&#95;LOG&#95;FK2</td>
+		<td> ON PRODUCT&#95;ID</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Foreign Keys</b></th></tr>
+	<tr>
+		<td>&nbsp;</td><td>order1_log_ibfk_2</td>
+		<td > ( CUSTOMER&#95;ID ) ref <a href='#customer'>customer</a> (Cust&#95;Id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td><td>order1_log_ibfk_1</td>
+		<td > ( PRODUCT&#95;ID ) ref <a href='#product'>product</a> (PRODUCT&#95;ID) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='order2'>Table order2</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order2.NAME'>NAME</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order2.PRICE'>PRICE</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order2.QUANTITY'>QUANTITY</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='order2.AMOUNT'>AMOUNT</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='payment'>Table payment</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='payment.PAYMENT_ID'>PAYMENT&#95;ID</a></td>
+		<td> int   DEFO 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='payment.ORDER_ID'>ORDER&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='payment.AMOUNT'>AMOUNT</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='payment.PAYMENT_DATE'>PAYMENT&#95;DATE</a></td>
+		<td> varchar&#40; 25 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='payment.PAYMENT_STATUS'>PAYMENT&#95;STATUS</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>pk&#95;payment</td>
+		<td> ON PAYMENT&#95;ID</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='product'>Table product</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='product.PRODUCT_ID'>PRODUCT&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product.MANU_ID'>MANU&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product.PRODUCT_NAME'>PRODUCT&#95;NAME</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product.PRODUCT_MRP'>PRODUCT&#95;MRP</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product.PRODUCT_PRICE'>PRODUCT&#95;PRICE</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product.BOX_QUANTITY'>BOX&#95;QUANTITY</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='product.BOX_PRICE'>BOX&#95;PRICE</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='product.AUTO_BOX_PRICE'>AUTO&#95;BOX&#95;PRICE</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>pk&#95;product</td>
+		<td> ON PRODUCT&#95;ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>MANU&#95;ID</td>
+		<td> ON MANU&#95;ID</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Foreign Keys</b></th></tr>
+	<tr>
+		<td>&nbsp;</td><td>product_ibfk_1</td>
+		<td > ( MANU&#95;ID ) ref <a href='#manufacturer'>manufacturer</a> (MANU&#95;ID) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='purchase_order'>Table purchase_order</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_order.purchase_id'>purchase&#95;id</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_order.manu_id'>manu&#95;id</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_order.product_id'>product&#95;id</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_order.purchase_quantity'>purchase&#95;quantity</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_order.purchase_amount'>purchase&#95;amount</a></td>
+		<td> float&#40; 12&#44; 0 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_order.purchase_order_date'>purchase&#95;order&#95;date</a></td>
+		<td> varchar&#40; 30 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_order.purchase_received_date'>purchase&#95;received&#95;date</a></td>
+		<td> varchar&#40; 30 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_order.purchase_status'>purchase&#95;status</a></td>
+		<td> varchar&#40; 30 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>&nbsp;</td><td>manu&#95;id</td>
+		<td> ON manu&#95;id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>product&#95;id</td>
+		<td> ON product&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Foreign Keys</b></th></tr>
+	<tr>
+		<td>&nbsp;</td><td>purchase_order_ibfk_9</td>
+		<td > ( manu&#95;id ) ref <a href='#manufacturer'>manufacturer</a> (MANU&#95;ID) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td><td>purchase_order_ibfk_8</td>
+		<td > ( product&#95;id ) ref <a href='#product'>product</a> (PRODUCT&#95;ID) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='purchase_stock'>Table purchase_stock</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='purchase_stock.PURCHASE_ID'>PURCHASE&#95;ID</a></td>
+		<td> int   DEFO 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_stock.MANU_ID'>MANU&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_stock.PRODUCT_ID'>PRODUCT&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_stock.PURCHASE_QUANTITY'>PURCHASE&#95;QUANTITY</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_stock.PURCHASE_AMOUNT'>PURCHASE&#95;AMOUNT</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_stock.PURCHASE_ORDER_DATE'>PURCHASE&#95;ORDER&#95;DATE</a></td>
+		<td> datetime   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_stock.PURCHASE_RECEIVED_DATE'>PURCHASE&#95;RECEIVED&#95;DATE</a></td>
+		<td> datetime   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_stock.PURCHASE_STATUS'>PURCHASE&#95;STATUS</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>pk&#95;purchase&#95;stock</td>
+		<td> ON PURCHASE&#95;ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>PURCHASE&#95;STOCK&#95;FK</td>
+		<td> ON MANU&#95;ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>PURCHASE&#95;STOCK&#95;FK2</td>
+		<td> ON PRODUCT&#95;ID</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Foreign Keys</b></th></tr>
+	<tr>
+		<td>&nbsp;</td><td>purchase_stock_ibfk_2</td>
+		<td > ( MANU&#95;ID ) ref <a href='#manufacturer'>manufacturer</a> (MANU&#95;ID) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td><td>purchase_stock_ibfk_1</td>
+		<td > ( PRODUCT&#95;ID ) ref <a href='#product'>product</a> (PRODUCT&#95;ID) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='purchase_stock_log'>Table purchase_stock_log</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='purchase_stock_log.PURCHASE_ID'>PURCHASE&#95;ID</a></td>
+		<td> int   DEFO 0 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_stock_log.MANU_ID'>MANU&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_stock_log.PRODUCT_ID'>PRODUCT&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_stock_log.PURCHASE_QUANTITY'>PURCHASE&#95;QUANTITY</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_stock_log.PURCHASE_AMOUNT'>PURCHASE&#95;AMOUNT</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_stock_log.PURCHASE_ORDER_DATE'>PURCHASE&#95;ORDER&#95;DATE</a></td>
+		<td> datetime   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_stock_log.PURCHASE_RECEIVED_DATE'>PURCHASE&#95;RECEIVED&#95;DATE</a></td>
+		<td> datetime   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='purchase_stock_log.PURCHASE_STATUS'>PURCHASE&#95;STATUS</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>pk&#95;purchase&#95;stock&#95;log</td>
+		<td> ON PURCHASE&#95;ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>PURCHASE&#95;STOCK&#95;LOG&#95;FK</td>
+		<td> ON MANU&#95;ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>PURCHASE&#95;STOCK&#95;LOG&#95;FK2</td>
+		<td> ON PRODUCT&#95;ID</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Foreign Keys</b></th></tr>
+	<tr>
+		<td>&nbsp;</td><td>purchase_stock_log_ibfk_2</td>
+		<td > ( MANU&#95;ID ) ref <a href='#manufacturer'>manufacturer</a> (MANU&#95;ID) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td><td>purchase_stock_log_ibfk_1</td>
+		<td > ( PRODUCT&#95;ID ) ref <a href='#product'>product</a> (PRODUCT&#95;ID) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='sale1'>Table sale1</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='sale1.sale_id1'>sale&#95;id1</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='sale1.sale_id2'>sale&#95;id2</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='sale1.Customer_Id'>Customer&#95;Id</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='sale1.product_id'>product&#95;id</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='sale1.Quantity'>Quantity</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='sale1.amount'>amount</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='sale1.order_date'>order&#95;date</a></td>
+		<td> varchar&#40; 25 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='sale1.sale_date'>sale&#95;date</a></td>
+		<td> varchar&#40; 25 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='sale1.sale_status'>sale&#95;status</a></td>
+		<td> varchar&#40; 25 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>pk&#95;sale1</td>
+		<td> ON sale&#95;id1</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>Customer&#95;Id</td>
+		<td> ON Customer&#95;Id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>product&#95;id</td>
+		<td> ON product&#95;id</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Foreign Keys</b></th></tr>
+	<tr>
+		<td>&nbsp;</td><td>sale1_ibfk_5</td>
+		<td > ( Customer&#95;Id ) ref <a href='#customer'>customer</a> (Cust&#95;Id) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td><td>sale1_ibfk_6</td>
+		<td > ( product&#95;id ) ref <a href='#product'>product</a> (PRODUCT&#95;ID) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='sale2'>Table sale2</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='sale2.name'>name</a></td>
+		<td> varchar&#40; 25 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='sale2.price'>price</a></td>
+		<td> varchar&#40; 15 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='sale2.quantity'>quantity</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='sale2.amount'>amount</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='stock'>Table stock</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='stock.STOCK_ID'>STOCK&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='stock.PRODUCT_ID'>PRODUCT&#95;ID</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='stock.STOCK_QUANTITY'>STOCK&#95;QUANTITY</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='stock.STOCK_ORDERED'>STOCK&#95;ORDERED</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='stock.STOCK_REMAINING'>STOCK&#95;REMAINING</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>pk&#95;stock</td>
+		<td> ON STOCK&#95;ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>PRODUCT&#95;ID</td>
+		<td> ON PRODUCT&#95;ID</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Foreign Keys</b></th></tr>
+	<tr>
+		<td>&nbsp;</td><td>stock_ibfk_1</td>
+		<td > ( PRODUCT&#95;ID ) ref <a href='#product'>product</a> (PRODUCT&#95;ID) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='tmp_purchase_order'>Table tmp_purchase_order</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='tmp_purchase_order.manu_name'>manu&#95;name</a></td>
+		<td> varchar&#40; 30 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='tmp_purchase_order.product_name'>product&#95;name</a></td>
+		<td> varchar&#40; 30 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='tmp_purchase_order.purchase_quantity'>purchase&#95;quantity</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='tmp_purchase_order.purchase_amount'>purchase&#95;amount</a></td>
+		<td> float&#40; 12&#44; 0 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='tmp_purchase_order.purchase_order_date'>purchase&#95;order&#95;date</a></td>
+		<td> varchar&#40; 25 &#41;   </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='tmp_purchase_stock'>Table tmp_purchase_stock</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='tmp_purchase_stock.MANU_NAME'>MANU&#95;NAME</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='tmp_purchase_stock.PRODUCT_NAME'>PRODUCT&#95;NAME</a></td>
+		<td> varchar&#40; 4000 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='tmp_purchase_stock.PURCHASE_QUANTITY'>PURCHASE&#95;QUANTITY</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='tmp_purchase_stock.PURCHASE_AMOUNT'>PURCHASE&#95;AMOUNT</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='tmp_purchase_stock.PURCHASE_ORDER_DATE'>PURCHASE&#95;ORDER&#95;DATE</a></td>
+		<td> datetime   </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+</body></html>
